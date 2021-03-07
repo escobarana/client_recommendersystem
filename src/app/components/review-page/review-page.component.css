@@ -1,0 +1,214 @@
+.list-apss{
+    margin-top: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.start, .searching{
+    padding: 120px;
+    text-align: center;
+}
+
+.inputK{
+    font-size: 25px;
+    text-align: center;
+}
+
+.btn{
+    background-color: #e4facb;
+    font-size: 40px;
+    height: 50px;
+    width: auto;
+    border: none;
+    border-radius: 12px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: 25px;
+    color: rgb(100, 44, 44);
+    cursor: pointer;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+  
+.btn:hover, .btnaside:hover{
+  background-color: #b7ed7f;
+}
+  
+.corner {
+  border-radius: 25px;
+  border: 2px solid #73AD21;
+}
+  
+.btnstart{
+  margin-left: 505px;
+}
+
+.searching{
+  font-size: 25px;
+}
+
+.preloader{
+  margin-top: 120px;
+}
+
+.loader {
+    display: block;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: rgb(190, 219, 112);
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+.loader:before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #73AD21;
+    -webkit-animation: spin 3s linear infinite;
+    animation: spin 3s linear infinite;
+}
+.loader:after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: rgb(142, 235, 13);
+    -webkit-animation: spin 1.5s linear infinite;
+    animation: spin 1.5s linear infinite;
+}
+@-webkit-keyframes spin {
+    0%   {
+        -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+@keyframes spin {
+    0%   {
+        -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.aside-pos{
+  float: left; 
+  width: 20%;
+  margin: 0 10px;
+}
+
+.container {
+  width:200px;
+  background-color:rgb(255, 255, 255);
+  margin:0px auto;
+  border-left:2px solid #fff;
+  border-right:2px solid #fff;
+  margin-right: 50px;
+  margin-bottom: 10px;
+  text-align: center;
+  border: 2px solid #642c2c;
+  color: #642c2c;
+}
+
+.inputKAgain{
+  text-align: center;
+}
+
+.btnaside{
+  background-color: #e4facb;
+  height: 50px;
+  width: auto;
+  border-radius: 12px;
+  padding-left: 15px;
+  padding-right: 15px;
+  color: rgb(100, 44, 44);
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.contentListApps{
+  padding-left: 280px;
+  color: #642c2c;
+}
+
+.mat-divider{
+  border-top-width: 2px;
+  border-top-color: #642c2c;
+  margin-top: 20px;
+  min-width: 400px;
+}
+
+.titleApps{
+  text-align: center;
+  min-width: 400px;
+}
+
+.subtitle{
+  font-size: xx-large;
+}
+
+.tabGroup{
+  position: sticky;
+  min-width: 400px;
+}
+
+::ng-deep .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+  background-color: #73ad21;
+}
+
+::ng-deep input.mat-input-element {
+  color: #73ad21;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+  color: #73ad21 !important;
+}
+
+::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple{
+  background-color: #73ad21 !important;
+}
+
+::ng-deep .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
+  color: #73ad21 !important;
+}
+
+::ng-deep .mat-tab-label {
+  font-size: 20px;
+}
+
+.noApps{
+  text-align: center;
+  color: #642c2c;
+  min-width: 400px;
+  padding-top: 80px;
+}
+
+.emptyListApps{
+  color: #642c2c;
+}

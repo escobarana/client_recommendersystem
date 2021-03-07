@@ -1,0 +1,31 @@
+<section class="mat-elevation-z8 allrows">
+
+    <table class="table table-hover">
+        <thead class="thead-default">
+            <tr>
+                <th>Email</th>
+                <th>OS</th>
+                <th>Sexo</th>
+                <th>Edad</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let patient of allPatients">
+                <td>{{patient.email}}</td>
+                <td>{{patient.os}}</td>
+                <td>{{patient.gender}}</td>
+                <td>{{patient.age}}</td>
+            </tr>
+        </tbody>
+    </table>
+  
+    <mat-paginator #paginator2 
+        [pageSize]="pageSize" 
+        [pageSizeOptions]="sizeOptions" 
+        [showFirstLastButtons]="true" 
+        [length]="allPatients.length"
+        [pageIndex]="pageIndex" 
+        (page)="pageEvent = handlePage($event)">
+    </mat-paginator>
+
+  </section>

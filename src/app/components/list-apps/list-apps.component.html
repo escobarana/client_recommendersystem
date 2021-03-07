@@ -1,0 +1,14 @@
+<section class="allrows">
+    <section *ngFor="let app of listApps | slice: lowValue : highValue" class="styleApps">
+        <app-box [app]="app" (deletedApp)="deleteFromList($event)"></app-box>
+    </section>
+</section>
+
+<mat-paginator #paginator2 
+    [pageSize]="pageSize" 
+    [pageSizeOptions]="sizeOptions" 
+    [showFirstLastButtons]="true" 
+    [length]="listApps.length"
+    [pageIndex]="pageIndex" 
+    (page)="pageEvent = handlePage($event)">
+</mat-paginator>

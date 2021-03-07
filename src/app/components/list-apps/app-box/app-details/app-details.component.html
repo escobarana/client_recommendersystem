@@ -1,0 +1,144 @@
+<section class="dialogForm">
+
+    <div cdkFocusInitial class="dialog-header">
+        <div class="closeDiv">
+            <mat-icon svgIcon="close" class="close-icon" aria-hidden="false" (click)="closeWindow()"></mat-icon>
+        </div>
+        <h1 mat-dialog-title class="titleApp">{{app.title}}</h1>
+        <mat-divider></mat-divider>
+    </div>
+
+    <mat-dialog-content mat-dialog-content class="dialogContent">
+
+        <mat-card class="card" style="margin-top: 20px;">
+            <mat-card-header>
+                <mat-card-title style="font-size: x-large;">Description</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-card style="margin-top: 20px;">
+                    <mat-card-content>
+                        <p>{{app.description}}</p>
+                    </mat-card-content>
+                </mat-card>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card class="card" style="margin-top: 20px;">
+            <mat-card-header>
+                <mat-card-title style="font-size: x-large;">Download</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-card style="margin-top: 20px;">
+                    <mat-card-content>
+                        <div class="urlText">
+                            <p (click)="openUrl()" style="cursor: pointer;">Click HERE to download the app</p>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-tab-group dynamicHeight style="margin-top:20px;" *ngIf="!identity.admin">
+            <mat-tab label="To recommend">
+                <mat-card class="card" style="margin-top: 20px;">
+                    <mat-card-header>
+                      <mat-card-title style="font-size: x-large;">Why do you recommend it?</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+        
+                        <mat-card style="margin-top: 20px;">
+                            <mat-card-header>
+                              <mat-card-title><u>Type of activity:</u></mat-card-title>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <mat-radio-group aria-label="Select type activity" (change)="radioActivity($event)">
+                                    <mat-radio-button value="1" class="radiobtn" >Aerobic</mat-radio-button>
+                                    <mat-radio-button value="2" class="radiobtn" >Anaerobic</mat-radio-button>
+                                    <mat-radio-button value="3" class="radiobtn" >Indifferent</mat-radio-button>
+                                </mat-radio-group>
+                                <h4>Select other options:</h4>
+                                <section class="checkBoxesActivity">
+                                    <mat-checkbox class="checkActivity" (change)="optionsActivity('swim',$event)">Swim</mat-checkbox>
+                                    <mat-checkbox class="checkActivity" (change)="optionsActivity('running',$event)">Running</mat-checkbox>
+                                    <mat-checkbox class="checkActivity" (change)="optionsActivity('walk',$event)">Walk</mat-checkbox>
+                                    <mat-checkbox class="checkActivity" (change)="optionsActivity('bike',$event)">Bike</mat-checkbox>
+                                    <mat-checkbox class="checkActivity" (change)="optionsActivity('dance',$event)">Dance</mat-checkbox>
+                                </section>
+                            </mat-card-content>
+                        </mat-card>
+        
+                        <mat-card style="margin-top: 20px;">
+                            <mat-card-header>
+                              <mat-card-title><u>Select amout of previous exercise:</u></mat-card-title>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <mat-radio-group aria-label="Previous exercise activity:" (change)="radioExercise($event)">
+                                    <mat-radio-button value="1" class="radiobtn" >Bajo</mat-radio-button>
+                                    <mat-radio-button value="2" class="radiobtn" >Medio</mat-radio-button>
+                                    <mat-radio-button value="3" class="radiobtn" >Alto</mat-radio-button>
+                                </mat-radio-group>
+                            </mat-card-content>
+                        </mat-card>
+        
+                        <mat-card style="margin-top: 20px;">
+                            <mat-card-header>
+                              <mat-card-title><u>Preference:</u></mat-card-title>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <mat-radio-group aria-label="Select gender" class="preferences" (change)="radioPreference($event)">
+                                    <mat-radio-button value="1" class="radiobtn preference">Solo</mat-radio-button>
+                                    <mat-radio-button value="2" class="radiobtn preference">Group</mat-radio-button>
+                                    <mat-radio-button value="3" class="radiobtn preference">Indifferent</mat-radio-button>
+                                </mat-radio-group>        
+                            </mat-card-content>
+                        </mat-card>
+        
+                        <mat-card style="margin-top: 20px;">
+                            <mat-card-header>
+                              <mat-card-title><u>Gender:</u></mat-card-title>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <mat-radio-group aria-label="Select gender" class="genders" (change)="radioGender($event)">
+                                    <mat-radio-button value="1" class="radiobtn gender">Female</mat-radio-button>
+                                    <mat-radio-button value="2" class="radiobtn gender">Male</mat-radio-button>
+                                    <mat-radio-button value="3" class="radiobtn gender">Prefer not to say</mat-radio-button>
+                                </mat-radio-group>
+                            </mat-card-content>
+                        </mat-card>
+          
+                    </mat-card-content>
+                </mat-card>
+            </mat-tab>
+            <mat-tab label="To remove">
+                <mat-card class="card" style="margin-bottom: 20px; margin-top: 20px;">
+                    <mat-card-header>
+                      <mat-card-title style="font-size: x-large;">Why do you remove it?</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <mat-card-content>
+                            <mat-card style="margin-top: 20px;">
+                                <mat-card-content>
+                                    <section class="checkBoxesActivity">
+                                        <mat-checkbox 
+                                            class="checkActivity" 
+                                            *ngFor="let opt of optRemove"
+                                            (change)="optionsRemove(opt,$event)">{{opt}}</mat-checkbox>
+                                    </section>
+                                </mat-card-content>
+                            </mat-card>
+                        </mat-card-content>
+                    </mat-card-content>
+                </mat-card>
+            </mat-tab>
+        </mat-tab-group>
+
+
+
+        <mat-divider *ngIf="!identity.admin"></mat-divider>
+        <mat-dialog-actions align="end" class="btnDialog" *ngIf="!identity.admin">
+            <button (click)="onNoClick()" class="btnNo btn">Remove</button>
+            <button (click)="onYesClick()" class="btnYes btn">Recommend</button>
+          </mat-dialog-actions>
+    </mat-dialog-content>
+
+</section>

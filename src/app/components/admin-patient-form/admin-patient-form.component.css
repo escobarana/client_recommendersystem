@@ -1,0 +1,22 @@
+.container {
+    width:2000px;
+    background-color:rgb(255, 255, 255);
+    margin:0px auto;
+    border-left:2px solid #fff;
+    border-right:2px solid #fff;
+    text-align: center;
+    border: 2px solid #642c2c;
+    color: #642c2c;
+  }
+
+  .titleManage{
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    color: #642c2c;
+}
+
+section{
+  margin-left: 40px;
+  margin-right: 40px;
+}

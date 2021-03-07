@@ -1,0 +1,113 @@
+<article class="explore-page">
+    <section *ngIf="isLoaded" class="list-apss">
+        <aside class="aside-pos" *ngIf="toReview.length >= 0 || toDelete.length >= 0">
+            <!--<aside class="container">
+                <p>Change K for analysis:</p>
+                <mat-form-field class="inputKAgain">
+                    <mat-select value="3" [(value)]="Kvalue">
+                      <mat-option value="2">2</mat-option>
+                      <mat-option value="3">3</mat-option>
+                      <mat-option value="4">4</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <button class="btnaside corner" (click)="startAgain()"> 
+                    Start again
+                </button>
+            </aside>-->
+            <aside class="container">
+                <p>Choose your store:</p>
+                <button class="btnaside corner" (click)="changeToApple()">
+                    Apple Store
+                </button>
+                <button class="btnaside corner" (click)="changeToGoogle()">
+                    Google Play
+                </button>
+                <button class="btnaside corner" (click)="changeToBoth()">
+                    Both stores
+                </button>
+            </aside>
+            <aside class="container" *ngIf="identity.admin">
+                <p>Assign apps:</p>
+                <button class="btnaside corner" (click)="asignSelectedApps()">
+                    Assign selected apps
+                </button>
+            </aside>
+            <aside class="container" *ngIf="identity.admin">
+                <p>Update apps from stores:</p>
+                <button class="btnaside corner" (click)="updateApps()">
+                    Update apps
+                </button>
+            </aside>
+            <!--<aside class="container" *ngIf="isAdmin">
+                <p>Remove apps:</p>
+                <button class="btnaside corner"> (click)="removeSelections()"
+                    Remove selected apps
+                </button>
+                <a routerLink="/removedapps">
+                    <button class="btnaside corner">
+                        Go to removed apps
+                    </button>
+                </a>
+            </aside>-->
+        </aside>
+        <section class="emptyListApps" *ngIf="!identity.admin && isEmpty()">
+            <h1 class= "titleApps"> Assigned apps </h1>
+            <h2 class= "noApps"> Please, contact your administrator to assign you apps.</h2>
+        </section>
+        <section class="contentListApps" *ngIf="toReview.length > 0 || toDelete.length > 0">
+            <h1 class= "titleApps" *ngIf="!identity.admin"> Assigned apps </h1>
+            <h1 class= "titleApps" *ngIf="identity.admin"> Apps to be assigned</h1>
+            <h2 *ngIf="showBoth" class= "titleApps"> Both Stores </h2>
+            <h2 *ngIf="showApple" class= "titleApps"> Apple Store </h2>
+            <h2 *ngIf="showGoogle" class= "titleApps"> Google Play </h2>
+            <mat-divider></mat-divider>
+            <!--<mat-tab-group dynamicHeight *ngIf="!isDefault">
+                <mat-tab label="Topic 1">
+                    <list-apps [listApps]="filterTopics(1)" [isLoaded]="isLoaded"></list-apps>
+                </mat-tab>
+                <mat-tab label="Topic 2">
+                    <list-apps [listApps]="filterTopics(2)" [isLoaded]="isLoaded"></list-apps>
+                </mat-tab>
+                <mat-tab label="Topic 3" *ngIf="selectedK >= 3">
+                    <list-apps [listApps]="filterTopics(3)" [isLoaded]="isLoaded"></list-apps>
+                </mat-tab>
+                <mat-tab label="Topic 4" *ngIf="selectedK >= 4">
+                    <list-apps [listApps]="filterTopics(4)" [isLoaded]="isLoaded"></list-apps>
+                </mat-tab>
+            </mat-tab-group>-->
+            <mat-tab-group dynamicHeight *ngIf="isDefault" class="tabGroup">
+                <mat-tab label="To Review">
+                    <list-apps [listApps]="filterByStoreReview()" [isLoaded]="isLoaded" type="review"></list-apps>
+                </mat-tab>
+                <mat-tab label="To Delete">
+                    <list-apps [listApps]="filterByStoreDelete()" [isLoaded]="isLoaded" type="remove"></list-apps>
+                </mat-tab>
+            </mat-tab-group>
+        </section>
+    </section>
+    
+    <!--<section *ngIf="!isSearching && !isLoaded" class="start">
+        <h1>Start your analysis</h1>
+        <h2>Select your k:</h2>
+        <mat-form-field class="inputK">
+            <mat-select #K value="3" [(value)]="selectedK">
+              <mat-option value="2">2</mat-option>
+              <mat-option value="3">3</mat-option>
+              <mat-option value="4">4</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button class="btn corner btnstart" (click)="startAnalysis()">
+            Start
+        </button>
+    </section>-->
+    
+    <section *ngIf="!isLoaded" class="searching"> <!--&& isSearching-->
+        <h2>Preparing your apps</h2>
+        <h2>It can take several minutes</h2>
+        <h2>Please wait...</h2>
+        <div class="preloader">
+            <div class="loader"></div>
+        </div>
+    </section>
+
+</article>

@@ -1,0 +1,69 @@
+<article>
+  <section *ngIf="isLoaded" class="list-apss">
+      <aside class="aside-pos" *ngIf="accepted.length > 0 || removed.length > 0">
+          <aside class="container">
+              <p>Choose your store:</p>
+              <button class="btnaside corner" (click)="changeToApple()">
+                  Apple Store
+              </button>
+              <button class="btnaside corner" (click)="changeToGoogle()">
+                  Google Play
+              </button>
+              <button class="btnaside corner" (click)="changeToBoth()">
+                  Both stores
+              </button>
+          </aside>
+          <aside class="container"  *ngIf="identity.admin">
+            <p>Accept decision by reviewers:</p>
+            <button class="btnaside corner" (click)="acceptApp()">
+                Accept selected apps
+            </button>
+          </aside>
+          <aside class="container"  *ngIf="identity.admin">
+            <p>Remove decision by reviewers:</p>
+            <button class="btnaside corner" (click)="removeApp()">
+                Remove selected apps
+            </button>
+          </aside>
+          <!--<aside class="container">
+              <p>Restore apps:</p>
+              <button class="btnaside corner" (click)="restoreApps()">
+                  Restore selected apps
+              </button>
+              <a routerLink="/explore">
+                <button class="btnaside corner">
+                    Go to apps
+                </button>
+              </a>
+          </aside>-->
+      </aside>
+      <section class="emptyListApps" *ngIf="isEmpty()">
+        <h1 class= "titleApps"> Reviewed apps </h1>
+        <h2 class= "noApps"> No reviewed apps for now.</h2>
+      </section>
+      <section class="contentListApps" *ngIf="accepted.length > 0 || removed.length > 0">
+          <h1 class= "titleApps"> Reviewed apps </h1>
+          <h2 *ngIf="showBoth" class= "titleApps subtitle"> Both Stores </h2>
+          <h2 *ngIf="showApple" class= "titleApps subtitle"> Apple Store </h2>
+          <h2 *ngIf="showGoogle" class= "titleApps subtitle"> Google Play </h2>
+          <mat-divider></mat-divider>
+          <mat-tab-group dynamicHeight class="tabGroup">
+            <mat-tab label="Proposed To Accept">
+                <list-apps [listApps]="filterByStoreAccepted()" [isLoaded]="isLoaded" type="accepted"></list-apps>
+            </mat-tab>
+            <mat-tab label="Proposed To Remove">
+                <list-apps [listApps]="filterByStoreRemoved()" [isLoaded]="isLoaded" type="removed"></list-apps>
+            </mat-tab>
+        </mat-tab-group>
+      </section>
+  </section>
+
+  <section *ngIf="!isLoaded" class="searching">
+    <h2>Preparing your reviewed apps</h2>
+    <h2>Please wait...</h2>
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+  </section>
+
+</article>

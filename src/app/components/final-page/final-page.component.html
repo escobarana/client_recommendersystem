@@ -1,0 +1,58 @@
+<article>
+    <section *ngIf="isLoaded" class="list-apps">
+        <aside class="aside-pos" *ngIf="accepted.length > 0 || removed.length > 0">
+            <aside class="container">
+                <p>Choose your store:</p>
+                <button class="btnaside corner" (click)="changeToApple()">
+                    Apple Store
+                </button>
+                <button class="btnaside corner" (click)="changeToGoogle()">
+                    Google Play
+                </button>
+                <button class="btnaside corner" (click)="changeToBoth()">
+                    Both stores
+                </button>
+            </aside>
+            <aside class="container"  *ngIf="isAdmin()">
+              <p>Restore apps:</p>
+              <button class="btnaside corner" (click)="restoreApps()">
+                  Restore selected apps
+              </button>
+            </aside>
+            <aside class="container" *ngIf="isAdmin()">
+                <p>Download reviews apps:</p>
+                <button class="btnaside corner" (click)="downloadReviewsApps()">
+                    Download
+                </button>
+            </aside>
+        </aside>
+        <section class="emptyListApps" *ngIf="isEmpty()">
+          <h1 class= "titleApps"> Final apps </h1>
+          <h2 class= "noApps"> No final apps for now.</h2>
+        </section>
+        <section class="contentListApps" *ngIf="accepted.length > 0 || removed.length > 0">
+            <h1 class= "titleApps"> Final apps </h1>
+            <h2 *ngIf="showBoth" class= "titleApps subtitle"> Both Stores </h2>
+            <h2 *ngIf="showApple" class= "titleApps subtitle"> Apple Store </h2>
+            <h2 *ngIf="showGoogle" class= "titleApps subtitle"> Google Play </h2>
+            <mat-divider></mat-divider>
+            <mat-tab-group dynamicHeight class="tabGroup">
+              <mat-tab label="Accepted">
+                  <list-apps [listApps]="filterByStoreAccepted()" [isLoaded]="isLoaded" type="accepted"></list-apps>
+              </mat-tab>
+              <mat-tab label="Removed">
+                  <list-apps [listApps]="filterByStoreRemoved()" [isLoaded]="isLoaded" type="removed"></list-apps>
+              </mat-tab>
+          </mat-tab-group>
+        </section>
+    </section>
+  
+    <section *ngIf="!isLoaded" class="searching">
+      <h2>Preparing your final apps</h2>
+      <h2>Please wait...</h2>
+      <div class="preloader">
+          <div class="loader"></div>
+      </div>
+    </section>
+  
+  </article>

@@ -1,0 +1,29 @@
+<section class="dialogForm">
+
+    <div cdkFocusInitial class="dialog-header">
+        <div class="closeDiv">
+            <mat-icon svgIcon="close" class="close-icon" aria-hidden="false" (click)="closeWindow()"></mat-icon>
+        </div>
+        <h1 mat-dialog-title class="titleApp">{{app.title}}</h1>
+        <mat-divider></mat-divider>
+    </div>
+
+    <mat-dialog-content mat-dialog-content class="dialogContent">
+
+        <mat-card class="card" style="margin-top: 20px;">
+            <mat-card-header>
+                <mat-card-title style="font-size: x-large;">Reviewers</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-card style="margin-top: 20px;" *ngFor="let review of reviewers">
+                    <mat-card-content>
+                        <p>Name: {{review.name}}</p>
+                        <p>Email: {{review.email}}</p>
+                    </mat-card-content>
+                </mat-card>
+            </mat-card-content>
+        </mat-card>
+
+    </mat-dialog-content>
+
+</section>

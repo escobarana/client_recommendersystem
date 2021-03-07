@@ -1,0 +1,45 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+html, body { 
+    height: auto; 
+    min-width: 400px;
+    background-color: #e4facb;
+}
+body { 
+    margin: 0; 
+    font-family: 'Quicksand', "Helvetica Neue", sans-serif; 
+    height: auto;
+}
+
+*{
+    box-sizing: border-box;
+    font-family: 'Quicksand' !important;
+}
+
+@font-face {
+    font-family: 'Quicksand';
+    src: url('assets/fonts/Quicksand-SemiBold.ttf') format("opentype");
+}
+
+@media (max-width: 1300px) {
+    html{
+        overflow-x: scroll;
+    }
+}
+
+h1{
+    font-size: 60px;
+    margin: 0;
+}
+
+p{
+    font-size: 20px;
+}
+
+router-outlet ~ * {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }
+  

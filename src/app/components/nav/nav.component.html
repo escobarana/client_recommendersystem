@@ -1,0 +1,46 @@
+<mat-toolbar class="mat-elevation-z10 navbar" color="primary">
+  <div [routerLink]="['/home']" style="cursor:pointer; padding-top:10px; ">
+    <img src="assets/img/Home.png" style="width: 90px;"> 
+  </div>
+  <!-- <div [routerLink]="['/home']" style="margin-right: 50px; cursor:pointer; ">
+    Home
+  </div> -->
+  <a routerLink="/assign" *ngIf="identity">
+    <button class="btn corner explore" (click)="goTo('assign')">
+      Assign apps
+    </button>
+  </a>
+  <span style="margin-left: 25px;"></span>
+  <a routerLink="/reviewapps" *ngIf="identity">
+    <button class="btn corner" (click)="goTo('review')">
+      Review apps
+    </button>
+  </a>
+  <span style="margin-left: 25px;"></span>
+  <a routerLink="/finalapps" *ngIf="identity">
+    <button class="btn corner" (click)="goTo('final')">
+      Final apps
+    </button>
+  </a>
+  <span class="spacer"></span>
+  <a routerLink="/" *ngIf="!identity">
+    <button class="btn corner" (click)="scrollToView('login')">
+      Log In
+    </button>
+  </a>
+  <span style="margin-left: 25px;"></span>
+  <a routerLink="/" *ngIf="!identity">
+    <button class="btn corner" (click)="scrollToView('register')">
+      Create Account
+    </button>
+  </a>
+  <div class="personDiv" *ngIf="identity" [matMenuTriggerFor]="menu">
+    <mat-icon svgIcon="person" class="person-icon" aria-hidden="false"></mat-icon>
+  </div>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item [routerLink]="['/manageusers']" *ngIf="identity && identity.admin">Manage users</button>
+    <button mat-menu-item [routerLink]="['/managepatients']" *ngIf="identity && identity.admin">Manage form</button>
+    <button mat-menu-item (click)="logOut()" >Log out</button>
+  </mat-menu>
+
+</mat-toolbar>

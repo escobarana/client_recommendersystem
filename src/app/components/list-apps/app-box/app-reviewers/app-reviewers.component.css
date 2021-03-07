@@ -1,0 +1,111 @@
+.dialogForm{
+    height: 100%;
+}
+
+::ng-deep .mat-dialog-container {
+    padding: 24px 24px 10px 24px !important;
+}
+
+::ng-deep .mat-dialog-actions {
+    margin-bottom: 24px !important;
+}
+
+::ng-deep .mat-dialog-content {
+    overflow: inherit !important;
+}
+
+.card{
+    background-color: #e4facb;
+}
+
+.btnDialog{
+    margin-bottom: 24px !important;
+    display:flex;
+    justify-content: space-between;
+}
+
+.titleApp{
+    text-align: center; 
+    word-wrap: break-word;
+    font-size: 50px;
+}
+
+.btn:hover{
+    background-color: #b7ed7f;
+}
+
+.btnNo, .btnYes{
+    position: relative;
+    font-size:30px;
+    margin-top:20px;
+    border: inherit;
+
+    background-color: #e4facb;
+    border-radius: 12px;
+    color: rgb(100, 44, 44);
+    cursor: pointer;
+}
+
+.mat-divider{
+    border-top-width: 2px;
+    border-top-color: #642c2c;
+    margin-top: 20px;
+  }
+
+.radiobtn{
+    margin-left: 20px;
+}
+.checkBoxesActivity, .checkBoxesPreference{
+    display: flex;
+    flex-wrap: wrap;
+}
+.checkActivity{
+    margin-left: 20px;
+    margin-top: 10px;
+    position: relative;
+}
+
+.genders, .preferences{
+    display: flex;
+}
+
+.gender, .preference{
+    margin-left: 20px;
+}
+
+.mat-slider-horizontal {
+    width: 80%;
+}
+.mat-card-content{
+    margin: 0 16px;
+}
+
+::ng-deep .mat-card:not([class*=mat-elevation-z]) {
+    box-shadow: 0px 5px 10px -1px rgba(0, 0, 0, 0.5), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+.closeDiv{
+    display: flex;
+    margin-bottom: 10px;
+    flex-direction: row-reverse;
+}
+
+.close-icon{
+    position: relative;
+    cursor: pointer;
+    background-color: lightcoral;
+}
+
+.close-icon:hover{
+    cursor: pointer;
+    background-color: orangered;
+}
+
+::ng-deep .mat-tab-label {
+    font-size: 20px;
+}
+
+.urlText{
+    text-align: center;
+    color: blue;
+}

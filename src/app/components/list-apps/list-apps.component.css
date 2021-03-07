@@ -1,0 +1,23 @@
+.row{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.styleApps{
+    margin-right: 50px;
+    position:relative;
+}
+
+.allrows{
+    margin: 40px 0px 0px 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.mat-paginator{
+    background: content-box;
+}

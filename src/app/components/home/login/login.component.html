@@ -1,0 +1,56 @@
+<span class="login"></span>
+<article class="login roundContainer">
+  <section>
+    <p class="textlogin">Log In</p>
+
+    <div class="alert alert-success" *ngIf="status=='success'">
+      Successfully log in.
+    </div>
+
+    <div class="alert alert-danger" *ngIf="status=='error'">
+      Error logging in. 
+    </div>
+
+    <form class="form emailForm" [formGroup]="loginFormControl">
+
+      <mat-form-field class="full-width">
+
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" placeholder="Ex. pat@example.com" [ngModel]="user.email" >
+        <mat-error *ngIf="loginFormControl.hasError('email') && !loginFormControl.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="loginFormControl.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+        
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" placeholder="******" type="password" [ngModel]="user.password">
+        <mat-error *ngIf="loginFormControl.hasError('required')">
+          Password is <strong>required</strong>
+        </mat-error>
+
+      </mat-form-field>
+
+    </form>
+
+    <button class="btn corner btnlogin" (click)="login()" [disabled]="!loginFormControl.valid">
+      Log In
+    </button>
+
+    <button class="forgetPassw" (click)="openDialog()">
+      Did you forget your password?
+    </button>
+
+  </section>
+  <section class="createAcc">
+    <p class="textRegister">You don't have an account?</p>
+    <button class="btn corner btnRegister" (click)="scrollToView()">
+      Create Account
+    </button>
+  </section>
+</article>

@@ -1,0 +1,93 @@
+.roundContainer {
+    width:600px;
+    box-shadow:0px 0px 20px rgb(77, 77, 77);
+    -webkit-box-shadow:0px 0px 20px rgb(77, 77, 77);
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    background-color:rgb(255, 255, 255);
+    margin:0px auto;
+    border-left:2px solid #fff;
+    border-right:2px solid #fff;
+    height: 500px;
+    color: #642c2c;
+}
+
+.textlogin{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 40px;
+  font-size: 30px;
+}
+
+.roundContainer .btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login{
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  padding-left: 100px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.btn{
+  background-color: #e4facb;
+  font-size: 18px;
+  height: 50px;
+  width: auto;
+  border: none;
+  border-radius: 12px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: 25px; 
+  color: rgb(100, 44, 44);
+  cursor: pointer;
+}
+
+.btn:hover{
+  background-color: #b7ed7f;
+}
+
+.corner {
+  border-radius: 25px;
+  border: 2px solid #73AD21;
+}
+
+.btnlogin{
+  margin-left: 255px;
+}
+
+.forgetPassw{
+  margin-top: 15px;
+  margin-left: 185px;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.btnRegister{
+  margin-left: 220px;
+}
+
+.textRegister{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.createAcc{
+  margin-top:40px;
+}

@@ -1,0 +1,26 @@
+<section>
+    <h1 class="titleManage">Manage patient form</h1>
+
+    <section class="container" [formGroup]="addCancerFormControl">
+        <!-- patient form control -->
+        <div class="form-area">
+            <h4 class="text-center">A continuación, escriba el tipo de cáncer que desea añadir. Gracias</h4>
+            <div class="text-center">
+                    <label>Nuevo tipo de cáncer*: </label> <br>
+                    <input type="text" (ng-model)="cancerType" formControlName="cancer" placeholder="Escriba el tipo de cáncer" required>
+                
+            </div><br>
+        </div>
+
+        <!-- submit button -->
+        <div class="text-center">
+            <button (click)="addCancerType()" [disabled]="addCancerFormControl.invalid" [routerLink]="['/patient']" class="btn btn-info">Añadir</button>
+        </div>
+
+    </section>
+
+    <br> <br>
+
+    <patients-list></patients-list>
+    
+</section>

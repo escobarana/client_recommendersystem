@@ -1,0 +1,11 @@
+<section class="roundContainer" [ngClass]="{disabled: disabled}" >
+  <div class = "icon">
+    <button mat-button class="btnIcon" (click)="openDialog()" [disabled]="disabled">
+      <img src={{app.icon}} [ngStyle]="{'opacity': disabled? '0.5' : '1'}">
+    </button>
+    <mat-checkbox class="checkbox" (click)="click()" *ngIf="isAdmin()"></mat-checkbox>
+  </div>
+  <div class="text">
+    <a (click)="openDialog()" class="titleApp">{{app.title}}</a>
+  </div>
+</section>

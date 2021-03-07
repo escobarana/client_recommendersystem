@@ -1,0 +1,62 @@
+<span class="register"></span>
+<article class="register roundContainer">
+  <section>
+    <p class="textaccount">Create Account</p>
+
+    <div class="alert alert-success" *ngIf="status=='success'">
+      Successfully signed up, <a [routerLink] = "['/login']">login here</a>.
+    </div>
+
+    <div class="alert alert-danger" *ngIf="status=='error'">
+      Error registering. The provided email might already been registered. 
+    </div>
+
+    <form class="form emailForm" [formGroup]="registerFormControl">
+      
+      <mat-form-field class="full-width">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" [ngModel]="user.name" required>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" placeholder="Ex. pat@example.com" [ngModel]="user.email" required>
+        <mat-error *ngIf="registerFormControl.hasError('email') && !registerFormControl.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="registerFormControl.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width spacer">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" placeholder="******" type="password" required>
+        <mat-error *ngIf="registerFormControl.hasError('required')">
+          Password is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="registerFormControl.controls['password'].hasError('minlength')">
+          Password needs to be more than 6 characters        
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width spacer">
+        <mat-label>Repeat Password</mat-label>
+        <input matInput formControlName="re_password" placeholder="******" type="password" [errorStateMatcher]="matcher" [ngModel]="user.password" required>
+        <mat-error *ngIf="registerFormControl.hasError('required')">
+          Password is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="registerFormControl.hasError('notSame')">
+          Passwords do not match
+        </mat-error>  
+      </mat-form-field>
+
+    </form>
+
+    <button class="btn corner btnregister" (click)="createUser()" [disabled]="!registerFormControl.valid" >
+      Create Account
+    </button>
+
+  </section>
+
+</article>

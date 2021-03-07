@@ -1,0 +1,48 @@
+::ng-deep .mat-dialog-container {
+    padding: 10px 24px 24px 24px;
+}
+
+.titleAssing{
+    text-align: center;
+    margin-bottom: 20px;
+    color: #642c2c;
+    margin-top: 5px;
+}
+
+.filter{
+    margin-left:20px;
+    margin-top:10px;
+    width: 80%;
+}
+
+.btnAssing:hover{
+    background-color: #b7ed7f;
+}
+
+.btnAssing{
+    position: relative;
+    font-size:30px;
+    margin-top:20px;
+    border: inherit;
+    background-color: #e4facb;
+    border-radius: 12px;
+    color: rgb(100, 44, 44);
+    cursor: pointer;
+}
+
+.closeDiv{
+    display: flex;
+    margin-bottom: 10px;
+    flex-direction: row-reverse;
+}
+
+.close-icon{
+    position: relative;
+    cursor: pointer;
+    background-color: lightcoral;
+}
+
+.close-icon:hover{
+    cursor: pointer;
+    background-color: orangered;
+}

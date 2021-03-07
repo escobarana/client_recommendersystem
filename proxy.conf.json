@@ -1,0 +1,16 @@
+{
+  "/api/*":{
+      "target": "http://156.35.163.172:3000",
+      "secure": false,
+      "changeOrigin": true,
+      "timeout":30000
+  },
+  "/dataR/*":{
+      "target": "http://156.35.163.172:6947",
+      "secure": false,
+      "pathRewrite": {
+      "^/dataR": ""
+    },
+      "changeOrigin": true
+  }
+}
