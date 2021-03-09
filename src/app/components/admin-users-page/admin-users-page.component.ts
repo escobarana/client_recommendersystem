@@ -62,23 +62,25 @@ export class AdminUsersPageComponent implements OnInit {
 
   deleteUser(email,name){
     var opcion = confirm(`Are you sure you want to delete ${name} ?`);
-    if (opcion == true) {
-      this.allUsers = this.allUsers.filter(el => el.email != email);
-      this.dataSource = new MatTableDataSource(this.allUsers);
+    console.log(opcion);
+    if (opcion===true) {
       this.userService.deleteUser(email).subscribe(() =>{
         console.log("User " + name +", " + email + " deleted correctly");
       });
+      this.allUsers = this.allUsers.filter(el => el.email != email);
+      this.dataSource = new MatTableDataSource(this.allUsers);
     }
   }
 
-  updateAdminUser(email,event,name){
-    this.userService.updateAdminUser(email,event.value);
-    this.dataSource.forEach(element => {
-      if(element.email === email){
-        element.admin = event.value;
+  updateAdminUser(email,value,name){
+    this.userService.updateAdminUser(email, value).subscribe(
+      res => {
+        this.dataSource = new MatTableDataSource(this.allUsers);
         console.log("User " + name + ", " + email + " updated admin value.");
-      }
-    });
+      }, 
+      error => {
+        console.log(<any>error);
+      });
   }
 
   applyFilter(event: Event) {

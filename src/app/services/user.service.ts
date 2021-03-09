@@ -61,12 +61,15 @@ export class UserService {
   }
 
   deleteUser(user_email){
-    // MongoDB
-    return this.http.delete<any>(this.url + '/api/deleteUser/' + `${user_email}`);
+    let headers = new HttpHeaders({ 'Authorization': this.getToken()});
+
+    return this.http.delete<any>(this.url + '/api/deleteUser/' + `${user_email}`, { headers: headers });
   }
 
   updateAdminUser(user_email, valueAdmin){
-    return this.http.put<any>(this.url + '/api/updateUser/' + `${user_email}`, `${valueAdmin}`);
+    let headers = new HttpHeaders({ 'Authorization': this.getToken() });
+
+    return this.http.post<any>(this.url + '/api/updateUser/' + `${user_email}`, `${valueAdmin}`, { headers: headers });
   }
 
 }
