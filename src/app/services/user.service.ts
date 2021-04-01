@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { environment_server, environment_r } from 'src/environments/environment';
+import { catchError, map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +37,7 @@ export class UserService {
 
 
   getIdentity(){
-    
+
     let identity = JSON.parse(localStorage.getItem('identity'));
 
     if(identity != "undefined"){ 
@@ -57,19 +58,79 @@ export class UserService {
   }
 
   getAllUsers() {
-    return this.http.get<any>(this.url + '/api/allUsers');
-  }
-
-  deleteUser(user_email){
     let headers = new HttpHeaders({ 'Authorization': this.getToken()});
-
-    return this.http.delete<any>(this.url + '/api/deleteUser/' + `${user_email}`, { headers: headers });
+    return this.http.get<any>(this.url + '/api/allUsers', { headers: headers});
   }
 
-  updateAdminUser(user_email, valueAdmin){
-    let headers = new HttpHeaders({ 'Authorization': this.getToken() });
+  // returns the user object given its id
+  getUser(user_email){
+    let headers = new HttpHeaders({ 'Authorization': this.getToken()});
+    return this.http.get<any>(this.url + `/api/allUsers/${user_email}`, { headers: headers});
+  }
 
-    return this.http.post<any>(this.url + '/api/updateUser/' + `${user_email}`, `${valueAdmin}`, { headers: headers });
+  deleteUser(user_email:any): Observable<any>{
+
+    let headers = new HttpHeaders({ 'Authorization': this.getToken()});
+    let API_URL = `${this.url}/api/deleteUser/${user_email}`;
+    return this.http.delete(API_URL, { headers: headers}).pipe(
+        catchError(this.handleError)
+      )
+  }
+
+  updateUser(user_email, data): Observable<any>{
+
+    let headers = new HttpHeaders({ 'Authorization': this.getToken() });
+    let API_URL = `${this.url}/api/updateUser/${user_email}`;
+    return this.http.put(API_URL, JSON.parse(JSON.stringify(data)), { headers: headers })
+      .pipe(
+        catchError(this.handleError)
+      )
+  }
+
+  // Error 
+  handleError(error: HttpErrorResponse) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // Handle client error
+      errorMessage = error.error.message;
+    } else {
+      // Handle server error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    // console.log(errorMessage);
+    return throwError(errorMessage);
+  }
+  
+  resetPassword(email:string) {
+    window.alert("Please, check your email inbox.");
+      console.log("Send password reset email");
+  }
+
+
+  /// LISTS ON EACH USER ///
+  
+  updateListAccepted(user_email, app): Observable<any>{ // add app to list_recommend
+    let headers = new HttpHeaders({ 'Authorization': this.getToken() });
+    let url = this.url + `/api/update_recommend/${user_email}`;
+    return this.http.put<any>(url, JSON.parse(JSON.stringify(app)), { headers: headers });//.map(res => res);
+  }
+
+  updateListRemoved(user_email, app): Observable<any>{ // add app to list_removed
+    let headers = new HttpHeaders({ 'Authorization': this.getToken() });
+    let url = this.url + `/api/update_removed/${user_email}`;
+    return this.http.put<any>(url, JSON.parse(JSON.stringify(app)), { headers: headers }); //.map(res => res);
+  };
+
+  updateListAssing(user_email, app): Observable<any>{ // add app to list_assigned
+    let headers = new HttpHeaders({ 'Authorization': this.getToken() });
+    let url = this.url + `/api/update_assigned/${user_email}`;
+    return this.http.put<any>(url, JSON.parse(JSON.stringify(app)), { headers: headers }); //.map(res => res);
+  };
+
+  removeFromListAssign(user_email, appId): Observable<any>{ // remove app from list_assign
+    let headers = new HttpHeaders({ 'Authorization': this.getToken() });
+    let url = this.url + `/api/remove_assigned/${user_email}`;
+    return this.http.put<any>(url, { appId: appId }, { headers: headers });
   }
 
 }

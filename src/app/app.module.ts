@@ -52,6 +52,7 @@ import { AdminGuard } from './guards/admin.guard';
 import { EmailGuard } from './guards/email.guard';
 import { PatientService } from './services/patient.service';
 import { PatientsListComponent } from './components/admin-patient-form/patients-list/patients-list';
+import { AdminNewbiesComponent } from './components/admin-users-page/admin-newbies/admin-newbies.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { PatientsListComponent } from './components/admin-patient-form/patients-
     PatientFormComponent,
     AdminPatientFormComponent,
     AfterSubmitComponent,
-    PatientsListComponent
+    PatientsListComponent,
+    AdminNewbiesComponent
   ],
   imports: [
     BrowserModule,

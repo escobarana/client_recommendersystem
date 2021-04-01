@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthFirebaseService } from '../../services/auth-firebase.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { PatientService } from 'src/app/services/patient.service';
 
 @Component({
   selector: 'app-patient-form',
@@ -14,6 +14,45 @@ export class PatientFormComponent implements OnInit {
   
   patientFormControl: FormGroup;
 
+  answers= {
+    maritalStatus: "", 
+    height: "", 
+    weight: "", 
+    hasCoexistence: false, 
+    coexistencePeople: {
+      couple: false,
+      children: false,
+      familyMember: false,
+      grandchildren: false,
+      partner: false
+    },  
+    hasChildren: false, 
+    numberOfChildren: "0", 
+    placeOfResidence: "", 
+    studiesLevel: "", 
+    workStatus: "", 
+    levelOfActivity: "", 
+    cancerType: "", 
+    elapsedTime: "", 
+    treatmentReceived: {
+      local: false,
+      systemic: false,
+      none: false
+    }, 
+    activities: {
+      swimming: false,
+      running: false,
+      walking: false,
+      bicycle: false,
+      basketball: false,
+      tennis: false,
+      football: false,
+      other: false
+    }
+  };
+
+  
+
   formVisibility: Boolean = false;
   coexistanceY: Boolean = false;
   childrenY: Boolean = false;
@@ -24,8 +63,6 @@ export class PatientFormComponent implements OnInit {
                           "Licenciatura", "Doctorado"];
   workOpt: String[] = ["Jornada completa", "Jornada parcial", "Desempleado", "Jubilado", "Estudiante"];
   cancerOpt: String[] = ["Cáncer de mama", "Cáncer colorrectal"];
-  newCancer;
-
 
   levelW: String = null;
   levelController: String = null;
@@ -45,64 +82,88 @@ export class PatientFormComponent implements OnInit {
   q7hoursday = 0;
   q7minutesday = 0;
 
-  constructor(private auth: AuthFirebaseService, 
-              private formBuilder: FormBuilder, 
+  constructor(private formBuilder: FormBuilder, 
               private router: Router,
-              private toastr: ToastrService ) { }
+              private toastr: ToastrService,
+              private patientService: PatientService ) { }
 
   ngOnInit(): void {
     this.patientFormControl = this.formBuilder.group(
       {
-        email: ['', Validators.required, Validators.email],
+        email: ['', [Validators.required, Validators.email]],
         os: ['',Validators.required],
-        age: ['', Validators.required, Validators.min(0)],
+        age: ['', [Validators.required, Validators.min(0)]],
         gender: ['',Validators.required],
-        weight: ['', Validators.required, Validators.min(0)],
-        height: ['', Validators.required, Validators.min(100)],
+        weight: ['', [Validators.required, Validators.min(0)]],
+        height: ['', [Validators.required, Validators.min(100)]],
+
+        // marital status
         maritalstatus: ['',Validators.required],
+
+        // coexistence
         coexistence: ['',Validators.required],
         coexistencePeople1: [''],
         coexistencePeople2: [''],
         coexistencePeople3: [''],
         coexistencePeople4: [''],
         coexistencePeople5: [''],
+
+        // children
         children: ['',Validators.required],
         numChildren: ['', Validators.min(0)],
-        residence: ['', Validators.required],
-        studies: ['', Validators.required],
-        work: ['', Validators.required],
-        level: ['', Validators.required],
-        cancer: ['', Validators.required],
-        elapsedTime: ['', Validators.required],
-        treatment: ['', Validators.required],
-        activity: ['', Validators.required],
 
-        q1daysweek: ['', Validators.required, Validators.min(0), Validators.max(7)],
+        // place of residence
+        residence: ['', Validators.required],
+
+        // studies level
+        studies: ['', Validators.required],
+
+        // work status
+        work: ['', Validators.required],
+
+        // level of activity
+        level: ['', Validators.required],
+
+        // cancer type
+        cancer: ['', Validators.required],
+
+        // elapsed time
+        elapsedTime: [''],
+
+        // treatments
+        treatment1: [''],
+        treatment2: [''],
+        treatment_none: [''],
+
+        // activities
+        activity_swim: [''],
+        activity_run: [''],
+        activity_walk: [''],
+        activity_bike: [''],
+        activity_basket: [''],
+        activity_tennis: [''],
+        activity_football: [''],
+        activity_other: [''],
+
+        q1daysweek: ['', [Validators.required, Validators.min(0), Validators.max(7)]],
         q1b: [''],
-        q2hoursday: ['', Validators.required, Validators.min(0), Validators.max(24)],
-        q2minutesday: ['', Validators.required, Validators.min(0), Validators.max(60)],
+        q2hoursday: ['', [Validators.required, Validators.min(0), Validators.max(24)]],
+        q2minutesday: ['', [Validators.required, Validators.min(0), Validators.max(60)]],
         q2c: [''],
-        q3daysweek: ['', Validators.required, Validators.min(0), Validators.max(7)],
+        q3daysweek: ['', [Validators.required, Validators.min(0), Validators.max(7)]],
         q3b: [''],
-        q4hoursday: ['', Validators.required, Validators.min(0), Validators.max(24)],
-        q4minutesday: ['', Validators.required, Validators.min(0), Validators.max(60)],
+        q4hoursday: ['', [Validators.required, Validators.min(0), Validators.max(24)]],
+        q4minutesday: ['', [Validators.required, Validators.min(0), Validators.max(60)]],
         q4c: [''],
-        q5daysweek: ['', Validators.required, Validators.min(0), Validators.max(7)],
+        q5daysweek: ['', [Validators.required, Validators.min(0), Validators.max(7)]],
         q5b: [''],
-        q6hoursday: ['', Validators.required, Validators.min(0), Validators.max(24)],
-        q6minutesday: ['', Validators.required, Validators.min(0), Validators.max(60)],
+        q6hoursday: ['', [Validators.required, Validators.min(0), Validators.max(24)]],
+        q6minutesday: ['', [Validators.required, Validators.min(0), Validators.max(60)]],
         q6c: [''],
-        q7hoursday: ['', Validators.required, Validators.min(0), Validators.max(24)],
-        q7minutesday: ['', Validators.required, Validators.min(0), Validators.max(60)],
+        q7hoursday: ['', [Validators.required, Validators.min(0), Validators.max(24)]],
+        q7minutesday: ['', [Validators.required, Validators.min(0), Validators.max(60)]],
         q7c: ['']
     });
-  }
-
-  addCancerType(){}
-
-  verDatos(event: Event){
-    console.log(event);
-    this.newCancer = event;
   }
 
   showForm(){
@@ -112,21 +173,29 @@ export class PatientFormComponent implements OnInit {
 
   showCoexistencePeople(){
     this.coexistanceY = true;
+    this.answers.hasCoexistence = true;
+
     console.log("Showing coexistance people...");
   }
 
   hideCoexistencePeople(){
     this.coexistanceY = false;
+    this.answers.hasCoexistence = false;
+
     console.log("Hiding coexistance people...");     
   }
 
   showNumChildren(){
     this.childrenY = true;
+    this.answers.hasChildren = true;
+
     console.log("Showing number of children...");
   }
 
   hideNumChildren(){
     this.childrenY = false;
+    this.answers.hasChildren = false;
+
     console.log("Hiding numbre of children...");     
   }
 
@@ -148,8 +217,8 @@ export class PatientFormComponent implements OnInit {
   send() {
     console.log("Handling the submit button");
     this.formData();
-    console.log("The email address is " + this.patientFormControl.value.email);
-    console.log(this.patientFormControl);
+    console.log("The email address is ", this.patientFormControl.value.email);
+
 
     this.router.navigateByUrl('/success');
     
@@ -164,31 +233,58 @@ export class PatientFormComponent implements OnInit {
     let os = this.patientFormControl.get('os').value;
     let age = this.patientFormControl.get('age').value;
     let gender = this.patientFormControl.get('gender').value;
-    let maritalstatus = this.patientFormControl.get('maritalstatus').value;
-    let weight = this.patientFormControl.get('weight').value;
-    let coexistence = this.patientFormControl.get('coexistence').value;
-    let coexistencePeople1 = this.patientFormControl.get('coexistencePeople1').value;
-    let coexistencePeople2 = this.patientFormControl.get('coexistencePeople2').value;
-    let coexistencePeople3 = this.patientFormControl.get('coexistencePeople3').value;
-    let coexistencePeople4 = this.patientFormControl.get('coexistencePeople4').value;
-    let coexistencePeople5 = this.patientFormControl.get('coexistencePeople5').value;
-    let children = this.patientFormControl.get('children').value;
-    let numChildren = this.patientFormControl.get('numChildren').value;
-    let residence = this.patientFormControl.get('residence').value;
-    let studies = this.patientFormControl.get('studies').value;
-    let work = this.patientFormControl.get('work').value;
-    let level = this.patientFormControl.get('level').value;
-    let cancer = this.patientFormControl.get('cancer').value;
-    let elapsedTime = this.patientFormControl.get('elapsedTime').value;
-    let treatment = this.patientFormControl.get('treatment').value;
 
-    this.auth.patientForm(Date.now(), email, age, gender, maritalstatus, weight, coexistence, coexistencePeople1, coexistencePeople2, coexistencePeople3, coexistencePeople4,
-                          coexistencePeople5, children, numChildren, residence, studies, work, level, cancer, elapsedTime, treatment).subscribe( data=> {
-      console.log(data)
-    });
+    this.answers.height = this.patientFormControl.get('height').value;
+    this.answers.weight = this.patientFormControl.get('weight').value;
+    this.answers.maritalStatus = this.patientFormControl.get('maritalstatus').value;
+    this.answers.placeOfResidence = this.patientFormControl.get('residence').value;
+    this.answers.levelOfActivity = this.patientFormControl.get('level').value;
+    this.answers.numberOfChildren = this.patientFormControl.get('numChildren').value;
+    this.answers.elapsedTime = this.patientFormControl.get('elapsedTime').value;
+    this.answers.maritalStatus = this.patientFormControl.get('maritalstatus').value.toString();
+    this.answers.workStatus = this.patientFormControl.get('work').value.toString();
+    this.answers.studiesLevel= this.patientFormControl.get('studies').value.toString();
+    this.activitiesHandler();
+    this.treatmentHandler();
+    this.optionsCoexistence();
+
+    this.patientService.patientForm(Date.now(), email, age, gender, os, this.answers).subscribe( 
+      res => {
+        console.log("Formulario enviado por ", email);
+      }, err =>{
+        console.log(err);
+      });
+
     console.log('Form data pushed to the database!');
-    this.router.navigate['/home'];
   }
+
+  optionsCoexistence(){
+    this.answers.coexistencePeople.children = this.patientFormControl.get('coexistencePeople2').value;
+    this.answers.coexistencePeople.couple = this.patientFormControl.get('coexistencePeople1').value;
+    this.answers.coexistencePeople.familyMember = this.patientFormControl.get('coexistencePeople3').value;
+    this.answers.coexistencePeople.grandchildren = this.patientFormControl.get('coexistencePeople4').value;
+    this.answers.coexistencePeople.partner = this.patientFormControl.get('coexistencePeople5').value;
+
+  }
+
+  activitiesHandler(){
+
+    this.answers.activities.swimming = this.patientFormControl.get('activity_swim').value;
+    this.answers.activities.running = this.patientFormControl.get('activity_run').value;
+    this.answers.activities.walking = this.patientFormControl.get('activity_walk').value;
+    this.answers.activities.bicycle = this.patientFormControl.get('activity_bike').value;
+    this.answers.activities.basketball = this.patientFormControl.get('activity_basket').value;
+    this.answers.activities.tennis = this.patientFormControl.get('activity_tennis').value;
+    this.answers.activities.football = this.patientFormControl.get('activity_football').value;
+    this.answers.activities.other = this.patientFormControl.get('activity_other').value;
+  }
+
+  treatmentHandler(){
+    this.answers.treatmentReceived.local = this.patientFormControl.get('treatment1').value;
+    this.answers.treatmentReceived.systemic = this.patientFormControl.get('treatment2').value;
+    this.answers.treatmentReceived.none = this.patientFormControl.get('treatment_none').value;
+  }
+
 
   /*
   Category 1 - Low: This is the lowest level of physical activity. Those individuals who not meet criteria

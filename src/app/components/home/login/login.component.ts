@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   constructor(private userService: UserService, 
               private emailDialog: MatDialog, 
               private router: Router) {
-    this.user = new User('','','','',false,[],[],[]);
+    this.user = new User('','','','',false,[],[],[], "newbie");
    }
 
   ngOnInit(): void { 
@@ -61,13 +61,13 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem('email', email); // data persistance
                 
                 // show the identity
-                console.log(this.identity);
+                // console.log(this.identity);
     
                 // get the token
                 this.userService.signup(this.user, true).subscribe( // gettoken = true
                   (res) => {
                     this.token = res.token;
-                    console.log(this.token);
+                    // console.log(this.token);
           
                     if(this.token.length <= 0){ 
                       alert('Token not generated');

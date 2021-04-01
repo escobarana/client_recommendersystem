@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('hello world!!!')
+    console.log('Initialize Recommender Sytem App - Ana Escobar')
   }
 
 }

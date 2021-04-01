@@ -1,0 +1,23 @@
+.titleManage{
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    color: #642c2c;
+}
+
+.allrows{
+    border: 2px solid #73AD21;
+    margin:50px;
+    height: 100%;
+    background-color: white;
+}
+
+.filter{
+    margin-left:20px;
+    margin-top:10px;
+    width: 80%;
+}
+
+th.mat-header-cell{
+    background-color: ghostwhite;
+}

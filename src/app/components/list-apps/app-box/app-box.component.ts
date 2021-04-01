@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AppDetailsComponent } from './app-details/app-details.component';
 import { AppReviewersComponent } from './app-reviewers/app-reviewers.component';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-box',
@@ -19,14 +20,13 @@ export class AppBoxComponent implements OnInit {
 
   checked:boolean;
 
-  constructor(public detailDialog: MatDialog, private router:Router) {
+  constructor(public detailDialog: MatDialog, private router:Router, private userService: UserService) {
     this.checked = false;
     this.disabled = false;
   }
 
   ngOnInit() {
     this.disabled = this.app.disabled;
-    //console.log(this.app)
   }
 
   click(){
@@ -63,13 +63,12 @@ export class AppBoxComponent implements OnInit {
   }
 
   isAdmin():boolean{
-    let user = JSON.parse(localStorage.getItem('user'));
-    if(user.admin.toString() === "true"){
-      return true;
-    }
-    else{
+    if(this.userService.getIdentity() !== null){
+      return this.userService.getIdentity().admin;
+    }else{
       return false;
     }
+   
   }
 
 }

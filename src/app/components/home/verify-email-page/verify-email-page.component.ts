@@ -3,7 +3,6 @@ import {FormControl, Validators,FormGroup} from '@angular/forms';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialogRef } from '@angular/material/dialog';
-import { AuthFirebaseService } from '../../../services/auth-firebase.service';
 
 @Component({
   selector: 'app-verify-email-page',
@@ -20,8 +19,7 @@ export class VerifyEmailPageComponent implements OnInit {
   });
 
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer,
-    public dialogRef: MatDialogRef<VerifyEmailPageComponent>,
-    private auth: AuthFirebaseService) {
+    public dialogRef: MatDialogRef<VerifyEmailPageComponent>) {
     iconRegistry.addSvgIcon(
       'close',
       sanitizer.bypassSecurityTrustResourceUrl('assets/img/icons/close.svg'));
@@ -36,7 +34,7 @@ export class VerifyEmailPageComponent implements OnInit {
 
   send(){
     let email = this.loginFormControl.value.email;
-    this.auth.resetPassword(email);
+    //this.userService.resetPassword(email);
     this.closeWindow();
   }
 

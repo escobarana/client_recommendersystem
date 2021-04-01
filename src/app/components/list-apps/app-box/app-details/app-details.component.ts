@@ -3,7 +3,6 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { DatabaseService } from '../../../../services/database.service';
 import {MatIconRegistry} from '@angular/material/icon';
 import {DomSanitizer} from '@angular/platform-browser';
-import { AuthFirebaseService } from '../../../../services/auth-firebase.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -88,8 +87,7 @@ export class AppDetailsComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<AppDetailsComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, public db:DatabaseService,
-    iconRegistry: MatIconRegistry, sanitizer: DomSanitizer,
-    private auth: AuthFirebaseService, private userService: UserService) {
+    iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private userService: UserService) {
       this.identity = userService.getIdentity();
       iconRegistry.addSvgIcon(
         'close',
@@ -110,7 +108,7 @@ export class AppDetailsComponent implements OnInit {
   }
 
   async onNoClick() {
-    let user = JSON.parse(localStorage.getItem('user'));
+    let user = this.userService.getIdentity();
     this.review.user = user.email;
     let data = {
       appId:this.app.appId,
@@ -119,16 +117,34 @@ export class AppDetailsComponent implements OnInit {
       url:this.app.url,
       icon:this.app.icon
     }
-    this.db.appsRemovedByReviewer(data,this.review);
-    this.auth.updateListRemoved(user.uid,data);
-    await this.auth.removeFromListAssign(user.uid,data.appId);
+    this.db.appsRemovedByReviewer(data.appId, data.description, data.title, data.url, data.icon, this.review).subscribe(
+      res => {
+        console.log("App ", data.title, " assigned to remove.");
+      }, 
+      (error) => {
+        console.log(error);
+      });
+    this.userService.updateListRemoved(user.email,data).subscribe(
+      res => {
+        console.log("Update list_remove from ", user.email);
+      }, 
+      (error) => {
+        console.log(error);
+      });;
+    await this.userService.removeFromListAssign(user.email,data.appId).subscribe(
+      res => {
+        console.log("Remove app from list_assign from ", user.email);
+      }, 
+      (error) => {
+        console.log(error);
+      });
     this.getUserAgain(); //elimino de localstorage
     this.deletedApp.emit(data);
     this.dialogRef.close();
   }
 
   async onYesClick() {
-    let user = JSON.parse(localStorage.getItem('user'));
+    let user = this.userService.getIdentity();
     this.review.user = user.email;
     let data = {
       appId:this.app.appId,
@@ -137,9 +153,27 @@ export class AppDetailsComponent implements OnInit {
       url:this.app.url,
       icon:this.app.icon
     }
-    this.db.appsRecommendedByReviewer(data,this.review); //guardo review en la app to recommend
-    this.auth.updateListAccepted(user.uid,data); //guardo en lista aceptadas del usuaro de db
-    await this.auth.removeFromListAssign(user.uid,data.appId); //elimino de lista assign de user
+    this.db.appsRecommendedByReviewer(data.appId, data.description, data.title, data.url, data.icon, this.review).subscribe(
+      res => {
+        console.log("App ", data.title, " assigned to recommend.");
+      }, 
+      (error) => {
+        console.log(error);
+      }); //guardo review en la app to recommend
+    this.userService.updateListAccepted(user.email,data).subscribe(
+      res => {
+        console.log("Updated list_recommend from ", user.email);
+      }, 
+      (error) => {
+        console.log(error);
+      }); //guardo en lista aceptadas del usuaro de db
+    await this.userService.removeFromListAssign(user.email,data.appId).subscribe(
+      res => {
+        console.log("Removed reviewed app from ", user.email, " list_assigned.");
+      }, 
+      (error) => {
+        console.log(error);
+      }); //elimino de lista assign de user
     this.getUserAgain(); //elimino de localstorage
     this.deletedApp.emit(data); //elimino de la lista local, subo al padre la app
     this.dialogRef.close();
@@ -150,7 +184,6 @@ export class AppDetailsComponent implements OnInit {
   }
 
   radioActivity(event){
-    console.log(event);
     if(event.value === "1"){
       this.review.recommend.typeActivity.aerobic = true;
       this.review.recommend.typeActivity.anaerobic = false;
@@ -187,7 +220,6 @@ export class AppDetailsComponent implements OnInit {
   }
 
   radioExercise(event){
-    console.log(event.value.toString());
     if(event.value === "1"){
       this.review.recommend.previousExercise = "Bajo";
     }

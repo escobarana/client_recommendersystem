@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
 export interface User {
@@ -10,19 +10,20 @@ export interface User {
   name: string;
   email: string;
   admin: boolean;
+  role: string;
 }
 
 @Component({
-  selector: 'admin-users-page',
-  templateUrl: './admin-users-page.component.html',
-  styleUrls: ['./admin-users-page.component.css']
+  selector: 'app-admin-newbies',
+  templateUrl: './admin-newbies.component.html',
+  styleUrls: ['./admin-newbies.component.css']
 })
-export class AdminUsersPageComponent implements OnInit {
+
+export class AdminNewbiesComponent implements OnInit {
 
   allUsers = [];
 
   editData: FormGroup;
-  valueAdmin: Boolean;
 
   pageEvent: PageEvent;
   pageIndex:number;
@@ -31,7 +32,7 @@ export class AdminUsersPageComponent implements OnInit {
   highValue:number;
   sizeOptions;
 
-  displayedColumns: string[] = ['name', 'email', 'admin', 'adminHandler', 'delete'];
+  displayedColumns: string[] = ['name', 'email', 'role', 'accept', 'decline'];
   dataSource;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -41,6 +42,7 @@ export class AdminUsersPageComponent implements OnInit {
       this.allUsers = this.mapUsers(users);
       this.dataSource = new MatTableDataSource<User>(this.allUsers);
     })
+    
     this.pageIndex = 0;
     this.pageSize = 8;
     this.lowValue = 0;
@@ -50,29 +52,20 @@ export class AdminUsersPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.editData = this.formBuilder.group({
-      admin: [''],
       role: ['']
     });
-  }
-
-  getUser(email){
-    this.userService.getUser(email).subscribe(data => {
-      this.editData.setValue({
-        role: data['admin'],
-        admin: data['admin']
-      });
-    });
-  }
+   }
 
   mapUsers(users){
     let array: User[] = [];
     users.forEach(element => {
-      if(element.name != undefined && element.email != undefined && element.admin != undefined && element.role != "newbie"){
+      if(element.name != undefined && element.email != undefined && element.role === "newbie"){
         let user: User = {
           id: element._id.toString(),
           name: element.name.toString(),
           email: element.email.toString(),
-          admin: element.admin.toString()
+          admin: element.admin.toString(),
+          role: element.role.toString()
         };
         array.push(user);
       }
@@ -81,33 +74,23 @@ export class AdminUsersPageComponent implements OnInit {
     return array;
   }
 
-  deleteUser(user, name){
+  deleteUser(user_email, name){
     var opcion = confirm(`Are you sure you want to delete ${name} ?`);
     if (opcion) {
-      this.userService.deleteUser(user.email).subscribe((data) =>{
-        console.log("User ", name ,", " , " deleted correctly");
-        this.allUsers = this.allUsers.filter(el => el.email != user.email);
-        this.dataSource = new MatTableDataSource(this.allUsers);
+      this.userService.deleteUser(user_email).subscribe((data) =>{
+        console.log("User " , name ,", " , " deleted correctly");
       });
+      this.allUsers = this.allUsers.filter(el => el.email != user_email);
+      this.dataSource = new MatTableDataSource(this.allUsers);
     }
   }
 
-  saveValue(valueAdmin){
-    this.valueAdmin = valueAdmin;
-  }
-
-  updateUser(user){
-    this.getUser(user.email); // initialize formData with user's data from database
-    this.editData.get('admin').setValue(this.valueAdmin);
-    if(this.valueAdmin.toString() === "true"){
-      this.editData.get('role').setValue("admin");
-    }
-    if(this.valueAdmin.toString() === "false"){
-      this.editData.get('role').setValue("reviewer");
-    }
-    this.userService.updateUser(user.email, this.editData.value).subscribe(
-      res => {
-        console.log("User ", user.name , " admin value changed.");
+  acceptUser(user_email){
+    this.editData.get('role').setValue("reviewer");
+    this.userService.updateUser(user_email, this.editData.value).subscribe(
+      res => { 
+        console.log("User ", user_email , " accepted.");
+        location.reload();
       }, 
       (error) => {
         console.log(error);

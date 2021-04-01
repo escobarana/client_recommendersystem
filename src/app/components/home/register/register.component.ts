@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
               private validatorForm: ValidatorsFormService,
               private fb: FormBuilder) { 
 
-      this.user = new User('','','','',false,[],[],[]);
+      this.user = new User('','','','',false,[],[],[], "newbie");
     }
 
   ngOnInit(): void { 
@@ -61,7 +61,7 @@ export class RegisterComponent implements OnInit {
                                 console.log('Successfully signed up!');
                                 this.status = 'success';
                                 // reset default values after success
-                                this.user = new User('','','','',false,[],[],[]);
+                                this.user = new User('','','','',false,[],[],[], "newbie");
                                 this.registerFormControl.reset();
                               }, 
                       error => {

@@ -2,7 +2,6 @@ import { Component, OnInit,ViewChildren,QueryList,ChangeDetectorRef  } from '@an
 import { StoresService } from '../../services/stores.service';
 import { ListAppsComponent } from '../list-apps/list-apps.component'
 import { DatabaseService } from '../../services/database.service';
-import { AuthFirebaseService } from '../../services/auth-firebase.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AsignPageComponent } from './asign-page/asign-page.component';
 import { UserService } from 'src/app/services/user.service';
@@ -11,7 +10,7 @@ import { UserService } from 'src/app/services/user.service';
   selector: 'explore',
   templateUrl: './explore-page.component.html',
   styleUrls: ['./explore-page.component.css'],
-  providers:[StoresService,DatabaseService,AuthFirebaseService]
+  providers:[StoresService,DatabaseService]
 })
 export class ExplorePageComponent implements OnInit {
 
@@ -28,13 +27,12 @@ export class ExplorePageComponent implements OnInit {
   showGoogle: boolean;
 
   isAdmin:boolean;
-
   identity;
 
   @ViewChildren(ListAppsComponent) chviewChildren: QueryList<ListAppsComponent>;
 
   constructor(private play: StoresService, private db:DatabaseService,
-    public asignDialog: MatDialog, userService: UserService) { 
+    public asignDialog: MatDialog, private userService: UserService) { 
     this.isSearching= false;
     this.showBoth = true;
     this.isDefault = true;
@@ -43,7 +41,7 @@ export class ExplorePageComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(this.identity.admin){
+    if(this.userService.getIdentity().admin){
       this.getFirstApps();
     }
     else{
@@ -90,19 +88,23 @@ export class ExplorePageComponent implements OnInit {
     return l;
   }
 
-  getAppsFromUser(){
-    let user = this.identity;
-    if(user.list_assign != null && user.list_assign != undefined){
-      let list = JSON.parse(JSON.stringify(user.list_assign))
-      list.forEach(element => {
-        if(element.type === "review"){
-          this.toReview.push(element);
+  getAppsFromUser(){ // mostrar apps en To Review y To Delete de 'Assign apps'
+    this.userService.getUser((this.userService.getIdentity()).email).subscribe(
+      res => {
+        if(res.list_assign !== null && res.list_assign !== undefined){
+          let list = JSON.parse(JSON.stringify(res.list_assign)) /////
+          list.forEach(element => {
+            if(element.type === "review"){
+              this.toReview.push(element);
+            }
+            else if(element.type === "remove"){
+              this.toDelete.push(element);
+            }
+          });
         }
-        else if(element.type === "remove"){
-          this.toDelete.push(element);
-        }
+      }, err => {
+        console.log(err);
       });
-    }
     this.isLoaded = true;
   }
 
@@ -178,14 +180,7 @@ export class ExplorePageComponent implements OnInit {
   }*/
 
   admin() {
-    let user = this.identity;
-    console.log(user);
-    if(user.admin){
-      this.isAdmin = true;
-    }
-    else{
-      this.isAdmin = false;
-    }
+    this.isAdmin = this.userService.getIdentity().admin;
   }
 
   asignSelectedApps(){
@@ -267,22 +262,29 @@ export class ExplorePageComponent implements OnInit {
               var descAppleApps = this.play.getDescriptionAppleApps();
               descAppleApps.then((desc_apple)=>{
                 var bothstores = this.play.getBothLists();
+                //console.log(bothstores);
                 //this.setLoadingState("Sending apps for analysis...");
                 console.log("Sending apps for analysis...")
                 bothstores.then((both)=>{
-                  var results = this.play.getFromUrl();
+                  var results = this.play.getListApps();
+                  //console.log(results);
+                  //var results = this.play.getFromUrl();
                   results.then((list_R)=>{
                     let list = JSON.parse(JSON.stringify(list_R));
                     let list_details_accept = this.getDetails(both,list.accept);
                     let list_details_remove = this.getDetails(both,list.delete);
                     let p = new Promise(() => {
                       list_details_accept.forEach(element => {
-                        this.db.sendSystemToReview(element);
+                        this.db.sendSystemToReview(element).subscribe(res => {
+                          console.log(res);
+                        }, err => { console.log(err);});
                       });
                       list_details_remove.forEach(element => {
-                        this.db.sendSystemtoDelete(element);
+                        this.db.sendSystemtoDelete(element).subscribe(res => {
+                          console.log(res);
+                        }, err => { console.log(err);});
                       });
-                    })
+                    });
                     p.then(() => {
                       this.getFirstApps();
                     });
@@ -310,6 +312,7 @@ export class ExplorePageComponent implements OnInit {
     }, (error)=>{
       this.alert();
     })
+    location.reload(); // reload page to show new apps
   }
 
   getDetails(rawList, resultList){

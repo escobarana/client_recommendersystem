@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild,Inject } from '@angular/core';
-import { AuthFirebaseService } from '../../../services/auth-firebase.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -36,7 +35,7 @@ export class AsignPageComponent implements OnInit {
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-  constructor(private auth: AuthFirebaseService,public dialogRef: MatDialogRef<AsignPageComponent>,
+  constructor(public dialogRef: MatDialogRef<AsignPageComponent>,
     iconRegistry: MatIconRegistry, sanitizer: DomSanitizer,
     @Inject(MAT_DIALOG_DATA) public data: any, private userService: UserService) {
     this.userService.getAllUsers().subscribe((users) =>{
@@ -82,7 +81,7 @@ export class AsignPageComponent implements OnInit {
   mapUsers(users){
     let array: User[] = [];
     users.forEach(element => {
-      if(element.name != undefined && element.email != undefined && element.admin != undefined){
+      if(element.name != undefined && element.email != undefined && element.admin != undefined && element.role.toString() !== "newbie"){
         if(element.admin.toString() !== "true"){
           let user: User = {
             name: element.name.toString(),
@@ -119,12 +118,29 @@ export class AsignPageComponent implements OnInit {
     if(this.selection.selected.length > 0){
       this.selection.selected.forEach(element => {
         if(this.toReview.length > 0){
-          this.auth.updateListAssing(element.id,this.toReview);
+          this.toReview.forEach(app1 => {
+            this.userService.updateListAssing(element.email, app1).subscribe(
+              res => {
+                console.log("User ",  element.name , " assigned to review.");
+              }, 
+              (error) => {
+                console.log(error);
+              });
+          }); 
         }
         if(this.toRemove.length > 0){
-          this.auth.updateListAssing(element.id,this.toRemove);
+          this.toRemove.forEach(app2 => {
+            this.userService.updateListAssing(element.email, app2).subscribe(
+              res => {
+                console.log("User ", element.name, " assigned to remove.");
+              }, 
+              (error) => {
+                console.log(error);
+              });
+          });
         }
       });
+ 
       let users = this.selection.selected;
       let l = "";
       for (let i = 0; i < users.length; i++) {
@@ -140,11 +156,10 @@ export class AsignPageComponent implements OnInit {
       }
       window.alert(`Apps were assign to: ${l}`);
       this.dialogRef.close();
-    }
-    else{
+
+    }else{
       window.alert("Please, select the users you want to assign apps.");
     }
-
   }
 
   closeWindow(){

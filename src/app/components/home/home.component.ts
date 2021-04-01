@@ -21,23 +21,11 @@ export class HomeComponent implements OnInit, DoCheck {
 
   ngOnInit() {
     console.log('Home page loaded');
-    //this.admin();
     this.identity = this.userService.getIdentity();
   }
 
   ngDoCheck(){
     this.identity = this.userService.getIdentity();
   }
-
-  //admin() {
-  //  this.auth.isAuth().subscribe(auth => {
-  //    if (auth) {
-  //      this.auth.isUserAdmin(auth.uid).subscribe(userRole => {
-  //        console.log("admin:",userRole.admin)
-  //        this.isAdmin = userRole.admin;
-  //      })
-  //    }
-  //  })
-  //}
 
 }

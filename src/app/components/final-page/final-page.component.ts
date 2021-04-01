@@ -1,7 +1,6 @@
-import { Component, OnInit,ViewChildren,ChangeDetectorRef,QueryList } from '@angular/core';
+import { Component, OnInit,ViewChildren,QueryList } from '@angular/core';
 import { DatabaseService } from '../../services/database.service';
 import { ListAppsComponent } from '../list-apps/list-apps.component';
-import { AuthFirebaseService } from '../../services/auth-firebase.service';
 import { DownloadFileService } from '../../services/download-file.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -25,8 +24,7 @@ export class FinalPageComponent implements OnInit {
 
   @ViewChildren(ListAppsComponent) chviewChildren: QueryList<ListAppsComponent>;
 
-  constructor(private db:DatabaseService,private auth: AuthFirebaseService,
-    private download:DownloadFileService, private userService: UserService) {
+  constructor(private db:DatabaseService,private download:DownloadFileService, private userService: UserService) {
       this.setLists();
   }
 
@@ -52,14 +50,6 @@ export class FinalPageComponent implements OnInit {
     this.showBoth = false;
     this.showApple = false;
     this.showGoogle = true;
-  }
-
-  async admin() {
-    await this.userService.getIdentity().subscribe((data) => {
-      this.userService.getIdentity().admin(data.uid).subscribe((user) => {
-        this.isAdmin = user.admin;
-      })
-    })
   }
 
   setLists(){
@@ -126,17 +116,16 @@ export class FinalPageComponent implements OnInit {
   }
 
   isAdmin():boolean{
-    let user = JSON.parse(localStorage.getItem('user'));
-    if(user.admin.toString() === "true"){
-      return true;
-    }
-    else{
+    if(this.userService.getIdentity() !== null){
+      return this.userService.getIdentity().admin;
+    }else{
       return false;
     }
+    
   }
 
   restoreApps(){
-    if(this.isAdmin){
+    if(this.isAdmin()){
       let toRemove = [];
       let toAccept = [];
       this.chviewChildren.forEach((item) =>{
@@ -163,11 +152,11 @@ export class FinalPageComponent implements OnInit {
       if(toRemove.length > 0 || toAccept.length > 0){
         toAccept.forEach(element => {
           this.deleteFromList(this.accepted, element);
-          this.db.deleteAppFromFinalAccept(element);
+          this.db.deleteAppFromFinalAccept(element.appId).subscribe();
         });
         toRemove.forEach(element => {
           this.deleteFromList(this.removed, element);
-          this.db.deleteAppFromFinalRemove(element);
+          this.db.deleteAppFromFinalRemove(element.appId).subscribe();
         });
         window.alert( "Apps have been restored." );
       }

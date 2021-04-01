@@ -6,5 +6,7 @@ export class User{
                 public isAdmin: Boolean,
                 public list_recommend: [],
                 public list_assign: [],
-                public list_remove: []){ }
+                public list_remove: [],
+                public role: String)
+                { }
 }

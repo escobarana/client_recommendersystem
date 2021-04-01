@@ -32,7 +32,9 @@ export class ReviewPageComponent implements OnInit {
     this.setLists();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.userService.getIdentity();
+  }
 
   alert() {
     window.alert('ERROR. Please, try again.');
@@ -63,27 +65,32 @@ export class ReviewPageComponent implements OnInit {
   }
 
   setLists(){
-    let user = this.identity;
-    if(user.admin){
-      let toAccept = this.db.getReviewAccept();
-      toAccept.then((toAccept_apps)=>{
-        let toDelete = this.db.getReviewRemove();
-        toDelete.then((toDelete_apps)=>{
-          this.accepted = JSON.parse(JSON.stringify(toAccept_apps));
-          this.removed = JSON.parse(JSON.stringify(toDelete_apps));
-          this.isLoaded = true;
-        });
-      });
-    }
-    else{
-      if(user.list_recommend != null && user.list_recommend != undefined){
-        this.accepted = user.list_recommend;
+    this.userService.getUser((this.userService.getIdentity()).email).subscribe(
+      res => {
+        if(res.admin){
+          let toAccept = this.db.getReviewAccept();
+          toAccept.then((toAccept_apps)=>{
+            let toDelete = this.db.getReviewRemove();
+            toDelete.then((toDelete_apps)=>{
+              this.accepted = JSON.parse(JSON.stringify(toAccept_apps));
+              this.removed = JSON.parse(JSON.stringify(toDelete_apps));
+              this.isLoaded = true;
+            });
+          });
+        }else{
+          if(res.list_recommend != null && res.list_recommend != undefined){
+            this.accepted = res.list_recommend;
+          }
+          if(res.list_remove != null && res.list_remove != undefined){
+            this.removed = res.list_remove;
+          }
+          this.compareWithFinals();
+        }
+      }, err => {
+        console.log(err);
       }
-      if(user.list_remove != null && user.list_remove != undefined){
-        this.removed = user.list_remove;
-      }
-      this.compareWithFinals();
-    }
+    );
+    
   }
 
   compareWithFinals(){
@@ -95,7 +102,7 @@ export class ReviewPageComponent implements OnInit {
         let listB = JSON.parse(JSON.stringify(deleted_apps));
         this.accepted = this.filterArraysApps(this.accepted,listA);
         this.removed = this.filterArraysApps(this.removed,listB);
-        console.log(this.accepted)
+        // console.log(this.accepted)
         this.isLoaded = true;
       });
     });
@@ -170,7 +177,7 @@ export class ReviewPageComponent implements OnInit {
 
   //Lo guardo en la lista final y lo elimino de la lista de reviews
   acceptApp(){
-    if(this.identity.admin){
+    if(this.userService.getIdentity().admin){
       let toRemove = [];
       let toAccept = [];
       this.chviewChildren.forEach((item) =>{
@@ -196,14 +203,14 @@ export class ReviewPageComponent implements OnInit {
       });
       if(toRemove.length > 0 || toAccept.length > 0){
         toAccept.forEach(element => {
-          this.db.appsAcceptedByAdmin(element);
+          this.db.appsAcceptedByAdmin(element).subscribe();
           this.deleteFromList(this.accepted, element);
-          this.db.deleteAppFromReviewAccept(element);
+          this.db.deleteAppFromReviewAccept(element.appId).subscribe();
         });
         toRemove.forEach(element => {
-          this.db.appsRemovedByAdmin(element);
+          this.db.appsRemovedByAdmin(element).subscribe();
           this.deleteFromList(this.removed, element);
-          this.db.deleteAppFromReviewRemove(element);
+          this.db.deleteAppFromReviewRemove(element.appId).subscribe();
         });
         window.alert( "Apps were sent to be definitive." );
       }
@@ -222,7 +229,7 @@ export class ReviewPageComponent implements OnInit {
 
   //No lo guardo en la lista final, solo lo elimino de la lista de reviews
   removeApp(){
-    if(this.identity.admin){
+    if(this.userService.getIdentity().admin){
       let toRemove = [];
       let toAccept = [];
       this.chviewChildren.forEach((item) =>{
@@ -249,11 +256,11 @@ export class ReviewPageComponent implements OnInit {
       if(toRemove.length > 0 || toAccept.length > 0){
         toAccept.forEach(element => {
           this.deleteFromList(this.accepted, element);
-          this.db.deleteAppFromReviewAccept(element);
+          this.db.deleteAppFromReviewAccept(element.appId).subscribe();
         });
         toRemove.forEach(element => {
           this.deleteFromList(this.removed, element);
-          this.db.deleteAppFromReviewRemove(element);
+          this.db.deleteAppFromReviewRemove(element.appId).subscribe();
         });
       }
       else{

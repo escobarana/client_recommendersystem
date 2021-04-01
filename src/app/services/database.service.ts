@@ -59,87 +59,55 @@ export class DatabaseService {
 
   // Deletting data from server 
   
-  deleteAppFromReviewAccept(app) {
-    return this.http.get(this.urlServer + '/api/deleteApp/apps_review_accept/' + `${app.appId}`);//.map(res => res);
-    /*let appRef: AngularFirestoreDocument<any> = this.firestore.doc(`apps_review_accept/${app.appId}`);
-    appRef.delete().then(function() {
-      console.log("Document successfully deleted!");
-    }).catch((error) =>  {
-        console.error("Error removing document: ", error);
-    });*/
+  deleteAppFromReviewAccept(appId) {
+    let headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization': this.token});
+    return this.http.delete(this.urlServer + `/api/deleteApp/apps_review_accept/${appId}`,{ headers: headers });//.toPromise()
   }
 
-  deleteAppFromReviewRemove(app) {
-    return this.http.get(this.urlServer + '/api/deleteApp/apps_review_remove/' + `${app.appId}`); //.map(res => res);
-    /*let appRef: AngularFirestoreDocument<any> = this.firestore.doc(`apps_review_remove/${app.appId}`);
-    appRef.delete().then(function() {
-      console.log("Document successfully deleted!");
-    }).catch((error) => {
-        console.error("Error removing document: ", error);
-    });*/
+  deleteAppFromReviewRemove(appId) {
+    let headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization': this.token});
+    return this.http.delete(this.urlServer + `/api/deleteApp/apps_review_remove/${appId}`,{ headers: headers }); //.toPromise()
   }
 
-  deleteAppFromFinalAccept(app) {
-    return this.http.get(this.urlServer + '/api/deleteApp/apps_accepted/' + `${app.appId}`);//.map(res => res);
-    /*let appRef: AngularFirestoreDocument<any> = this.firestore.doc(`apps_accepted/${app.appId}`);
-    appRef.delete().then(function() {
-      console.log("Document successfully deleted!");
-    }).catch(function(error) {
-        console.error("Error removing document: ", error);
-    });*/
+  deleteAppFromFinalAccept(appId) {
+    let headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization': this.token});
+    return this.http.delete(this.urlServer + `/api/deleteApp/apps_accepted/${appId}`,{ headers: headers });//.toPromise()
   }
 
-  deleteAppFromFinalRemove(app) {
-    return this.http.get(this.urlServer + '/api/deleteApp/apps_removed/' + `${app.appId}`);//.map(res => res);
-    /*let appRef: AngularFirestoreDocument<any> = this.firestore.doc(`apps_removed/${app.appId}`);
-    appRef.delete().then(function() {
-      console.log("Document successfully deleted!");
-    }).catch(function(error) {
-        console.error("Error removing document: ", error);
-    });*/
+  deleteAppFromFinalRemove(appId) {
+    let headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization': this.token});
+    return this.http.delete(this.urlServer + `/api/deleteApp/apps_removed/${appId}`,{ headers: headers });//.toPromise()
   }
 
   // Posting data from server 
 
   sendSystemToReview(app) {
-    return this.http.get(this.urlServer + '/api/system_apps_accept/' + `${app.appId}`);//.map(res => res);
-    /*let appRef: AngularFirestoreDocument<any> = this.firestore.doc(`system_apps_accept/${app.appId}`);
-    appRef.set(app, { merge: true });*/
+    let headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization': this.token});
+    return this.http.post<any>(this.urlServer + '/api/system_apps_accept', JSON.parse(JSON.stringify(app)), {headers: headers});//.toPromise()
   }
 
   sendSystemtoDelete(app) {
-    return this.http.get(this.urlServer + '/api/system_apps_remove/' + `${app.appId}`);//.map(res => res);
-    /*let appRef: AngularFirestoreDocument<any> = this.firestore.doc(`system_apps_remove/${app.appId}`);
-    appRef.set(app, { merge: true });*/
+    let headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization': this.token});
+    return this.http.post<any>(this.urlServer + '/api/system_apps_remove', JSON.parse(JSON.stringify(app)), {headers: headers});//.toPromise()
   }
 
-  appsRecommendedByReviewer(app, metadata) {
-    return this.http.get(this.urlServer + '/api/apps_review_accept/' + `${app.appId}`);//.map(res => res);
-    /*let appRef: AngularFirestoreDocument<any> = this.firestore.doc(`apps_review_accept/${app.appId}`);
-    appRef.set(app, { merge: true })
-    appRef.update({
-      reviews: firebase.firestore.FieldValue.arrayUnion(metadata)
-    }); */
+  appsRecommendedByReviewer(app_appId, app_description, app_title, app_url, app_icon, app_review) {
+    let headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization': this.token});
+    return this.http.post<any>(this.urlServer + `/api/apps_review_accept`, {appId: app_appId, description: app_description, title: app_title, url: app_url, icon: app_icon, review: app_review}, {headers: headers});//.toPromise()
   }
 
-  appsRemovedByReviewer(app, metadata){
-    return this.http.get(this.urlServer + '/api/apps_review_remove/' + `${app.appId}`);//.map(res => res);
-    /*let appRef: AngularFirestoreDocument<any> = this.firestore.doc(`apps_review_remove/${app.appId}`);
-    appRef.set(app, { merge: true })
-    appRef.update({
-      reviews: firebase.firestore.FieldValue.arrayUnion(metadata)
-    }); */
+  appsRemovedByReviewer(app_appId, app_description, app_title, app_url, app_icon, app_review){
+    let headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization': this.token});
+    return this.http.post<any>(this.urlServer + '/api/apps_review_remove', {appId: app_appId, description: app_description, title: app_title, url: app_url, icon: app_icon, review: app_review}, {headers: headers});//.toPromise()
   }
 
   appsAcceptedByAdmin(app) {
-    return this.http.get(this.urlServer + '/api/apps_accepted/' + `${app.appId}`);//.map(res => res);
-   /* let appRef: AngularFirestoreDocument<any> = this.firestore.doc(`apps_accepted/${app.appId}`);
-    appRef.set(app, { merge: true });*/
+    let headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization': this.token});
+    return this.http.post<any>(this.urlServer + '/api/apps_accepted', JSON.parse(JSON.stringify(app)), {headers: headers});///.toPromise()
   }
 
   appsRemovedByAdmin(app) {
-    return this.http.get(this.urlServer + '/api/apps_removed/' + `${app.appId}`);//.map(res => res);
-    /*let appRef: AngularFirestoreDocument<any> = this.firestore.doc(`apps_removed/${app.appId}`);
-    appRef.set(app, { merge: true });*/
+    let headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization': this.token});
+    return this.http.post<any>(this.urlServer + '/api/apps_removed', JSON.parse(JSON.stringify(app)), {headers: headers});//.toPromise()
   }
 }

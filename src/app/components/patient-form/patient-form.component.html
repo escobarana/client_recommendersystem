@@ -40,8 +40,8 @@
 
                 <div class="text-center">
                         <label>Sexo*:</label>
-                        <input formControlName="gender" type="radio" value="H">Hombre
-                        <input formControlName="gender" type="radio" value="M">Mujer
+                        <input formControlName="gender" type="radio" value="M">Hombre
+                        <input formControlName="gender" type="radio" value="F">Mujer
                         <div class="text-danger"
                         *ngIf="patientFormControl.get('gender').hasError('required') && patientFormControl.get('gender').touched">
                          El sexo <strong>es obligatorio</strong></div>
@@ -84,11 +84,11 @@
                         *ngIf="patientFormControl.get('coexistence').hasError('required') && patientFormControl.get('coexistence').touched">
                         La convivencia <strong>es obligatoria</strong></div>
                         <div *ngIf="coexistanceY"  class="input-optionals">
-                            <input formControlName="coexistencePeople1" type="checkbox" value="Pareja">Cónyuge/pareja 
-                            <input formControlName="coexistencePeople2" type="checkbox" value="Hijos">Hijo/s
-                            <input formControlName="coexistencePeople3" type="checkbox" value="padremadresuegrosuegra">Padre/madre/suegro/suegra 
-                            <input formControlName="coexistencePeople4" type="checkbox" value="Nietos">Nieto/s
-                            <input formControlName="coexistencePeople5" type="checkbox" value="Compañeros">Compañero/s
+                            <input formControlName="coexistencePeople1" type="checkbox" >Cónyuge/pareja 
+                            <input formControlName="coexistencePeople2" type="checkbox" >Hijo/s
+                            <input formControlName="coexistencePeople3" type="checkbox" >Padre/madre/suegro/suegra 
+                            <input formControlName="coexistencePeople4" type="checkbox" >Nieto/s
+                            <input formControlName="coexistencePeople5" type="checkbox" >Compañero/s
                         </div>
                 </div><br>
 
@@ -116,7 +116,7 @@
                     <label>Estudios*:</label>
                     <select formControlName="studies" required>
                         <option disabled selected value>Selecciona una opción</option>
-                        <option *ngFor="let each of studiesOpt" [ngValue]="each">
+                        <option *ngFor="let each of studiesOpt" [ngValue]="each" >
                             {{ each }}    
                         </option>
                     </select>
@@ -129,7 +129,7 @@
                     <label>Situación laboral*:</label>
                     <select formControlName="work" required>
                         <option disabled selected value>Selecciona una opción</option>
-                        <option *ngFor="let each of workOpt" [ngValue]="each">
+                        <option *ngFor="let each of workOpt" [ngValue]="each" >
                             {{ each }}    
                         </option>
                     </select>
@@ -239,53 +239,43 @@
                     <label>Tipo de cáncer que padece*:</label>
                     <select formControlName="cancer" ng-options="elemento for elemento in cancerOpt" required>
                         <option value disabled selected>Selecciona una opción</option>
-                        <option *ngFor="let each of cancerOpt" [ngValue]="each">
+                        <option *ngFor="let each of cancerOpt" [ngValue]="each" >
                             {{ each }}    
                         </option>
-                        <option *ngIf="newCancer">{{newCancer.nombre}}</option>
                     </select>
+                    <!-- Aquí añadir opción de si es admin el usuario conectado añadir nuevo tipo de cáncer a cancerOpt -->
                     <div class="text-danger"
                     *ngIf="patientFormControl.get('cancer').hasError('required') && patientFormControl.get('cancer').touched">
                     Este campo <strong>es obligatorio</strong></div>
                 </div><br>
 
-                <div class="text-center"> 
+                <div class="text-center" > 
                     <label>Tiempo transcurrido desde el diagnóstico de la enfermedad*:</label> <br>
                     <input formControlName="elapsedTime" type="radio" value="less1month">Menos de 1 mes
                     <input formControlName="elapsedTime" type="radio" value="btw1and3months">Entre 1 y 3 meses
                     <input formControlName="elapsedTime" type="radio" value="btw3and6months">Entre 3 y 6 meses
                     <input formControlName="elapsedTime" type="radio" value="btw6andyear">Entre 6 meses y 1 año
                     <input formControlName="elapsedTime" type="radio" value="btw1and3years">Entre 1 y 3 años
-                    <input formControlName="elapsedTime" type="radio" value="more3years">Más de 3 años
-                    
-                    <div class="text-danger"
-                    *ngIf="patientFormControl.get('elapsedTime').hasError('required') && patientFormControl.get('elapsedTime').touched">
-                    Este campo <strong>es obligatorio</strong></div>
+                    <input formControlName="elapsedTime" type="radio" value="more3years">Más de 3 años  
                 </div><br>
 
                 <div class="text-center">
                     <label>Tratamiento oncológico recibido*:</label> <br>
-                    <input formControlName="treatment" type="checkbox" value="treatment1">Tratamiento local mediante cirugía o radioterapia <br>
-                    <input formControlName="treatment" type="checkbox" value="treatment2">Tratamiento sistémico mediante quimioterapia, hormonoterapia o terapia biológica <br>
-                    <input formControlName="treatment" type="checkbox" value="notreatment">Ninguno de los anteriores
-                    <div class="text-danger"
-                    *ngIf="patientFormControl.get('treatment').hasError('required') && patientFormControl.get('treatment').touched">
-                    Este campo <strong>es obligatorio</strong></div>
+                    <input formControlName="treatment1" type="checkbox" >Tratamiento local mediante cirugía o radioterapia <br>
+                    <input formControlName="treatment2" type="checkbox" >Tratamiento sistémico mediante quimioterapia, hormonoterapia o terapia biológica <br>
+                    <input formControlName="treatment_none" type="checkbox" >Ninguno de los anteriores
                 </div><br>
 
                 <div class="text-center">
                     <label>Preferencias actividades*:</label> <br>
-                    <input formControlName="activity" type="checkbox" value="swim"> Natación 
-                    <input formControlName="activity" type="checkbox" value="running"> Correr
-                    <input formControlName="activity" type="checkbox" value="walk"> Caminar 
-                    <input formControlName="activity" type="checkbox" value="bike"> Bicicleta
-                    <input formControlName="activity" type="checkbox" value="basket"> Baloncesto
-                    <input formControlName="activity" type="checkbox" value="basket"> Tenis
-                    <input formControlName="activity" type="checkbox" value="football"> Fútbol
-                    <input formControlName="activity" type="checkbox" value="other"> Otros
-                    <div class="text-danger"
-                    *ngIf="patientFormControl.get('activity').hasError('required') && patientFormControl.get('activity').touched">
-                    Este campo <strong>es obligatorio</strong></div>
+                    <input formControlName="activity_swim" type="checkbox" > Natación 
+                    <input formControlName="activity_run" type="checkbox" > Correr
+                    <input formControlName="activity_walk" type="checkbox" > Caminar 
+                    <input formControlName="activity_bike" type="checkbox" > Bicicleta
+                    <input formControlName="activity_basket" type="checkbox" > Baloncesto
+                    <input formControlName="activity_tennis" type="checkbox" > Tenis
+                    <input formControlName="activity_football" type="checkbox" > Fútbol
+                    <input formControlName="activity_other" type="checkbox" > Otros
                 </div><br>
 
             </div> <!-- patient form control -->
