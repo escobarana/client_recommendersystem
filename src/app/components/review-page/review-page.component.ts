@@ -75,8 +75,8 @@ export class ReviewPageComponent implements OnInit {
               this.accepted = JSON.parse(JSON.stringify(toAccept_apps));
               this.removed = JSON.parse(JSON.stringify(toDelete_apps));
               this.isLoaded = true;
-            });
-          });
+            }).catch(err => console.error(err));;
+          }).catch(err => console.error(err));;
         }else{
           if(res.list_recommend != null && res.list_recommend != undefined){
             this.accepted = res.list_recommend;
@@ -104,8 +104,8 @@ export class ReviewPageComponent implements OnInit {
         this.removed = this.filterArraysApps(this.removed,listB);
         // console.log(this.accepted)
         this.isLoaded = true;
-      });
-    });
+      }).catch(err => console.error(err));;
+    }).catch(err => console.error(err));;
   }
 
   private filterArraysApps(listA, listB){

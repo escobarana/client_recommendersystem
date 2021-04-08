@@ -67,10 +67,10 @@ export class ExplorePageComponent implements OnInit {
             this.toReview = this.filterArraysApps(listC,accepted);
             this.toDelete = this.filterArraysApps(listD,accepted);
             this.isLoaded = true;
-          });
-        });
-      });
-    });
+          }).catch(err => console.error(err));;
+        }).catch(err => console.error(err));;
+      }).catch(err => console.error(err));;
+    }).catch(err => console.error(err));;
   }
 
   private filterArraysApps(listA, listB){

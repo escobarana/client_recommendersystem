@@ -61,7 +61,7 @@ export class FinalPageComponent implements OnInit {
         this.removed = JSON.parse(JSON.stringify(toDelete_apps));
         this.isLoaded = true;
       });
-    });
+    }).catch(err => console.error(err));
   }
 
   filterByStoreAccepted(){
