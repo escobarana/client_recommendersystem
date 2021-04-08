@@ -41,6 +41,7 @@ export class ExplorePageComponent implements OnInit {
   }
 
   ngOnInit() {
+    //this.intervalID; // initialize the app updating interval
     if(this.userService.getIdentity().admin){
       this.getFirstApps();
     }
@@ -89,7 +90,8 @@ export class ExplorePageComponent implements OnInit {
   }
 
   getAppsFromUser(){ // mostrar apps en To Review y To Delete de 'Assign apps'
-    this.userService.getUser((this.userService.getIdentity()).email).subscribe(
+    let user_email = (this.userService.getIdentity()).email;
+    this.userService.getUser(user_email).subscribe(
       res => {
         if(res.list_assign !== null && res.list_assign !== undefined){
           let list = JSON.parse(JSON.stringify(res.list_assign)) /////
@@ -242,6 +244,9 @@ export class ExplorePageComponent implements OnInit {
     }
     return false;
   }
+
+  // Update the apps automatically every 30 days
+  //intervalID = window.setInterval(this.updateApps, 2592000000); // every 30 days
 
   updateApps(){
     this.isLoaded = false;

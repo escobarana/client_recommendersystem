@@ -6,7 +6,7 @@
       "timeout":30000
   },
   "/dataR/*":{
-      "target": "http://156.35.163.172:6947",
+      "target": "http://156.35.163.172:7190/",
       "secure": false,
       "pathRewrite": {
       "^/dataR": ""

@@ -17,13 +17,13 @@ export class PatientService {
    }
 
    getPatients(){
-    let headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization': this.token});
+    let headers = new HttpHeaders({'Authorization': this.token});
     let finalUrl = this.url + '/api/forms';
     return this.http.get<any>(finalUrl, {headers: headers});
    }
 
    patientForm(date, email, age, gender, os, answers){
-    let headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization': this.token});
+    let headers = new HttpHeaders({'Authorization': this.token});
     // POST these details to API server
     console.log("Retrieving form data...");
     let finalUrl = this.url + '/api/newform';

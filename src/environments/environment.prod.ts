@@ -6,5 +6,5 @@ export const environment_server = {
 
 export const environment_r = {
   production: true,
-  apiUrl: 'https://beta.rstudioconnect.com/content:9519'
+  apiUrl: 'http://156.35.163.172:7190/'
 };
