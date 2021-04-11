@@ -185,6 +185,26 @@ export class ExplorePageComponent implements OnInit {
     this.isAdmin = this.userService.getIdentity().admin;
   }
 
+  resetApps(){
+    var opcion = confirm(`Are you sure you want to reset all your assigned apps ?`);
+    let user = this.userService.getIdentity();
+    if(opcion){
+      user.list_assign.forEach(element => {
+        this.userService.removeFromListAssign(user.email, element.appId).subscribe(res=>{
+          console.log("User ", user.name , " reset all apps")
+        }, err =>{
+          console.log(err)
+        });
+      });
+    }
+    
+    window.setInterval(this.refresh, 1000); 
+  }
+
+  refresh() {
+    window .location.reload();
+  }
+
   asignSelectedApps(){
     if(this.isAdmin){
       let toRemove = [];
@@ -317,7 +337,7 @@ export class ExplorePageComponent implements OnInit {
     }, (error)=>{
       this.alert();
     })
-    location.reload(); // reload page to show new apps
+    window.setInterval(this.refresh, 1000); 
   }
 
   getDetails(rawList, resultList){

@@ -1,6 +1,6 @@
 {
   "/api/*":{
-      "target": "http://156.35.163.172:3000",
+      "target": "http://156.35.163.172",
       "secure": false,
       "changeOrigin": true,
       "timeout":30000

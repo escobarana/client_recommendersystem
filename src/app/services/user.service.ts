@@ -14,7 +14,7 @@ export class UserService {
   public token: string;
 
   constructor(private http: HttpClient) { 
-    this.url = environment_server.apiUrl; // http://156.35.163.172:3000
+    this.url = environment_server.apiUrl; // http://156.35.163.172:80
   }
 
   register(user_name, user_email, user_password){

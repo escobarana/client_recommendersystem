@@ -26,6 +26,12 @@
                     Both stores
                 </button>
             </aside>
+            <aside class="container" *ngIf="!identity.admin">
+                <p>Delete all assigned apps?</p>
+                <button class="btnaside corner" (click)="resetApps()">
+                    Reset
+                </button>
+            </aside>
             <aside class="container" *ngIf="identity.admin">
                 <p>Assign apps:</p>
                 <button class="btnaside corner" (click)="asignSelectedApps()">
