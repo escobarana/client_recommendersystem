@@ -244,6 +244,7 @@ export class PatientFormComponent implements OnInit {
     this.answers.maritalStatus = this.patientFormControl.get('maritalstatus').value.toString();
     this.answers.workStatus = this.patientFormControl.get('work').value.toString();
     this.answers.studiesLevel= this.patientFormControl.get('studies').value.toString();
+    this.answers.cancerType= this.patientFormControl.get('cancer').value.toString();
     this.activitiesHandler();
     this.treatmentHandler();
     this.optionsCoexistence();

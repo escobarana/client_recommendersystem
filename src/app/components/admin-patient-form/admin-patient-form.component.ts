@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { DownloadFileService } from 'src/app/services/download-file.service';
 import { PatientService } from 'src/app/services/patient.service'; 
+import { UserService } from 'src/app/services/user.service';
 
 export interface Patient {
   date: string;
@@ -7,6 +9,7 @@ export interface Patient {
   os: string;
   gender: string;
   age: number;
+  answers: Array<String>;
 }
 
 @Component({
@@ -23,6 +26,5 @@ export class AdminPatientFormComponent implements OnInit {
   }
 
   ngOnInit(): void {  }
-
 
 }
