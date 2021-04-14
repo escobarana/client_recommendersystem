@@ -6,12 +6,12 @@
 </head>
 <body>
         <br>
-        <h1 class="text-center">Formulario para el paciente</h1>
+        <h1 class="text">Formulario para el paciente</h1>
         <form [formGroup]="patientFormControl">
             
             <!-- patient form control -->
             <div class="form-area">
-                <h4 class="text-center">Por favor, asegúrese de que todos los campos están completos antes de enviar el formulario. Gracias</h4>
+                <h4 class="alert alert-info">Por favor, asegúrese de que todos los campos están completos antes de enviar el formulario. Gracias</h4>
                 <div class="text-center">
                         <label>Email*: </label> 
                         <input formControlName="email" type="email" autocomplete="on" placeholder="Correo electrónico" required>

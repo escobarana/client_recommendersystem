@@ -1,6 +1,6 @@
 .roundContainer { 
-    width:600px; 
-    height: 515px;
+    width:37.5rem; 
+    height: 32.1875rem;
     box-shadow:0px 0px 20px rgb(77, 77, 77);
     -webkit-box-shadow:0px 0px 20px rgb(77, 77, 77);
     border-radius: 15px;
@@ -11,7 +11,6 @@
     border-right:2px solid #fff;
     color: #642c2c;
 }
-
 .roundContainer .btn{
   display: flex;
   align-items: center;
@@ -19,23 +18,23 @@
 }
 
 .register{
-  margin-top: 200px;
-  margin-bottom: 100px;
+  margin-top: 12.5rem;
+  margin-bottom: 6.25rem;
 }
 
 .textaccount{
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 40px;
-  font-size: 30px;
+  padding-top: 2.5rem;
+  font-size: 1.875rem;
 }
 
 .form {
-  min-width: 150px;
-  max-width: 500px;
+  min-width: 9.375rem;
+  max-width: 31.25rem;
   width: 100%;
-  padding-left: 100px;
+  padding-left: 6.25rem;
 }
 
 .full-width {
@@ -44,14 +43,14 @@
 
 .btn{
   background-color: #e4facb;
-  font-size: 18px;
-  height: 50px;
+  font-size: 1.125rem;
+  height: 3.125rem;
   width: auto;
   border: none;
-  border-radius: 12px;
-  padding-left: 15px;
-  padding-right: 15px;
-  margin-left: 25px;
+  border-radius: 0.75rem;
+  padding-left: 0.9375rem;
+  padding-right: 0.9375rem;
+  margin-left: 1.5625rem;
   color: rgb(100, 44, 44);
   cursor: pointer;
 }
@@ -66,10 +65,168 @@
 }
 
 .btnregister{
-  margin-left: 220px;
-  margin-top: 20px;
+  margin-left: 13.75rem;
+  margin-top: 1.25rem;
 }
 
 .spacer{
-  padding-top: 15px;
+  padding-top: 0.9375rem;
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (max-width: 768px){
+  .roundContainer { 
+    width:31.25rem;
+    box-shadow:0px 0px 20px rgb(77, 77, 77);
+    -webkit-box-shadow:0px 0px 20px rgb(77, 77, 77);
+    border-radius: 0.9375rem;
+    -webkit-border-radius: 0.9375rem;
+    background-color:rgb(255, 255, 255);
+    margin:0px auto;
+    border-left:2px solid #fff;
+    border-right:2px solid #fff;
+    height: 29.375rem;
+    color: #642c2c;
+  }
+
+  .roundContainer .btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .register{
+    margin-top: 12.5rem;
+    margin-bottom: 6.25rem;
+  }
+
+  .textaccount{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 2.25rem;
+    font-size: 1.625rem;
+  }
+
+  .form {
+    min-width: 9.375rem;
+    max-width: 25rem;
+    width: 100%;
+    padding-left: 5.625rem;
+  }
+
+  .full-width {
+    width: 100%;
+  }
+
+  .btn{
+    background-color: #e4facb;
+    font-size: 1rem;
+    height: 2.875rem;
+    width: auto;
+    border: none;
+    border-radius: 0.75rem;
+    padding-left: 0.9375rem;
+    padding-right: 0.9375rem;
+    margin-left: 1.25rem; 
+    color: rgb(100, 44, 44);
+    cursor: pointer;
+  }
+
+  .btn:hover{
+    background-color: #b7ed7f;
+  }
+
+  .corner {
+    border-radius: 1.5625rem;
+    border: 2px solid #73AD21;
+  }
+
+  .btnregister{
+    margin-left: 10.3125rem;
+    margin-top: 1.25rem;
+  }
+
+  .spacer{
+    padding-top: 0.9375rem;
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px){
+  .roundContainer { 
+    width:25rem;
+    box-shadow:0px 0px 20px rgb(77, 77, 77);
+    -webkit-box-shadow:0px 0px 20px rgb(77, 77, 77);
+    border-radius: 0.9375rem;
+    -webkit-border-radius: 0.9375rem;
+    background-color:rgb(255, 255, 255);
+    margin:0px auto;
+    border-left:2px solid #fff;
+    border-right:2px solid #fff;
+    height: 27.5rem;
+    color: #642c2c;
+  }
+
+  .roundContainer .btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .register{
+    margin-top: 6.25rem;
+    margin-bottom: 6.25rem;
+  }
+
+  .textaccount{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 2.125rem;
+    font-size: 1.25rem;
+  }
+
+  .form {
+    min-width: 12.5rem;
+    max-width: 18.75rem;
+    width: 100%;
+    padding-left: 5.625rem;
+  }
+
+  .full-width {
+    width: 100%;
+  }
+
+  .btn{
+    background-color: #e4facb;
+    font-size: 0.875rem;
+    height: 2.5rem;
+    width: auto;
+    border: none;
+    border-radius: 0.75rem;
+    padding-left: 0.625rem;
+    padding-right: 0.625rem;
+    margin-left: 1.25rem; 
+    color: rgb(100, 44, 44);
+    cursor: pointer;
+  }
+
+  .btn:hover{
+    background-color: #b7ed7f;
+  }
+
+  .corner {
+    border-radius: 1.5625rem;
+    border: 2px solid #73AD21;
+  }
+
+  .btnregister{
+    margin-left: 8.125rem;
+    margin-top: 1.25rem;
+  }
+
+  .spacer{
+    padding-top: 0.9375rem;
+  }
 }

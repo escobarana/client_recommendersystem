@@ -1,23 +1,23 @@
 .roundContainer {
-    width:600px;
-    box-shadow:0px 0px 20px rgb(77, 77, 77);
-    -webkit-box-shadow:0px 0px 20px rgb(77, 77, 77);
-    border-radius: 15px;
-    -webkit-border-radius: 15px;
-    background-color:rgb(255, 255, 255);
-    margin:0px auto;
-    border-left:2px solid #fff;
-    border-right:2px solid #fff;
-    height: 500px;
-    color: #642c2c;
+  width:37.5rem;
+  box-shadow:0px 0px 20px rgb(77, 77, 77);
+  -webkit-box-shadow:0px 0px 20px rgb(77, 77, 77);
+  border-radius: 0.9375rem;
+  -webkit-border-radius: 0.9375rem;
+  background-color:rgb(255, 255, 255);
+  margin:0px auto;
+  border-left:2px solid #fff;
+  border-right:2px solid #fff;
+  height: 31.25rem;
+  color: #642c2c;
 }
 
 .textlogin{
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 40px;
-  font-size: 30px;
+  padding-top: 2.5rem;
+  font-size: 1.875rem;
 }
 
 .roundContainer .btn{
@@ -27,15 +27,15 @@
 }
 
 .login{
-  margin-top: 100px;
-  margin-bottom: 100px;
+  margin-top: 6.25rem;
+  margin-bottom: 6.25rem;
 }
 
 .form {
-  min-width: 150px;
-  max-width: 500px;
+  min-width: 9.375rem;
+  max-width: 31.25rem;
   width: 100%;
-  padding-left: 100px;
+  padding-left: 6.25rem;
 }
 
 .full-width {
@@ -44,14 +44,14 @@
 
 .btn{
   background-color: #e4facb;
-  font-size: 18px;
-  height: 50px;
+  font-size: 1.125rem;
+  height: 3.125rem;
   width: auto;
   border: none;
-  border-radius: 12px;
-  padding-left: 15px;
-  padding-right: 15px;
-  margin-left: 25px; 
+  border-radius: 0.75rem;
+  padding-left: 0.9375rem;
+  padding-right: 0.9375rem;
+  margin-left: 1.5625rem; 
   color: rgb(100, 44, 44);
   cursor: pointer;
 }
@@ -61,25 +61,25 @@
 }
 
 .corner {
-  border-radius: 25px;
+  border-radius: 1.5625rem;
   border: 2px solid #73AD21;
 }
 
 .btnlogin{
-  margin-left: 255px;
+  margin-left: 15.9375rem;
 }
 
 .forgetPassw{
-  margin-top: 15px;
-  margin-left: 185px;
+  margin-top: 0.9375rem;
+  margin-left: 11.5625rem;
   border: none;
   background-color: inherit;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 0.9375rem;
 }
 
 .btnRegister{
-  margin-left: 220px;
+  margin-left: 13.75rem;
 }
 
 .textRegister{
@@ -89,5 +89,395 @@
 }
 
 .createAcc{
-  margin-top:40px;
+  margin-top:2.5rem;
+}
+
+/*Extra large devices (large desktops, 1200px and up) */
+@media (max-width: 1200px){ /*valores por defecto*/
+  .roundContainer {
+    width:37.5rem;
+    box-shadow:0px 0px 20px rgb(77, 77, 77);
+    -webkit-box-shadow:0px 0px 20px rgb(77, 77, 77);
+    border-radius: 0.9375rem;
+    -webkit-border-radius: 0.9375rem;
+    background-color:rgb(255, 255, 255);
+    margin:0px auto;
+    border-left:2px solid #fff;
+    border-right:2px solid #fff;
+    height: 31.25rem;
+    color: #642c2c;
+  }
+
+  .textlogin{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 2.5rem;
+    font-size: 1.875rem;
+  }
+
+  .roundContainer .btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .login{
+    margin-top: 6.25rem;
+    margin-bottom: 6.25rem;
+  }
+
+  .form {
+    min-width: 9.375rem;
+    max-width: 31.25rem;
+    width: 100%;
+    padding-left: 6.25rem;
+  }
+
+  .full-width {
+    width: 100%;
+  }
+
+  .btn{
+    background-color: #e4facb;
+    font-size: 1.125rem;
+    height: 3.125rem;
+    width: auto;
+    border: none;
+    border-radius: 0.75rem;
+    padding-left: 0.9375rem;
+    padding-right: 0.9375rem;
+    margin-left: 1.5625rem; 
+    color: rgb(100, 44, 44);
+    cursor: pointer;
+  }
+
+  .btn:hover{
+    background-color: #b7ed7f;
+  }
+
+  .corner {
+    border-radius: 1.5625rem;
+    border: 2px solid #73AD21;
+  }
+
+  .btnlogin{
+    margin-left: 15.9375rem;
+  }
+
+  .forgetPassw{
+    margin-top: 0.9375rem;
+    margin-left: 11.5625rem;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+    font-size: 0.9375rem;
+  }
+
+  .btnRegister{
+    margin-left: 13.75rem;
+  }
+
+  .textRegister{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .createAcc{
+    margin-top:2.5rem;
+  }
+}
+
+/*Large devices (desktops, 992px and up) */
+@media (max-width: 992px){
+  .roundContainer {
+    width:37.5rem;
+    box-shadow:0px 0px 20px rgb(77, 77, 77);
+    -webkit-box-shadow:0px 0px 20px rgb(77, 77, 77);
+    border-radius: 0.9375rem;
+    -webkit-border-radius: 0.9375rem;
+    background-color:rgb(255, 255, 255);
+    margin:0px auto;
+    border-left:2px solid #fff;
+    border-right:2px solid #fff;
+    height: 31.25rem;
+    color: #642c2c;
+  }
+
+  .textlogin{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 2.5rem;
+    font-size: 1.875rem;
+  }
+
+  .roundContainer .btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .login{
+    margin-top: 6.25rem;
+    margin-bottom: 6.25rem;
+  }
+
+  .form {
+    min-width: 9.375rem;
+    max-width: 31.25rem;
+    width: 100%;
+    padding-left: 6.25rem;
+  }
+
+  .full-width {
+    width: 100%;
+  }
+
+  .btn{
+    background-color: #e4facb;
+    font-size: 1.125rem;
+    height: 3.125rem;
+    width: auto;
+    border: none;
+    border-radius: 0.75rem;
+    padding-left: 0.9375rem;
+    padding-right: 0.9375rem;
+    margin-left: 1.5625rem; 
+    color: rgb(100, 44, 44);
+    cursor: pointer;
+  }
+
+  .btn:hover{
+    background-color: #b7ed7f;
+  }
+
+  .corner {
+    border-radius: 1.5625rem;
+    border: 2px solid #73AD21;
+  }
+
+  .btnlogin{
+    margin-left: 15.9375rem;
+  }
+
+  .forgetPassw{
+    margin-top: 0.9375rem;
+    margin-left: 11.5625rem;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+    font-size: 0.9375rem;
+  }
+
+  .btnRegister{
+    margin-left: 13.75rem;
+  }
+
+  .textRegister{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .createAcc{
+    margin-top:2.5rem;
+  }
+
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (max-width: 768px){
+  .roundContainer {
+    width:31.25rem;
+    box-shadow:0px 0px 20px rgb(77, 77, 77);
+    -webkit-box-shadow:0px 0px 20px rgb(77, 77, 77);
+    border-radius: 0.9375rem;
+    -webkit-border-radius: 0.9375rem;
+    background-color:rgb(255, 255, 255);
+    margin:0px auto;
+    border-left:2px solid #fff;
+    border-right:2px solid #fff;
+    height: 29.375rem;
+    color: #642c2c;
+  }
+
+  .textlogin{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 2.25rem;
+    font-size: 1.625rem;
+  }
+
+  .roundContainer .btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .login{
+    margin-top: 6.25rem;
+    margin-bottom: 6.25rem;
+  }
+
+  .form {
+    min-width: 9.375rem;
+    max-width: 25rem;
+    width: 100%;
+    padding-left: 5.625rem;
+  }
+
+  .full-width {
+    width: 100%;
+  }
+
+  .btn{
+    background-color: #e4facb;
+    font-size: 1rem;
+    height: 2.875rem;
+    width: auto;
+    border: none;
+    border-radius: 0.75rem;
+    padding-left: 0.9375rem;
+    padding-right: 0.9375rem;
+    margin-left: 1.25rem; 
+    color: rgb(100, 44, 44);
+    cursor: pointer;
+  }
+
+  .btn:hover{
+    background-color: #b7ed7f;
+  }
+
+  .corner {
+    border-radius: 1.5625rem;
+    border: 2px solid #73AD21;
+  }
+
+  .btnlogin{
+    margin-left: 12.5rem;
+  }
+
+  .forgetPassw{
+    margin-top: 0.9375rem;
+    margin-left: 8.125rem;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+    font-size: 0.8125rem;
+  }
+
+  .btnRegister{
+    margin-left: 10.3125rem;
+  }
+
+  .textRegister{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .createAcc{
+    margin-top:2.375rem;
+  }
+
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px){
+  .roundContainer {
+    width:25rem;
+    box-shadow:0px 0px 20px rgb(77, 77, 77);
+    -webkit-box-shadow:0px 0px 20px rgb(77, 77, 77);
+    border-radius: 0.9375rem;
+    -webkit-border-radius: 0.9375rem;
+    background-color:rgb(255, 255, 255);
+    margin:0px auto;
+    border-left:2px solid #fff;
+    border-right:2px solid #fff;
+    height: 27.5rem;
+    color: #642c2c;
+  }
+
+  .textlogin{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 2.125rem;
+    font-size: 1.25rem;
+  }
+
+  .roundContainer .btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .login{
+    margin-top: 6.25rem;
+    margin-bottom: 6.25rem;
+  }
+
+  .form {
+    min-width: 12.5rem;
+    max-width: 18.75rem;
+    width: 100%;
+    padding-left: 5.625rem;
+  }
+
+  .full-width {
+    width: 100%;
+  }
+
+  .btn{
+    background-color: #e4facb;
+    font-size: 0.875rem;
+    height: 2.5rem;
+    width: auto;
+    border: none;
+    border-radius: 0.75rem;
+    padding-left: 0.625rem;
+    padding-right: 0.625rem;
+    margin-left: 1.25rem; 
+    color: rgb(100, 44, 44);
+    cursor: pointer;
+  }
+
+  .btn:hover{
+    background-color: #b7ed7f;
+  }
+
+  .corner {
+    border-radius: 1.5625rem;
+    border: 2px solid #73AD21;
+  }
+
+  .btnlogin{
+    margin-left: 10.625rem;
+  }
+
+  .forgetPassw{
+    margin-top: 0.9375rem;
+    margin-left: 6.875rem;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+    font-size: 0.75rem;
+  }
+
+  .btnRegister{
+    margin-left: 8.75rem;
+  }
+
+  .textRegister{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .createAcc{
+    margin-top:2.125rem;
+  }
 }
