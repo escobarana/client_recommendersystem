@@ -29,6 +29,8 @@ export class ExplorePageComponent implements OnInit {
   isAdmin:boolean;
   identity;
 
+  intervalID;
+
   @ViewChildren(ListAppsComponent) chviewChildren: QueryList<ListAppsComponent>;
 
   constructor(private play: StoresService, private db:DatabaseService,
@@ -38,10 +40,11 @@ export class ExplorePageComponent implements OnInit {
     this.isDefault = true;
     this.identity = userService.getIdentity();
     this.admin();
+    // Update the apps automatically every 30 days
+    this.intervalID = setInterval(this.updateApps, 2592000000); // every 30 days = 2592000000 ms
   }
 
   ngOnInit() {
-    //this.intervalID; // initialize the app updating interval
     if(this.userService.getIdentity().admin){
       this.getFirstApps();
     }
@@ -265,9 +268,6 @@ export class ExplorePageComponent implements OnInit {
     return false;
   }
 
-  // Update the apps automatically every 30 days
-  //intervalID = window.setInterval(this.updateApps, 2592000000); // every 30 days
-
   updateApps(){
     this.isLoaded = false;
     var rawGoogleApps = this.play.getRawGoogleApps();
@@ -338,6 +338,7 @@ export class ExplorePageComponent implements OnInit {
       this.alert();
     })
     window.setInterval(this.refresh, 1000); 
+    this.intervalID;
   }
 
   getDetails(rawList, resultList){
