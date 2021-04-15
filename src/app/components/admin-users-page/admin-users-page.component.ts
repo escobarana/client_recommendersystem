@@ -4,6 +4,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 export interface User {
   id: string;
@@ -18,7 +19,7 @@ export interface User {
   styleUrls: ['./admin-users-page.component.css']
 })
 export class AdminUsersPageComponent implements OnInit {
-
+  faCheck = faCheck;
   allUsers = [];
 
   editData: FormGroup;

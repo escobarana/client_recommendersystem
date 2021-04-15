@@ -81,7 +81,7 @@
                     <list-apps [listApps]="filterTopics(4)" [isLoaded]="isLoaded"></list-apps>
                 </mat-tab>
             </mat-tab-group>-->
-            <mat-tab-group dynamicHeight *ngIf="isDefault" class="tabGroup">
+            <mat-tab-group dynamicHeight *ngIf="isDefault" class="tabGroup" >
                 <mat-tab label="To Review">
                     <list-apps [listApps]="filterByStoreReview()" [isLoaded]="isLoaded" type="review"></list-apps>
                 </mat-tab>

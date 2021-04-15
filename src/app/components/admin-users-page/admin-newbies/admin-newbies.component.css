@@ -11,7 +11,17 @@
     height: 100%;
     background-color: white;
 }
-
+.confirm{
+    height: 1.875rem;
+    margin-left: 0px; 
+    margin-right: -41px;
+    width:auto;
+}
+.delete{
+    height: 1.875rem;
+    margin-left: 30px; 
+    width:auto;
+}
 .filter{
     margin-left:20px;
     margin-top:10px;
@@ -20,4 +30,52 @@
 
 th.mat-header-cell{
     background-color: ghostwhite;
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (max-width: 768px){
+    .allrows{
+        border: 2px solid #73AD21;
+        margin:2.5rem;
+        height: 40%;
+        background-color: white;
+    }
+    tr td {
+        font-size:0.625rem;
+    }
+    .confirm{
+        font-size: 0.625rem;
+        height: 1.875rem;
+        margin-left: 0px; 
+        margin-right: -20px;
+        width:auto;
+    }
+    .delete{
+        font-size: 0.625rem;
+        height: 1.875rem;
+        margin-left: 0px; 
+        margin-right: -30px;
+        width:auto;
+    }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px){
+    tr td {
+        font-size:8px;
+    }
+    .confirm{
+        font-size: 0.625rem;
+        height: 1.875rem;
+        margin-left: 0px; 
+        margin-right: -20px;
+        width:auto;
+    }
+    .delete{
+        font-size: 0.625rem;
+        height: 1.875rem;
+        margin-left: 0px; 
+        margin-right: -30px;
+        width:auto;
+    }
 }

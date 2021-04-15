@@ -54,6 +54,7 @@ import { PatientService } from './services/patient.service';
 import { PatientsListComponent } from './components/admin-patient-form/patients-list/patients-list';
 import { AdminNewbiesComponent } from './components/admin-users-page/admin-newbies/admin-newbies.component';
 import { PatientViewComponent } from './components/admin-patient-form/patients-list/patient-view/patient-view.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -108,6 +109,7 @@ import { PatientViewComponent } from './components/admin-patient-form/patients-l
     AngularFirestoreModule,
     AngularFireStorageModule,
     ToastrModule.forRoot(),
+    FontAwesomeModule,
     /*RouterModule.forRoot([
       {
         path:'',

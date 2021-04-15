@@ -212,3 +212,43 @@
 .emptyListApps{
   color: #642c2c;
 }
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px){
+  .list-apss{
+    margin-top: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .titleApps{
+    text-align: center;
+    font-size: 25px;
+    color: #642c2c;
+    min-width: 100px;
+    max-width: 200px;
+  }
+  .contentListApps{
+    padding-left: 180px;
+  }
+  .tabGroup{
+    position: sticky;
+    min-width: 100px;
+    max-width: 200px;
+  }
+  .container {
+    width:130px;
+    background-color:rgb(255, 255, 255);
+    margin:0px auto;
+    border-left:2px solid #fff;
+    border-right:2px solid #fff;
+    margin-right: 50px;
+    margin-bottom: 10px;
+    text-align: center;
+    border: 2px solid #642c2c;
+    color: #642c2c;
+    font-size: 10px;
+  }
+  p{
+    font-size: 14px;
+  }
+}
