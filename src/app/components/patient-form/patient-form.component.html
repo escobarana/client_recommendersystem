@@ -13,8 +13,8 @@
             <div class="form-area">
                 <h4 class="alert alert-info">Por favor, asegúrese de que todos los campos están completos antes de enviar el formulario. Gracias</h4>
                 <div class="text-center">
-                        <label>Email*: </label> 
-                        <input formControlName="email" type="email" autocomplete="on" placeholder="Correo electrónico" required>
+                        <label>Email*:  </label>  
+                        <input formControlName="email" type="email" autocomplete="on" placeholder=" Correo electrónico" required>
                         <div class="text-danger" 
                             *ngIf="patientFormControl.get('email').hasError('required') && patientFormControl.get('email').touched">
                             <span>El email <strong>es obligatorio</strong></span>
@@ -22,16 +22,16 @@
                 </div><br>
 
                 <div class="text-center">
-                    <label>Sistema Operativo*:</label>
-                    <input formControlName="os" type="radio" value="IOS">IOS (Apple)
-                    <input formControlName="os" type="radio" value="Android">Android
+                    <label>Sistema Operativo*: </label> 
+                    <input formControlName="os" type="radio" value="IOS"> IOS (Apple)
+                    <input formControlName="os" type="radio" value="Android"> Android
                     <div class="text-danger"
                     *ngIf="patientFormControl.get('os').hasError('required') && patientFormControl.get('os').touched">
                      Este campo <strong>es obligatorio</strong></div>
             </div><br>
 
                 <div class="text-center">
-                        <label>Edad*:</label>
+                        <label>Edad*: </label> 
                         <input formControlName="age" type="number" min="0" required>
                         <div class="text-danger" 
                         *ngIf="patientFormControl.get('age').hasError('required') && patientFormControl.get('age').touched">
@@ -39,16 +39,16 @@
                 </div><br>
 
                 <div class="text-center">
-                        <label>Sexo*:</label>
-                        <input formControlName="gender" type="radio" value="M">Hombre
-                        <input formControlName="gender" type="radio" value="F">Mujer
+                        <label>Sexo*: </label> 
+                        <input formControlName="gender" type="radio" value="M"> Hombre
+                        <input formControlName="gender" type="radio" value="F"> Mujer
                         <div class="text-danger"
                         *ngIf="patientFormControl.get('gender').hasError('required') && patientFormControl.get('gender').touched">
                          El sexo <strong>es obligatorio</strong></div>
                 </div><br>
 
                 <div class="text-center"> 
-                        <label>Peso* (kg):</label>
+                        <label>Peso* (kg): </label> 
                         <input formControlName="weight" type="number" min="0" required>
                         <div class="text-danger"
                         *ngIf="patientFormControl.get('weight').hasError('required') && patientFormControl.get('weight').touched">
@@ -56,7 +56,7 @@
                 </div><br>
 
                 <div class="text-center"> 
-                    <label>Altura* (cm):</label>
+                    <label>Altura* (cm): </label> 
                     <input formControlName="height" type="number" min="100" required>
                     <div class="text-danger"
                     *ngIf="patientFormControl.get('height').hasError('required') && patientFormControl.get('height').touched">
@@ -64,7 +64,7 @@
                 </div><br>
 
                 <div class="text-center">
-                    <label>Estado civil*:</label>
+                    <label>Estado civil*: </label> 
                     <select formControlName="maritalstatus" required>
                         <option disabled selected value>Selecciona una opción</option>
                         <option *ngFor="let status of maritalStatus" [ngValue]="status">
@@ -77,25 +77,25 @@
                 </div><br>
 
                 <div class="text-center">
-                        <label>Convivencia*:</label>
+                        <label>Convivencia*: </label> 
                         <input formControlName="coexistence" type="radio" value="Solo" (change)="hideCoexistencePeople()"> Solo 
                         <input [(ngModel)]='coexistanceY' formControlName="coexistence" type="radio" value="Acompañado" (change)="showCoexistencePeople()">Acompañado
                         <div class="text-danger"
                         *ngIf="patientFormControl.get('coexistence').hasError('required') && patientFormControl.get('coexistence').touched">
                         La convivencia <strong>es obligatoria</strong></div>
                         <div *ngIf="coexistanceY"  class="input-optionals">
-                            <input formControlName="coexistencePeople1" type="checkbox" >Cónyuge/pareja 
-                            <input formControlName="coexistencePeople2" type="checkbox" >Hijo/s
-                            <input formControlName="coexistencePeople3" type="checkbox" >Padre/madre/suegro/suegra 
-                            <input formControlName="coexistencePeople4" type="checkbox" >Nieto/s
-                            <input formControlName="coexistencePeople5" type="checkbox" >Compañero/s
+                            <input formControlName="coexistencePeople1" type="checkbox" > Cónyuge/pareja 
+                            <input formControlName="coexistencePeople2" type="checkbox" > Hijo/s
+                            <input formControlName="coexistencePeople3" type="checkbox" > Padre/madre/suegro/suegra 
+                            <input formControlName="coexistencePeople4" type="checkbox" > Nieto/s
+                            <input formControlName="coexistencePeople5" type="checkbox" > Compañero/s
                         </div>
                 </div><br>
 
                 <div class="text-center">
-                    <label>Hijos*:</label>
-                    <input formControlName="children" type="radio" value="sinHijos" (change)="hideNumChildren()">No 
-                    <input [(ngModel)]='childrenY' formControlName="children" type="radio" value="conHijos" (change)="showNumChildren()">Sí
+                    <label>Hijos*: </label>
+                    <input formControlName="children" type="radio" value="sinHijos" (change)="hideNumChildren()"> No 
+                    <input [(ngModel)]='childrenY' formControlName="children" type="radio" value="conHijos" (change)="showNumChildren()"> Sí
                     <div class="text-danger"
                     *ngIf="patientFormControl.get('children').hasError('required') && patientFormControl.get('children').touched">
                     Los hijos <strong>son obligatorios</strong></div>
@@ -105,7 +105,7 @@
                 </div><br>
 
                 <div class="text-center">
-                    <label>Lugar de residencia*:</label>
+                    <label>Lugar de residencia*: </label> 
                     <input formControlName="residence" type="text" autocomplete="on" placeholder="Ciudad" required>
                     <div class="text-danger"
                     *ngIf="patientFormControl.get('residence').hasError('required') && patientFormControl.get('residence').touched">
@@ -113,9 +113,9 @@
                 </div><br>
 
                 <div class="text-center">
-                    <label>Estudios*:</label>
+                    <label>Estudios*: </label> 
                     <select formControlName="studies" required>
-                        <option disabled selected value>Selecciona una opción</option>
+                        <option disabled selected value> Selecciona una opción</option>
                         <option *ngFor="let each of studiesOpt" [ngValue]="each" >
                             {{ each }}    
                         </option>
@@ -126,9 +126,9 @@
                 </div><br>
 
                 <div class="text-center">
-                    <label>Situación laboral*:</label>
+                    <label>Situación laboral*: </label> 
                     <select formControlName="work" required>
-                        <option disabled selected value>Selecciona una opción</option>
+                        <option disabled selected value> Selecciona una opción </option>
                         <option *ngFor="let each of workOpt" [ngValue]="each" >
                             {{ each }}    
                         </option>
@@ -139,7 +139,7 @@
                 </div><br>
 
                 <div class="text-center"> 
-                    <label>Nivel de actividad física previa*:</label>
+                    <label>Nivel de actividad física previa*: </label> 
                     <input [(ngModel)]='levelW' formControlName="level" type="text" disabled>{{levelController}}
                     <button *ngIf='!levelW' (click)="showForm()">Cuestionario IPAQ</button> <br>
                     <div class="text-danger"
@@ -149,7 +149,7 @@
                         <div class="q1handler">
                             <p>1. Durante los últimos 7 días, ¿Cuántos días realizó usted actividades físicas vigorosas como levantar objetos pesados, excavar, aeróbicos, o pedalear rápido en bicicleta? </p>
                             <input [(ngModel)]='q1daysweek' formControlName="q1daysweek" type="number" min="0"  max="7"> días por semana <br>
-                            <input [(ngModel)]='q1noactivity' formControlName="q1b" type="checkbox" value="q1no">Ninguna actividad física vigorosa.
+                            <input [(ngModel)]='q1noactivity' formControlName="q1b" type="checkbox" value="q1no"> Ninguna actividad física vigorosa.
                             <div class="text-danger"
                                 *ngIf="patientFormControl.get('q1daysweek').hasError('required') && patientFormControl.get('q1daysweek').touched">
                                 <span>Este campo <strong>es obligatorio</strong></span>
@@ -160,7 +160,7 @@
                             <p>2. ¿Cuánto tiempo en total usualmente le tomó realizar actividades físicas vigorosas en uno de esos días que las realizó?</p>
                             <input [(ngModel)]='q2hoursday' formControlName="q2hoursday" type="number" min="0"  max="24"> horas por día <br>
                             <input [(ngModel)]='q2minutesday' formControlName="q2minutesday" type="number" min="0"  max="59"> minutos por día <br>
-                            <input formControlName="q2c" type="checkbox" value="q2nsnc">No sabe/no está seguro
+                            <input formControlName="q2c" type="checkbox" value="q2nsnc"> No sabe/no está seguro
                             <div class="text-danger"
                                 *ngIf="patientFormControl.get('q2hoursday').hasError('required') && patientFormControl.get('q2hoursday').touched">
                                 <span>Este campo <strong>es obligatorio</strong></span>
@@ -170,7 +170,7 @@
                         <div class="q3handler">
                             <p>3. Durante los últimos 7 días, ¿Cuántos días hizo usted actividades físicas moderadas tal como cargar objetos livianos,  pedalear en bicicleta a paso regular, o  jugar dobles de tenis? No incluya caminatas.</p>
                             <input [(ngModel)]='q3daysweek' formControlName="q3daysweek" type="number" min="0" max="7"> días por semana <br>
-                            <input [(ngModel)]='q3noactivity' formControlName="q3b" type="checkbox" value="q3no">Ninguna actividad física moderada.
+                            <input [(ngModel)]='q3noactivity' formControlName="q3b" type="checkbox" value="q3no"> Ninguna actividad física moderada.
                             <div class="text-danger"
                                 *ngIf="patientFormControl.get('q3daysweek').hasError('required') && patientFormControl.get('q3daysweek').touched">
                                 <span>Este campo <strong>es obligatorio</strong></span>
@@ -181,7 +181,7 @@
                             <p>4. Usualmente, ¿Cuánto tiempo dedica usted en uno de esos días haciendo actividades físicas moderadas?</p>
                             <input [(ngModel)]='q4hoursday' formControlName="q4hoursday" type="number" min="0"  max="24"> horas por día <br>
                             <input [(ngModel)]='q4minutesday' formControlName="q4minutesday" type="number" min="0"  max="59"> minutos por día <br>
-                            <input formControlName="q4c" type="checkbox" value="q4nsnc">No sabe/no está seguro
+                            <input formControlName="q4c" type="checkbox" value="q4nsnc"> No sabe/no está seguro
                             <div class="text-danger"
                                 *ngIf="patientFormControl.get('q4hoursday').hasError('required') && patientFormControl.get('q4hoursday').touched">
                                 <span>Este campo <strong>es obligatorio</strong></span>
@@ -191,7 +191,7 @@
                         <div class="q5handler">
                             <p>5. Durante los últimos 7 días, ¿Cuántos días caminó usted por al menos 10 minutos continuos?  </p>
                             <input [(ngModel)]='q5daysweek' formControlName="q5daysweek" type="number" min="0"  max="7"> días por semana <br>
-                            <input [(ngModel)]='q5noactivity' formControlName="q5b" type="checkbox" value="q5no">No caminó.
+                            <input [(ngModel)]='q5noactivity' formControlName="q5b" type="checkbox" value="q5no"> No caminó.
                             <div class="text-danger"
                                 *ngIf="patientFormControl.get('q5daysweek').hasError('required') && patientFormControl.get('q5daysweek').touched">
                                 <span>Este campo <strong>es obligatorio</strong></span>
@@ -202,7 +202,7 @@
                             <p>6. Usualmente, ¿Cuánto tiempo gastó usted en uno de esos días caminando?</p>
                             <input [(ngModel)]='q6hoursday' formControlName="q6hoursday" type="number" min="0" max="24"> horas por día <br>
                             <input [(ngModel)]='q6minutesday' formControlName="q6minutesday" type="number" min="0"  max="59"> minutos por día <br>
-                            <input formControlName="q6c" type="checkbox" value="q6nsnc">No sabe/no está seguro
+                            <input formControlName="q6c" type="checkbox" value="q6nsnc"> No sabe/no está seguro
                             <div class="text-danger"
                                 *ngIf="patientFormControl.get('q6hoursday').hasError('required') && patientFormControl.get('q6hoursday').touched">
                                 <span>Este campo <strong>es obligatorio</strong></span>
@@ -213,7 +213,7 @@
                             <p>7. Durante los últimos 7 días, ¿Cuánto tiempo permaneció sentado(a) en un día en la semana?</p>
                             <input [(ngModel)]='q7hoursday' formControlName="q7hoursday" type="number" min="0"  max="24"> horas por día <br>
                             <input [(ngModel)]='q7minutesday' formControlName="q7minutesday" type="number" min="0" pattern="^[0-59]+"> minutos por día <br>
-                            <input formControlName="q7c" type="checkbox" value="q7nsnc">No sabe/no está seguro
+                            <input formControlName="q7c" type="checkbox" value="q7nsnc"> No sabe/no está seguro
                             <div class="text-danger"
                                 *ngIf="patientFormControl.get('q7hoursday').hasError('required') && patientFormControl.get('q7hoursday').touched">
                                 <span>Este campo <strong>es obligatorio</strong></span>
@@ -236,9 +236,9 @@
                 </div><br>
 
                 <div class="text-center">
-                    <label>Tipo de cáncer que padece*:</label>
+                    <label>Tipo de cáncer que padece*: </label> 
                     <select formControlName="cancer" ng-options="elemento for elemento in cancerOpt" required>
-                        <option value disabled selected>Selecciona una opción</option>
+                        <option value disabled selected> Selecciona una opción</option>
                         <option *ngFor="let each of cancerOpt" [ngValue]="each" >
                             {{ each }}    
                         </option>
@@ -250,24 +250,24 @@
                 </div><br>
 
                 <div class="text-center" > 
-                    <label>Tiempo transcurrido desde el diagnóstico de la enfermedad*:</label> <br>
-                    <input formControlName="elapsedTime" type="radio" value="less1month">Menos de 1 mes
-                    <input formControlName="elapsedTime" type="radio" value="btw1and3months">Entre 1 y 3 meses
-                    <input formControlName="elapsedTime" type="radio" value="btw3and6months">Entre 3 y 6 meses
-                    <input formControlName="elapsedTime" type="radio" value="btw6andyear">Entre 6 meses y 1 año
-                    <input formControlName="elapsedTime" type="radio" value="btw1and3years">Entre 1 y 3 años
-                    <input formControlName="elapsedTime" type="radio" value="more3years">Más de 3 años  
+                    <label>Tiempo transcurrido desde el diagnóstico de la enfermedad*: </label>  <br>
+                    <input formControlName="elapsedTime" type="radio" value="less1month"> Menos de 1 mes
+                    <input formControlName="elapsedTime" type="radio" value="btw1and3months"> Entre 1 y 3 meses
+                    <input formControlName="elapsedTime" type="radio" value="btw3and6months"> Entre 3 y 6 meses
+                    <input formControlName="elapsedTime" type="radio" value="btw6andyear"> Entre 6 meses y 1 año
+                    <input formControlName="elapsedTime" type="radio" value="btw1and3years"> Entre 1 y 3 años
+                    <input formControlName="elapsedTime" type="radio" value="more3years"> Más de 3 años  
                 </div><br>
 
                 <div class="text-center">
-                    <label>Tratamiento oncológico recibido*:</label> <br>
-                    <input formControlName="treatment1" type="checkbox" >Tratamiento local mediante cirugía o radioterapia <br>
-                    <input formControlName="treatment2" type="checkbox" >Tratamiento sistémico mediante quimioterapia, hormonoterapia o terapia biológica <br>
-                    <input formControlName="treatment_none" type="checkbox" >Ninguno de los anteriores
+                    <label>Tratamiento oncológico recibido*: </label>  <br>
+                    <input formControlName="treatment1" type="checkbox" > Tratamiento local mediante cirugía o radioterapia <br>
+                    <input formControlName="treatment2" type="checkbox" > Tratamiento sistémico mediante quimioterapia, hormonoterapia o terapia biológica <br>
+                    <input formControlName="treatment_none" type="checkbox" > Ninguno de los anteriores
                 </div><br>
 
                 <div class="text-center">
-                    <label>Preferencias actividades*:</label> <br>
+                    <label>Preferencias actividades*: </label>  <br>
                     <input formControlName="activity_swim" type="checkbox" > Natación 
                     <input formControlName="activity_run" type="checkbox" > Correr
                     <input formControlName="activity_walk" type="checkbox" > Caminar 

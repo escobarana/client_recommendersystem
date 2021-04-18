@@ -29,6 +29,17 @@ html{
     body{
         font-size: 16px;
     }
+    .ipaq p{
+        font-size: 16px;
+    }
+    .ipaq{
+        border: #77b026 0.25rem solid;
+        padding: 0.125rem;
+        margin-top: 1.25rem;
+        margin-left: 2.5rem;
+        margin-right: 2.5rem;
+        margin-bottom: 1.25rem;
+    }
 }
 
 /*Large devices (desktops, 992px and up) */
@@ -41,6 +52,17 @@ html{
     }
     body{
         font-size: 15px;
+    }
+    .ipaq p{
+        font-size: 15px;
+    }
+    .ipaq{
+        border: #77b026 0.25rem solid;
+        padding: 2px;
+        margin-top: 0.625rem;
+        margin-left: 1.25rem;
+        margin-right: 1.25rem;
+        margin-bottom: 0.625rem;
     }
 }
 
@@ -55,6 +77,9 @@ html{
     body{
         font-size: 14px;
     }
+    .ipaq p{
+        font-size: 14px;
+    }
 }
 
 /* Small devices (landscape phones, 576px and up) */
@@ -66,6 +91,9 @@ html{
         font-size: 16px;
     }
     body{
+        font-size: 12px;
+    }
+    .ipaq p{
         font-size: 12px;
     }
 }

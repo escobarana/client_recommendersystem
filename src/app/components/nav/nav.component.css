@@ -251,8 +251,8 @@ img{
     width: auto;
     border: none;
     border-radius: 1.5625rem;
-    padding-left: 0.625rem;
-    padding-right: 0.625rem;
+    padding-left: 0.125rem;
+    padding-right: 0.125rem;
     color: rgb(100, 44, 44);
     cursor: pointer;
   }
