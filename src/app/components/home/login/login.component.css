@@ -43,7 +43,7 @@
 }
 
 .btn{
-  background-color: #e4facb;
+  background-color: #daefed;
   font-size: 1.125rem;
   height: 3.125rem;
   width: auto;
@@ -57,12 +57,12 @@
 }
 
 .btn:hover{
-  background-color: #b7ed7f;
+  background-color: #89a6fb;
 }
 
 .corner {
   border-radius: 1.5625rem;
-  border: 2px solid #73AD21;
+  border: 2px solid #4c629e;
 }
 
 .btnlogin{
@@ -139,7 +139,7 @@
   }
 
   .btn{
-    background-color: #e4facb;
+    background-color: #daf6f6;
     font-size: 1.125rem;
     height: 3.125rem;
     width: auto;
@@ -153,12 +153,12 @@
   }
 
   .btn:hover{
-    background-color: #b7ed7f;
+    background-color: #89a6fb;
   }
 
   .corner {
     border-radius: 1.5625rem;
-    border: 2px solid #73AD21;
+    border: 2px solid #4c629e;
   }
 
   .btnlogin{
@@ -236,7 +236,7 @@
   }
 
   .btn{
-    background-color: #e4facb;
+    background-color: #daefed;
     font-size: 1.125rem;
     height: 3.125rem;
     width: auto;
@@ -250,12 +250,12 @@
   }
 
   .btn:hover{
-    background-color: #b7ed7f;
+    background-color: #89a6fb;
   }
 
   .corner {
     border-radius: 1.5625rem;
-    border: 2px solid #73AD21;
+    border: 2px solid #4c629e;
   }
 
   .btnlogin{
@@ -334,7 +334,7 @@
   }
 
   .btn{
-    background-color: #e4facb;
+    background-color: #daf6f6;
     font-size: 1rem;
     height: 2.875rem;
     width: auto;
@@ -348,12 +348,12 @@
   }
 
   .btn:hover{
-    background-color: #b7ed7f;
+    background-color: #89a6fb;
   }
 
   .corner {
     border-radius: 1.5625rem;
-    border: 2px solid #73AD21;
+    border: 2px solid #4c629e;
   }
 
   .btnlogin{
@@ -432,7 +432,7 @@
   }
 
   .btn{
-    background-color: #e4facb;
+    background-color: #daf6f6;
     font-size: 0.875rem;
     height: 2.5rem;
     width: auto;
@@ -446,12 +446,12 @@
   }
 
   .btn:hover{
-    background-color: #b7ed7f;
+    background-color: #89a6fb;
   }
 
   .corner {
     border-radius: 1.5625rem;
-    border: 2px solid #73AD21;
+    border: 2px solid #4c629e;
   }
 
   .btnlogin{

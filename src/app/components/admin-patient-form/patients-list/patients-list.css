@@ -1,8 +1,8 @@
 .btn:hover, .btnaside:hover{
-  background-color: #b7ed7f;
+  background-color: #89a6fb;
 }
 .btnaside{
-  background-color: #e4facb;
+  background-color: #daefed;
   height: 50px;
   width: auto;
   border-radius: 12px;
@@ -24,7 +24,7 @@ section{
 /* Medium devices (tablets, 768px and up) */
 @media (max-width: 768px){
   .allrows{
-      border: 2px solid #73AD21;
+      border: 2px solid #4c629e;
       margin:2.5rem;
       height: 40%;
       background-color: white;
@@ -38,7 +38,7 @@ section{
     font-size: 12px;
   }
   .btnaside{
-    background-color: #e4facb;
+    background-color: #daefed;
     height: 50px;
     width: auto;
     border-radius: 12px;
@@ -62,7 +62,7 @@ section{
     font-size: 10px;
   }
   .btnaside{
-    background-color: #e4facb;
+    background-color: #daefed;
     height: 50px;
     width: auto;
     border-radius: 12px;

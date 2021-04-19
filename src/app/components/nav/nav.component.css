@@ -1,5 +1,5 @@
 .mat-toolbar.mat-primary {
-  background: #e4facb;
+  background: #daefed;
   color: rgb(100, 44, 44);
 }
 
@@ -8,7 +8,8 @@
 }
 
 .btn{
-  background-color: #e4facb;
+  margin-right: -20px;
+  background-color: #daefed;
   font-size: 1.125rem;
   height: 3.125rem;
   width: auto;
@@ -21,12 +22,12 @@
 }
 
 .btn:hover{
-  background-color: #b7ed7f;
+  background-color: #89a6fb;
 }
 
 .corner {
   border-radius: 1.5625rem;
-  border: 0.125rem solid #73AD21;
+  border: 0.125rem solid #4c629e;
 }
 
 .spacer {
@@ -37,8 +38,8 @@
   display: flex;
   flex-direction: row-reverse;
   border-radius: 1.5625rem;
-  border: 2px solid #73AD21;
-  padding: 0.625rem;
+  border: 2px solid #4c629e;
+  padding: 10px;
 }
 
 .person-icon{
@@ -48,17 +49,18 @@
 }
 
 .personDiv:hover{
-  background-color: #b7ed7f;
+  background-color: #89a6fb;
 }
 
 img{
-  width: 5.625rem;
+  margin-top: -10px;
+  width: 7.5rem;
 }
 
 /*Extra large devices (large desktops, 1200px and up) */
 @media (max-width: 1200px){ /*valores por defecto*/
   .mat-toolbar.mat-primary {
-    background: #e4facb;
+    background: #daefed;
     color: rgb(100, 44, 44);
   }
   
@@ -67,7 +69,7 @@ img{
   }
   
   .btn{
-    background-color: #e4facb;
+    background-color: #daefed;
     font-size: 1.125rem;
     height: 3.125rem;
     width: auto;
@@ -80,12 +82,12 @@ img{
   }
   
   .btn:hover{
-    background-color: #b7ed7f;
+    background-color: #89a6fb;
   }
   
   .corner {
     border-radius: 1.5625rem;
-    border: 0.125rem solid #73AD21;
+    border: 0.125rem solid #4c629e;
   }
   
   .spacer {
@@ -96,7 +98,7 @@ img{
     display: flex;
     flex-direction: row-reverse;
     border-radius: 1.5625rem;
-    border: 2px solid #73AD21;
+    border: 2px solid #4c629e;
     padding: 0.625rem;
   }
   
@@ -107,17 +109,18 @@ img{
   }
   
   .personDiv:hover{
-    background-color: #b7ed7f;
+    background-color: #89a6fb;
   }
   img{
-    width: 5.625rem;
+    margin-top: -10px;
+    width: 6.25rem;
   }
 }
 
 /*Large devices (desktops, 992px and up) */
 @media (max-width: 992px){
   .mat-toolbar.mat-primary {
-    background: #e4facb;
+    background: #daefed;
     color: rgb(100, 44, 44);
   }
   
@@ -126,7 +129,7 @@ img{
   }
   
   .btn{
-    background-color: #e4facb;
+    background-color: #daefed;
     font-size: 1rem;
     height: 3rem;
     width: auto;
@@ -139,12 +142,12 @@ img{
   }
   
   .btn:hover{
-    background-color: #b7ed7f;
+    background-color: #89a6fb;
   }
   
   .corner {
     border-radius: 22px;
-    border: 2px solid #73AD21;
+    border: 2px solid #4c629e;
   }
   
   .spacer {
@@ -155,7 +158,7 @@ img{
     display: flex;
     flex-direction: row-reverse;
     border-radius: 25px;
-    border: 2px solid #73AD21;
+    border: 2px solid #4c629e;
     padding: 0.625rem;
   }
   
@@ -166,17 +169,18 @@ img{
   }
   
   .personDiv:hover{
-    background-color: #b7ed7f;
+    background-color: #89a6fb;
   }
   img{
-    width: 4.6875rem;
+    margin-top: -10px;
+    width: 6.25rem;
   }
 }
 
 /* Medium devices (tablets, 768px and up) */
 @media (max-width: 768px){
   .mat-toolbar.mat-primary {
-    background: #e4facb;
+    background: #daefed;
     color: rgb(100, 44, 44);
   }
   
@@ -185,7 +189,7 @@ img{
   }
   
   .btn{
-    background-color: #e4facb;
+    background-color: #daefed;
     font-size: 1rem;
     height: 2.75rem;
     width: auto;
@@ -198,12 +202,12 @@ img{
   }
   
   .btn:hover{
-    background-color: #b7ed7f;
+    background-color: #89a6fb;
   }
   
   .corner {
     border-radius: 1.5625rem;
-    border: 2px solid #73AD21;
+    border: 2px solid #4c629e;
   }
   
   .spacer {
@@ -214,7 +218,7 @@ img{
     display: flex;
     flex-direction: row-reverse;
     border-radius: 1.5625rem;
-    border: 2px solid #73AD21;
+    border: 2px solid #4c629e;
     padding: 6px;
   }
   
@@ -225,18 +229,19 @@ img{
   }
   
   .personDiv:hover{
-    background-color: #b7ed7f;
+    background-color: #89a6fb;
   }
 
   img{
-    width: 4.375rem;
+    margin-top: -10px;
+    width: 6.25rem;
   }
 }
 
 /* Small devices (landscape phones, 576px and up) */
 @media (max-width: 576px){
   .mat-toolbar.mat-primary {
-    background: #e4facb;
+    background: #daefed;
     color: rgb(100, 44, 44);
   }
   
@@ -245,7 +250,7 @@ img{
   }
   
   .btn{
-    background-color: #e4facb;
+    background-color: #daefed;
     font-size: 0.75rem;
     height: 2.375rem;
     width: auto;
@@ -258,12 +263,12 @@ img{
   }
   
   .btn:hover{
-    background-color: #b7ed7f;
+    background-color: #89a6fb;
   }
   
   .corner {
     border-radius: 1.5625rem;
-    border: 0.125rem solid #73AD21;
+    border: 0.125rem solid #4c629e;
   }
   
   .spacer {
@@ -274,7 +279,7 @@ img{
     display: flex;
     flex-direction: row-reverse;
     border-radius: 1.5625rem;
-    border: 0.125rem solid #73AD21;
+    border: 0.125rem solid #4c629e;
     padding: 0.125rem;
   }
   
@@ -285,9 +290,10 @@ img{
   }
   
   .personDiv:hover{
-    background-color: #b7ed7f;
+    background-color: #89a6fb;
   }
   img{
-    width: 4.375rem;
+    margin-top: -10px;
+    width: 5rem;
   }
 }

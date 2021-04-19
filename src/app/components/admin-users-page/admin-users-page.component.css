@@ -6,7 +6,7 @@
 }
 
 .allrows{
-    border: 2px solid #73AD21;
+    border: 2px solid #4c629e;
     margin:3.125rem;
     height: 100%;
     background-color: white;
@@ -35,7 +35,7 @@ th.mat-header-cell{
 /* Medium devices (tablets, 768px and up) */
 @media (max-width: 768px){
     .allrows{
-        border: 2px solid #73AD21;
+        border: 2px solid #4c629e;
         margin:2.5rem;
         height: 40%;
         background-color: white;

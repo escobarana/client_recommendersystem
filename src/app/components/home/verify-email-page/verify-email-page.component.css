@@ -9,7 +9,7 @@
 }
 
 .btn{
-  background-color: #e4facb;
+  background-color: #daf6f6;
   font-size: 18px;
   height: 50px;
   width: auto;
@@ -20,11 +20,11 @@
   color: rgb(100, 44, 44);
   cursor: pointer;
   border-radius: 25px;
-  border: 2px solid #73AD21;
+  border: 2px solid #4c629e;
 }
 
 .btn:hover{
-  background-color: #b7ed7f;
+  background-color: #89a6fb;
 }
 
 

@@ -15,7 +15,7 @@
 }
 
 .btn{
-    background-color: #e4facb;
+    background-color: #daefed;
     font-size: 40px;
     height: 50px;
     width: auto;
@@ -32,12 +32,12 @@
 }
   
 .btn:hover, .btnaside:hover{
-  background-color: #b7ed7f;
+  background-color: #89a6fb;
 }
   
 .corner {
   border-radius: 25px;
-  border: 2px solid #73AD21;
+  border: 2px solid #4c629e;
 }
   
 .btnstart{
@@ -62,7 +62,7 @@
     margin: -75px 0 0 -75px;
     border-radius: 50%;
     border: 3px solid transparent;
-    border-top-color: rgb(190, 219, 112);
+    border-top-color: #89a6fb;
     -webkit-animation: spin 2s linear infinite;
     animation: spin 2s linear infinite;
 }
@@ -75,7 +75,7 @@
     bottom: 5px;
     border-radius: 50%;
     border: 3px solid transparent;
-    border-top-color: #73AD21;
+    border-top-color: #4c629e;
     -webkit-animation: spin 3s linear infinite;
     animation: spin 3s linear infinite;
 }
@@ -88,7 +88,7 @@
     bottom: 15px;
     border-radius: 50%;
     border: 3px solid transparent;
-    border-top-color: rgb(142, 235, 13);
+    border-top-color: #89a6fb;
     -webkit-animation: spin 1.5s linear infinite;
     animation: spin 1.5s linear infinite;
 }
@@ -141,7 +141,7 @@
 }
 
 .btnaside{
-  background-color: #e4facb;
+  background-color: #daefed;
   height: 50px;
   width: auto;
   border-radius: 12px;
@@ -179,23 +179,23 @@
 }
 
 ::ng-deep .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
-  background-color: #73ad21;
+  background-color: #4c629e;
 }
 
 ::ng-deep input.mat-input-element {
-  color: #73ad21;
+  color: #4c629e;
 }
 
 ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
-  color: #73ad21 !important;
+  color: #4c629e !important;
 }
 
 ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple{
-  background-color: #73ad21 !important;
+  background-color: #4c629e !important;
 }
 
 ::ng-deep .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
-  color: #73ad21 !important;
+  color: #4c629e !important;
 }
 
 ::ng-deep .mat-tab-label {

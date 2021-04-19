@@ -51,10 +51,10 @@ p{
 
 ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background, 
 .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background{
-    background-color: #43a72a;
+    background-color: #00c7ff;
 }
 ::ng-deep .mat-checkbox:not(.mat-checkbox-disabled).mat-accent .mat-checkbox-ripple .mat-ripple-element {
-    background-color: #56ff40;
+    background-color: #08d2ff;
 }
 
 .checkbox{

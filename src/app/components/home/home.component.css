@@ -1,5 +1,5 @@
 .intro {
-    background: url(src/assets/photos/tea.jpg);
+    background: url(src/assets/photos/yoga.jpg);
     text-align: center;
     width: 100%;
     height: auto;
@@ -20,12 +20,12 @@
     padding: 8.125rem;
     color: white;
     text-shadow: 1px 1px 1px #333;
-    background-image: linear-gradient(135deg, #166b39f6 10%, #fd5e086b);
+    background-image: linear-gradient(135deg, #4c629e 10%, #fd5e086b);
 }
 
 .slider-wrapper {
     font-size: 2.5rem;
-    color:#cfffc9;
+    color:#DAF6F6;
     font-weight: bold;
     text-transform: uppercase;
     display: flex;
@@ -61,7 +61,7 @@
 
 
 .btnExplore{
-  background-color: #e4facb;
+  background-color: #daefed;
   font-size: 2.5rem;
   height: 4.375rem;
   width: auto;
@@ -73,7 +73,7 @@
 }
 
 .btnExplore:hover{
-  background-color: #b7ed7f;
+  background-color: #89a6fb;
 }
 
 /*Extra large devices (large desktops, 1200px and up) */
@@ -83,7 +83,7 @@
   }
 
     .intro {
-      background: url(src/assets/photos/tea.jpg);
+      background: url(src/assets/photos/yoga.jpg);
       text-align: center;
       width: 100%;
       height: auto;
@@ -101,12 +101,12 @@
       padding: 130px;
       color: white;
       text-shadow: 1px 1px 1px #333;
-      background-image: linear-gradient(135deg, #166b39f6 10%, #fd5e086b);
+      background-image: linear-gradient(135deg, #4c629e 10%, #fd5e086b);
   }
 
   .slider-wrapper {
       font-size: 2.5rem;
-      color:#cfffc9;
+      color:#DAF6F6;
       font-weight: bold;
       text-transform: uppercase;
       display: flex;
@@ -140,7 +140,7 @@
     }
 
   .btnExplore{
-    background-color: #e4facb;
+    background-color: #daefed;
     font-size: 40px;
     height: 4.375rem;
     width: auto;
@@ -152,7 +152,7 @@
   }
 
   .btnExplore:hover{
-    background-color: #b7ed7f;
+    background-color: #89a6fb;
   }
 
   h1{

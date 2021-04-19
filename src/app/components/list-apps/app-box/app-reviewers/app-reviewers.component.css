@@ -15,7 +15,7 @@
 }
 
 .card{
-    background-color: #e4facb;
+    background-color: #daefed;
 }
 
 .btnDialog{
@@ -31,7 +31,7 @@
 }
 
 .btn:hover{
-    background-color: #b7ed7f;
+    background-color: #89a6fb;
 }
 
 .btnNo, .btnYes{
@@ -40,7 +40,7 @@
     margin-top:20px;
     border: inherit;
 
-    background-color: #e4facb;
+    background-color: #daefed;
     border-radius: 12px;
     color: rgb(100, 44, 44);
     cursor: pointer;

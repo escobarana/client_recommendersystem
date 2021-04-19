@@ -16,7 +16,7 @@
 }
 
 .btnAssing:hover{
-    background-color: #b7ed7f;
+    background-color: #89a6fb;
 }
 
 .btnAssing{
@@ -24,7 +24,7 @@
     font-size:30px;
     margin-top:20px;
     border: inherit;
-    background-color: #e4facb;
+    background-color: #daefed;
     border-radius: 12px;
     color: rgb(100, 44, 44);
     cursor: pointer;
