@@ -1,7 +1,19 @@
-<article class="intro">
-    <section class="text">
-        <h1>¡Hemos recibido sus datos correctamente!</h1>
-        <p>Muchas gracias.</p>
-        <p>Contacte con su médico para más detalles</p>
+<article>
+
+    <section *ngIf="isLoaded" class="list-apps">
+        <section class="contentListApps" *ngIf="accepted.length > 0">
+            <h1>Apps Recommender System</h1>
+            <h3 class= "titleApps"> Our recommendation for you based on your operative system and preferences:</h3>
+            <list-apps [listApps]="filterByStoreAccepted()" [isLoaded]="isLoaded" type="accepted"></list-apps>
+        </section>
     </section>
+
+    <section *ngIf="!isLoaded" class="searching">
+        <h2>Preparing your apps</h2>
+        <h2>Please wait...</h2>
+        <div class="preloader">
+            <div class="loader"></div>
+        </div>
+    </section>
+
 </article>

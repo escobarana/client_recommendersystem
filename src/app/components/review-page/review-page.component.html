@@ -16,13 +16,13 @@
           <aside class="container"  *ngIf="identity.admin">
             <p>Accept decision by reviewers:</p>
             <button class="btnaside corner" (click)="acceptApp()">
-                Accept selected apps
+                Accept decision
             </button>
           </aside>
           <aside class="container"  *ngIf="identity.admin">
-            <p>Remove decision by reviewers:</p>
+            <p>Decline decision by reviewers:</p>
             <button class="btnaside corner" (click)="removeApp()">
-                Remove selected apps
+                Decline decision
             </button>
           </aside>
           <!--<aside class="container">

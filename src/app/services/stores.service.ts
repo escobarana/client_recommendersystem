@@ -11,9 +11,18 @@ export class StoresService {
 
   urlServer = environment_server.apiUrl;
   urlR = environment_r.apiUrl;
+  public token: string;
 
   constructor(private http: HttpClient) {}
   
+  getToken(){
+    let token = localStorage.getItem('token');
+
+    if(token != "undefined"){ this.token = token; }else{ this.token = null; }
+
+    return this.token;
+  }
+
   getRawGoogleApps() {
     const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
     var url = this.urlServer + '/api/apps/google/raw';

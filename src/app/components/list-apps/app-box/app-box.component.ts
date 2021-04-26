@@ -4,6 +4,7 @@ import { AppDetailsComponent } from './app-details/app-details.component';
 import { AppReviewersComponent } from './app-reviewers/app-reviewers.component';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { AppPatientsComponent } from './app-patients/app-patients.component';
 
 @Component({
   selector: 'app-box',
@@ -51,6 +52,39 @@ export class AppBoxComponent implements OnInit {
     }
     else if(this.isAdmin() && (this.router.url.includes("reviewapps") || this.router.url.includes("finalapps"))){
       this.detailDialog.open(AppReviewersComponent, {
+        width: '700px',
+        height: '700px',
+        maxHeight: window.innerHeight + 'px',
+        data: {
+          app: this.app
+        },
+        disableClose: true
+      });
+    }
+    else if(!this.isAdmin() && (this.router.url.includes("finalapps"))){
+      this.detailDialog.open(AppPatientsComponent, {
+        width: '700px',
+        height: '700px',
+        maxHeight: window.innerHeight + 'px',
+        data: {
+          app: this.app
+        },
+        disableClose: true
+      });
+    }
+    else if(!this.isAdmin() && (this.router.url.includes("success"))){
+      this.detailDialog.open(AppPatientsComponent, {
+        width: '700px',
+        height: '700px',
+        maxHeight: window.innerHeight + 'px',
+        data: {
+          app: this.app
+        },
+        disableClose: true
+      });
+    }
+    else{
+      this.detailDialog.open(AppPatientsComponent, {
         width: '700px',
         height: '700px',
         maxHeight: window.innerHeight + 'px',

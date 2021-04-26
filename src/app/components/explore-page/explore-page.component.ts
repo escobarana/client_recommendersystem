@@ -29,8 +29,6 @@ export class ExplorePageComponent implements OnInit {
   isAdmin:boolean;
   identity;
 
-  intervalID;
-
   @ViewChildren(ListAppsComponent) chviewChildren: QueryList<ListAppsComponent>;
 
   constructor(private play: StoresService, private db:DatabaseService,
@@ -41,7 +39,7 @@ export class ExplorePageComponent implements OnInit {
     this.identity = userService.getIdentity();
     this.admin();
     // Update the apps automatically every 30 days
-    this.intervalID = setInterval(this.updateApps, 2592000000); // every 30 days = 2592000000 ms
+    //this.intervalID = setInterval(this.updateApps, 2592000000); // every 30 days = 2592000000 ms
   }
 
   ngOnInit() {
@@ -292,11 +290,12 @@ export class ExplorePageComponent implements OnInit {
                 console.log("Sending apps for analysis...")
                 bothstores.then((both)=>{
                   var results = this.play.getListApps();
+                  //console.log(results)
                   //console.log(results);
                   //var results = this.play.getFromUrl();
                   results.then((list_R)=>{
                     let list = JSON.parse(JSON.stringify(list_R));
-                    let list_details_accept = this.getDetails(both,list.accept);
+                    let list_details_accept = this.getDetails(both,list.accepted);
                     let list_details_remove = this.getDetails(both,list.delete);
                     let p = new Promise(() => {
                       list_details_accept.forEach(element => {
@@ -337,8 +336,8 @@ export class ExplorePageComponent implements OnInit {
     }, (error)=>{
       this.alert();
     })
-    window.setInterval(this.refresh, 1000); 
-    this.intervalID;
+    //window.setInterval(this.refresh, 1000); 
+    // this.intervalID;
   }
 
   getDetails(rawList, resultList){

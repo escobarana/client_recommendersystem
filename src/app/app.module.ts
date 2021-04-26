@@ -55,6 +55,7 @@ import { PatientsListComponent } from './components/admin-patient-form/patients-
 import { AdminNewbiesComponent } from './components/admin-users-page/admin-newbies/admin-newbies.component';
 import { PatientViewComponent } from './components/admin-patient-form/patients-list/patient-view/patient-view.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AppPatientsComponent } from './components/list-apps/app-box/app-patients/app-patients.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AfterSubmitComponent,
     PatientsListComponent,
     AdminNewbiesComponent,
-    PatientViewComponent
+    PatientViewComponent,
+    AppPatientsComponent
   ],
   imports: [
     BrowserModule,
