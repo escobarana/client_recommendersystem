@@ -94,7 +94,7 @@
         </section>
     </section>
     <!-- Analysis choosing K value: -->
-    <section *ngIf="!isSearching && !isLoaded && identity.admin" class="start">
+    <section *ngIf="!isSearching && identity.admin" class="start">
         <h1>Start your analysis</h1>
         <h2>Select your k:</h2>
         <mat-form-field class="inputK">
@@ -109,7 +109,7 @@
             </button>
     </section>
     
-    <section *ngIf="isSearching" class="searching"> <!--&& isSearching-->
+    <section *ngIf="!isLoaded && identity.admin" class="searching"> <!--&& isSearching-->
         <h2>Preparing your apps</h2>
         <h2>It can take several minutes</h2>
         <h2>Please wait...</h2>
