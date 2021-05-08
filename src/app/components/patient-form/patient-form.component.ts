@@ -47,7 +47,7 @@ export class PatientFormComponent implements OnInit {
       basketball: false,
       tennis: false,
       football: false,
-      other: false
+      dance: false
     }
   };
 
@@ -143,7 +143,7 @@ export class PatientFormComponent implements OnInit {
         activity_basket: [''],
         activity_tennis: [''],
         activity_football: [''],
-        activity_other: [''],
+        activity_dance: [''],
 
         q1daysweek: ['', [Validators.required, Validators.min(0), Validators.max(7)]],
         q1b: [''],
@@ -277,7 +277,7 @@ export class PatientFormComponent implements OnInit {
     this.answers.activities.basketball = this.patientFormControl.get('activity_basket').value;
     this.answers.activities.tennis = this.patientFormControl.get('activity_tennis').value;
     this.answers.activities.football = this.patientFormControl.get('activity_football').value;
-    this.answers.activities.other = this.patientFormControl.get('activity_other').value;
+    this.answers.activities.dance = this.patientFormControl.get('activity_dance').value;
   }
 
   treatmentHandler(){

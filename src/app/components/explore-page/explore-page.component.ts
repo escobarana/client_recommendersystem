@@ -26,16 +26,38 @@ export class ExplorePageComponent implements OnInit {
   showApple: boolean;
   showGoogle: boolean;
 
+  bothApps;
+  listApps;
+  selectedK;
+  Kvalue;
+
   isAdmin:boolean;
   identity;
 
   @ViewChildren(ListAppsComponent) chviewChildren: QueryList<ListAppsComponent>;
 
-  constructor(private play: StoresService, private db:DatabaseService,
+  constructor(private play: StoresService, private cd: ChangeDetectorRef, private db:DatabaseService,
     public asignDialog: MatDialog, private userService: UserService) { 
-    this.isSearching= false;
-    this.showBoth = true;
-    this.isDefault = true;
+    if(JSON.parse(localStorage.getItem('bothApps')) !== null){
+      var apps = JSON.parse(localStorage.getItem('bothApps'));
+      this.bothApps = apps;
+      this.listApps = apps;
+      this.selectedK = JSON.parse(localStorage.getItem('selectedK'));
+      this.showBoth = true;
+      this.showApple = false;
+      this.showGoogle = false;
+      // this.filterStore();
+      this.isLoaded = true;
+      this.isDefault = false;
+    }
+    else{
+      this.showBoth = true;
+      this.selectedK = '3';
+      this.isSearching= false;
+      this.isDefault = true;
+      this.getFirstApps();
+    }
+
     this.identity = userService.getIdentity();
     this.admin();
     // Update the apps automatically every 30 days
@@ -68,10 +90,10 @@ export class ExplorePageComponent implements OnInit {
             this.toReview = this.filterArraysApps(listC,accepted);
             this.toDelete = this.filterArraysApps(listD,accepted);
             this.isLoaded = true;
-          }).catch(err => console.error(err));;
-        }).catch(err => console.error(err));;
-      }).catch(err => console.error(err));;
-    }).catch(err => console.error(err));;
+          }).catch(err => console.error(err));
+        }).catch(err => console.error(err));
+      }).catch(err => console.error(err));
+    }).catch(err => console.error(err));
   }
 
   private filterArraysApps(listA, listB){
@@ -178,10 +200,6 @@ export class ExplorePageComponent implements OnInit {
     this.showGoogle = true;
   }
 
-  /*setLoadingState(str:string){
-    this.loadingState = str;
-  }*/
-
   admin() {
     this.isAdmin = this.userService.getIdentity().admin;
   }
@@ -284,16 +302,16 @@ export class ExplorePageComponent implements OnInit {
             keysAppleApps.then((key_apple)=>{
               var descAppleApps = this.play.getDescriptionAppleApps();
               descAppleApps.then((desc_apple)=>{
-                var bothstores = this.play.getBothLists();
+                this.bothApps = this.play.getBothLists();
                 //console.log(bothstores);
                 //this.setLoadingState("Sending apps for analysis...");
                 console.log("Sending apps for analysis...")
-                bothstores.then((both)=>{
-                  var results = this.play.getListApps();
+                this.bothApps.then((both)=>{
+                  this.listApps = this.play.getListApps();
                   //console.log(results)
                   //console.log(results);
                   //var results = this.play.getFromUrl();
-                  results.then((list_R)=>{
+                  this.listApps.then((list_R)=>{
                     let list = JSON.parse(JSON.stringify(list_R));
                     let list_details_accept = this.getDetails(both,list.accepted);
                     let list_details_remove = this.getDetails(both,list.delete);
@@ -393,10 +411,10 @@ export class ExplorePageComponent implements OnInit {
     this.isSearching= false;
   }*/
 
-  /*startAnalysis(){
-    if(!this.play.isLoaded){
+  startAnalysis(){
+    if(!this.isLoaded){
       this.isSearching = true;
-      this.getApps();
+       this.updateApps(); // 
     }
   }
 
@@ -404,14 +422,12 @@ export class ExplorePageComponent implements OnInit {
     localStorage.clear();
     this.listApps = [];
     this.isLoaded = false;
-    this.play.isLoaded = false;
-    this.play.bothApps = [];
     this.bothApps = [];
     this.selectedK = this.Kvalue;
     this.startAnalysis();
   }
 
-  private removeFromList(toRemove:any,fromList:any){
+  /*private removeFromList(toRemove:any,fromList:any){
     let r = [];
     fromList.forEach(el1 => {
         let bool = false;
@@ -425,7 +441,7 @@ export class ExplorePageComponent implements OnInit {
         }
     });
     return r;
-  }
+  }*/
 
   filterTopics(topic:number){
     var l = [];
@@ -435,6 +451,55 @@ export class ExplorePageComponent implements OnInit {
       }
     })
     return l;
-  }*/
+  }
+
+  removeSelections(){
+    let toRemove = [];
+
+    if(this.isAdmin){
+      this.chviewChildren.forEach((item) =>{
+        let list = item.checkApps();
+        list.forEach((app) =>{
+          if(app.checked){
+            let p ={
+              appId: app.appId,
+              url: app.url,
+              icon: app.icon,
+              title: app.title,
+              description: app.description
+            }
+            toRemove.push(p)
+          }
+        });
+      });
+
+      if(toRemove.length == 0){
+        window.alert( "Please, first select apps to remove." );
+      }else{
+        var opcion = confirm(`Are you sure you want to directly delete the selected apps ?`);
+        let user = this.userService.getIdentity();
+        if(opcion){
+          toRemove.forEach(element => {
+            let data = {
+              appId:element.appId,
+              description:element.description,
+              title:element.title,
+              url:element.url,
+              icon:element.icon
+            }
+            this.userService.updateListRemoved(user.email, data).subscribe(res=>{
+              console.log("Admin user ", user.name , " deleted apps")
+            }, err =>{
+              console.log(err)
+            });
+            this.db.appsRemovedByAdmin(element).subscribe();
+          });
+        }
+        
+        window.setInterval(this.refresh, 1000);
+        window.alert( "Apps were sent to be definitive." );
+      }
+    }
+  }
 
 }

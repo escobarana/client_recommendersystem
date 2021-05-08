@@ -1,7 +1,8 @@
 <article class="explore-page">
     <section *ngIf="isLoaded" class="list-apss">
         <aside class="aside-pos" *ngIf="toReview.length >= 0 || toDelete.length >= 0">
-            <!--<aside class="container">
+            <!-- Analysis choosing K value: -->
+            <aside class="container">
                 <p>Change K for analysis:</p>
                 <mat-form-field class="inputKAgain">
                     <mat-select value="3" [(value)]="Kvalue">
@@ -13,7 +14,7 @@
                 <button class="btnaside corner" (click)="startAgain()"> 
                     Start again
                 </button>
-            </aside>-->
+            </aside>
             <aside class="container">
                 <p>Choose your store:</p>
                 <button class="btnaside corner" (click)="changeToApple()">
@@ -35,7 +36,7 @@
             <aside class="container" *ngIf="identity.admin">
                 <p>Assign apps:</p>
                 <button class="btnaside corner" (click)="asignSelectedApps()">
-                    Assign selected apps
+                    Assign selected
                 </button>
             </aside>
             <aside class="container" *ngIf="identity.admin">
@@ -44,17 +45,17 @@
                     Update apps
                 </button>
             </aside>
-            <!--<aside class="container" *ngIf="isAdmin">
-                <p>Remove apps:</p>
-                <button class="btnaside corner"> (click)="removeSelections()"
-                    Remove selected apps
+            <aside class="container" *ngIf="isAdmin">
+                <p>Directly remove apps:</p>
+                <button class="btnaside corner" (click)="removeSelections()">
+                    Remove selected
                 </button>
-                <a routerLink="/removedapps">
+                <!--<a routerLink="/finalapps">
                     <button class="btnaside corner">
                         Go to removed apps
                     </button>
-                </a>
-            </aside>-->
+                </a>-->
+            </aside>
         </aside>
         <section class="emptyListApps" *ngIf="!identity.admin && isEmpty()">
             <h1 class= "titleApps"> Assigned apps </h1>
@@ -67,7 +68,8 @@
             <h2 *ngIf="showApple" class= "titleApps"> Apple Store </h2>
             <h2 *ngIf="showGoogle" class= "titleApps"> Google Play </h2>
             <mat-divider></mat-divider>
-            <!--<mat-tab-group dynamicHeight *ngIf="!isDefault">
+            <!-- Analysis choosing K value: -->
+            <mat-tab-group dynamicHeight *ngIf="!isDefault">
                 <mat-tab label="Topic 1">
                     <list-apps [listApps]="filterTopics(1)" [isLoaded]="isLoaded"></list-apps>
                 </mat-tab>
@@ -80,7 +82,7 @@
                 <mat-tab label="Topic 4" *ngIf="selectedK >= 4">
                     <list-apps [listApps]="filterTopics(4)" [isLoaded]="isLoaded"></list-apps>
                 </mat-tab>
-            </mat-tab-group>-->
+            </mat-tab-group>
             <mat-tab-group dynamicHeight *ngIf="isDefault" class="tabGroup" >
                 <mat-tab label="To Review">
                     <list-apps [listApps]="filterByStoreReview()" [isLoaded]="isLoaded" type="review"></list-apps>
@@ -91,8 +93,8 @@
             </mat-tab-group>
         </section>
     </section>
-    
-    <!--<section *ngIf="!isSearching && !isLoaded" class="start">
+    <!-- Analysis choosing K value: -->
+    <section *ngIf="!isSearching && !isLoaded && identity.admin" class="start">
         <h1>Start your analysis</h1>
         <h2>Select your k:</h2>
         <mat-form-field class="inputK">
@@ -102,12 +104,12 @@
               <mat-option value="4">4</mat-option>
             </mat-select>
         </mat-form-field>
-        <button class="btn corner btnstart" (click)="startAnalysis()">
-            Start
-        </button>
-    </section>-->
+            <button class="btn corner btnstart" (click)="startAnalysis()">
+                Start
+            </button>
+    </section>
     
-    <section *ngIf="!isLoaded" class="searching"> <!--&& isSearching-->
+    <section *ngIf="isSearching" class="searching"> <!--&& isSearching-->
         <h2>Preparing your apps</h2>
         <h2>It can take several minutes</h2>
         <h2>Please wait...</h2>

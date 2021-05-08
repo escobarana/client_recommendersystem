@@ -2,6 +2,14 @@
   margin-bottom:50px;
 }
 
+h1{
+  color: #642c2c;
+}
+
+h2{
+  color: #4c629e;
+}
+
 .list-apss{
     margin-top: 50px;
     margin-left: 20px;
@@ -13,7 +21,7 @@
 }
 
 .start{
-    padding: 120px;
+    padding: 150px;
     text-align: center;
 }
 
@@ -29,7 +37,7 @@
 
 .btn{
     background-color: #daefed;
-    font-size: 40px;
+    font-size: 20px;
     height: 50px;
     width: auto;
     border: none;
@@ -54,7 +62,7 @@
 }
   
 .btnstart{
-  margin-left: 505px;
+  margin-left: 565px;
 }
 
 .searching{
@@ -222,8 +230,18 @@
   color: #642c2c;
 }
 
+/* Medium devices (tablets, 768px and up) */
+@media (max-width: 768px){
+  .btnstart{
+    margin-left: 0px;
+  }
+}
+
 /* Small devices (landscape phones, 576px and up) */
 @media (max-width: 576px){
+  .btnstart{
+    margin-left: 0px;
+  }
   .list-apss{
     margin-top: 50px;
     margin-left: 20px;

@@ -28,6 +28,9 @@ export class AppDetailsComponent implements OnInit {
           running:false,
           walk:false,
           bike:false,
+          basket: false,
+          tennis: false,
+          football: false,
           dance:false
         }
       },
@@ -216,6 +219,15 @@ export class AppDetailsComponent implements OnInit {
     }
     else if(category === 'dance'){
       this.review.recommend.typeActivity.others.dance = event.checked;
+    }
+    else if(category === 'basket'){
+      this.review.recommend.typeActivity.others.basket = event.checked;
+    }
+    else if(category === 'tennis'){
+      this.review.recommend.typeActivity.others.tennis = event.checked;
+    }
+    else if(category === 'football'){
+      this.review.recommend.typeActivity.others.football = event.checked;
     }
   }
 
