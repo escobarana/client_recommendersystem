@@ -23,7 +23,7 @@ export class PatientService {
    }
 
    patientForm(date, email, age, gender, os, answers){
-    let headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization': this.token});
+    let headers = new HttpHeaders({'Content-Type': 'application/json'});
     // POST these details to API server
     console.log("Retrieving form data...");
     let finalUrl = this.url + '/api/newform';

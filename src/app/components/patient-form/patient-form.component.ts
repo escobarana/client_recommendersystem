@@ -12,6 +12,7 @@ import { PatientService } from 'src/app/services/patient.service';
 
 export class PatientFormComponent implements OnInit {
   
+  isLoaded: boolean;
   patientFormControl: FormGroup;
 
   answers= {
@@ -88,6 +89,8 @@ export class PatientFormComponent implements OnInit {
               private patientService: PatientService ) { }
 
   ngOnInit(): void {
+    this.isLoaded=true;
+    
     this.patientFormControl = this.formBuilder.group(
       {
         email: ['', [Validators.required, Validators.email]],
@@ -214,21 +217,34 @@ export class PatientFormComponent implements OnInit {
     console.log("Hiding q6...");
   }
 
-  send() {
+  async send() {
     console.log("Handling the submit button");
     this.formData();
     console.log("The email address is ", this.patientFormControl.value.email);
 
-
+    // window.setInterval(this.refresh, 2000); 
+    await this.sleep(2000);
     this.router.navigateByUrl('/success');
     
     // toastr message
-    this.toastr.success('¡Formulario enviado con éxito!', 'Formulario del paciente');
+    // this.toastr.success('¡Formulario enviado con éxito!', 'Formulario del paciente');
     
     //this.patientFormControl.reset()
   }
 
+  sleep(ms) {
+    return new Promise((resolve) => {
+      setTimeout(resolve, ms);
+    });
+  } 
+
+  refresh() {
+    window.location.reload();
+  }
+
   formData(){
+    this.isLoaded=false;
+
     let email = this.patientFormControl.get('email').value;
     let os = this.patientFormControl.get('os').value;
     let age = this.patientFormControl.get('age').value;
