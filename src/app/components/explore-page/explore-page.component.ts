@@ -49,15 +49,15 @@ export class ExplorePageComponent implements OnInit {
       // this.filterStore();
       this.isLoaded = true;
       this.isDefault = false;
+      this.isSearching= false;
     }
     else{
       this.showBoth = true;
       this.selectedK = '3';
-      this.isSearching= false;
+      this.isSearching= true;
       this.isDefault = true;
       this.getFirstApps();
     }
-
     this.identity = userService.getIdentity();
     this.admin();
     // Update the apps automatically every 30 days
