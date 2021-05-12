@@ -14,22 +14,22 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ExplorePageComponent implements OnInit {
 
-  isLoaded: boolean;
-  isSearching: boolean;
+  isLoaded: boolean = false;
+  isSearching: boolean = false;
+
+  showBoth: boolean = true;
+  showApple: boolean = false;
+  showGoogle: boolean = false;
 
   toReview = [];
   toDelete = [];
 
-  isDefault: boolean;
-
-  showBoth: boolean;
-  showApple: boolean;
-  showGoogle: boolean;
+  isDefault: boolean = true;
 
   bothApps;
-  listApps;
-  selectedK;
-  Kvalue;
+  listAppsGoogle;
+  listAppsApple;
+ 
 
   isAdmin:boolean;
   identity;
@@ -38,26 +38,6 @@ export class ExplorePageComponent implements OnInit {
 
   constructor(private play: StoresService, private cd: ChangeDetectorRef, private db:DatabaseService,
     public asignDialog: MatDialog, private userService: UserService) { 
-    if(JSON.parse(localStorage.getItem('bothApps')) !== null){
-      var apps = JSON.parse(localStorage.getItem('bothApps'));
-      this.bothApps = apps;
-      this.listApps = apps;
-      this.selectedK = JSON.parse(localStorage.getItem('selectedK'));
-      this.showBoth = true;
-      this.showApple = false;
-      this.showGoogle = false;
-      // this.filterStore();
-      this.isLoaded = true;
-      this.isDefault = false;
-      this.isSearching= false;
-    }
-    else{
-      this.showBoth = true;
-      this.selectedK = '3';
-      this.isSearching= true;
-      this.isDefault = true;
-      this.getFirstApps();
-    }
     this.identity = userService.getIdentity();
     this.admin();
     // Update the apps automatically every 30 days
@@ -140,7 +120,15 @@ export class ExplorePageComponent implements OnInit {
 
   filterByStoreReview(){
     if(this.showBoth){
-      return this.toReview;
+      l = []
+      this.toReview.forEach(app => {
+       l.push(app);
+      });
+      this.toDelete.forEach(app => {
+        l.push(app);
+      });
+
+      return l;
     }
     else{
       var l = [];
@@ -155,11 +143,25 @@ export class ExplorePageComponent implements OnInit {
             l.push(app);
           }
         }
-      })
+      });
+
+      this.toDelete.forEach(app => {
+        if(this.showApple){
+          if(app.url.includes("apps.apple")){
+            l.push(app);
+          }
+        }
+        else if(this.showGoogle){
+          if(app.url.includes("play.google")){
+            l.push(app);
+          }
+        }
+      });
+
       return l;
     }
   }
-
+/*
   filterByStoreDelete(){
     if(this.showBoth){
       return this.toDelete;
@@ -180,7 +182,7 @@ export class ExplorePageComponent implements OnInit {
       })
       return l;
     }
-  }
+  }*/
 
   changeToBoth(){
     this.showBoth = true;
@@ -303,32 +305,56 @@ export class ExplorePageComponent implements OnInit {
               var descAppleApps = this.play.getDescriptionAppleApps();
               descAppleApps.then((desc_apple)=>{
                 this.bothApps = this.play.getBothLists();
-                //console.log(bothstores);
+                console.log(this.bothApps); // null
                 //this.setLoadingState("Sending apps for analysis...");
                 console.log("Sending apps for analysis...")
                 this.bothApps.then((both)=>{
-                  this.listApps = this.play.getListApps();
+                  this.listAppsGoogle = this.play.getListAppsGoogle();
+                  this.listAppsApple = this.play.getListAppsApple();
                   //console.log(results)
                   //console.log(results);
                   //var results = this.play.getFromUrl();
-                  this.listApps.then((list_R)=>{
-                    let list = JSON.parse(JSON.stringify(list_R));
-                    let list_details_accept = this.getDetails(both,list.accepted);
-                    let list_details_remove = this.getDetails(both,list.delete);
-                    let p = new Promise(() => {
-                      list_details_accept.forEach(element => {
-                        this.db.sendSystemToReview(element).subscribe(res => {
-                          console.log(res);
-                        }, err => { console.log(err);});
+                  this.listAppsGoogle.then((list_R_google)=>{
+                    let list_google = JSON.parse(JSON.stringify(list_R_google));
+                    console.log(list_google)
+
+                    let list_details_accept_google = this.getDetails(desc_google,list_google.accept);
+                    let list_details_remove_google = this.getDetails(desc_google,list_google.delete);
+                    
+                    this.listAppsGoogle.then((list_R_apple)=>{
+                      let list_apple = JSON.parse(JSON.stringify(list_R_apple));
+                      console.log(list_apple) 
+
+                      let list_details_accept_apple = this.getDetails(desc_apple,list_apple.accept);
+                      let list_details_remove_apple = this.getDetails(desc_apple,list_apple.delete);
+                    
+                      let p = new Promise(() => {
+                        list_details_accept_google.forEach(element => {
+                          this.db.sendSystemToReview(element).subscribe(res => {
+                            console.log(res);
+                          }, err => { console.log("Writing app google on the database - System Review");});
+                        });
+                        list_details_remove_google.forEach(element => {
+                          this.db.sendSystemtoDelete(element).subscribe(res => {
+                            console.log("Writing app google on the database - System Delete");
+                          }, err => { console.log(err);});
+                        });
+
+                        list_details_accept_apple.forEach(element => {
+                          this.db.sendSystemToReview(element).subscribe(res => {
+                            console.log(res);
+                          }, err => { console.log("Writing app apple on the database - System Review");});
+                        });
+                        list_details_remove_apple.forEach(element => {
+                          this.db.sendSystemtoDelete(element).subscribe(res => {
+                            console.log("Writing app apple on the database - System Delete");
+                          }, err => { console.log(err);});
+                        });
+
                       });
-                      list_details_remove.forEach(element => {
-                        this.db.sendSystemtoDelete(element).subscribe(res => {
-                          console.log(res);
-                        }, err => { console.log(err);});
+                      p.then(() => {
+                        this.getFirstApps();
                       });
-                    });
-                    p.then(() => {
-                      this.getFirstApps();
                     });
                   }, (error)=>{
                     this.alert();
@@ -354,8 +380,12 @@ export class ExplorePageComponent implements OnInit {
     }, (error)=>{
       this.alert();
     })
-    //window.setInterval(this.refresh, 1000); 
-    // this.intervalID;
+    /*
+    var opcion = confirm(`Apps are ready. Want to load them now?`);
+    if (opcion) {
+      window.setInterval(this.refresh, 1000); 
+      // this.intervalID;
+    }*/
   }
 
   getDetails(rawList, resultList){
@@ -409,23 +439,24 @@ export class ExplorePageComponent implements OnInit {
     }
     //this.selectedK = '3';
     this.isSearching= false;
-  }*/
+  }
 
   startAnalysis(){
     if(!this.isLoaded){
       this.isSearching = true;
        this.updateApps(); // 
     }
-  }
+  }*/
 
-  startAgain(){
+  /*startAgain(){
     localStorage.clear();
-    this.listApps = [];
+    this.listAppsGoogle = [];
+    this.listAppsApple = [];
     this.isLoaded = false;
+    this.play.isLoaded = false;
     this.bothApps = [];
-    this.selectedK = this.Kvalue;
     this.startAnalysis();
-  }
+  }*/
 
   /*private removeFromList(toRemove:any,fromList:any){
     let r = [];
@@ -443,7 +474,7 @@ export class ExplorePageComponent implements OnInit {
     return r;
   }*/
 
-  filterTopics(topic:number){
+  /*filterTopics(topic:number){
     var l = [];
     this.listApps.forEach(app => {
       if(app.topic == topic){
@@ -451,7 +482,7 @@ export class ExplorePageComponent implements OnInit {
       }
     })
     return l;
-  }
+  }*/
 
   removeSelections(){
     let toRemove = [];

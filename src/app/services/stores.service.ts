@@ -59,15 +59,21 @@ export class StoresService {
     return this.http.get<any>(url).toPromise();
   }
 
-  getBothLists(){
+  getBothLists(){ // lista null
     const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
     var url = this.urlServer + '/api/bothStores';
     return this.http.get<any>(url).toPromise();
   }
 
-  getListApps() {
+  getListAppsGoogle() {
     const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
-    var url = this.urlServer + '/api/apps/listApps';
+    var url = this.urlServer + '/api/apps/listApps/google';
+    return this.http.get<any>(url).toPromise();
+  }
+
+  getListAppsApple() {
+    const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
+    var url = this.urlServer + '/api/apps/listApps/apple';
     return this.http.get<any>(url).toPromise();
   }
 
