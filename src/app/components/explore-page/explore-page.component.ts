@@ -118,7 +118,7 @@ export class ExplorePageComponent implements OnInit {
     window.location.reload();
   }
 
-  filterByStoreReview(){
+  filterByStoreReviewAll(){
     if(this.showBoth){
       l = []
       this.toReview.forEach(app => {
@@ -161,7 +161,29 @@ export class ExplorePageComponent implements OnInit {
       return l;
     }
   }
-/*
+
+  filterByStoreReview(){
+    if(this.showBoth){
+      return this.toReview;
+    }
+    else{
+      var l = [];
+      this.toReview.forEach(app => {
+        if(this.showApple){
+          if(app.url.includes("apps.apple")){
+            l.push(app);
+          }
+        }
+        else if(this.showGoogle){
+          if(app.url.includes("play.google")){
+            l.push(app);
+          }
+        }
+      })
+      return l;
+    }
+  }
+
   filterByStoreDelete(){
     if(this.showBoth){
       return this.toDelete;
@@ -182,7 +204,7 @@ export class ExplorePageComponent implements OnInit {
       })
       return l;
     }
-  }*/
+  }
 
   changeToBoth(){
     this.showBoth = true;

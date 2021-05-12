@@ -91,13 +91,21 @@
                 </mat-tab>
             </mat-tab-group>
             -->
-            <mat-tab-group dynamicHeight *ngIf="isDefault" class="tabGroup" >
+            <mat-tab-group dynamicHeight *ngIf="isDefault && !identity.admin" class="tabGroup" >
                 <mat-tab label="To Review">
-                    <list-apps [listApps]="filterByStoreReview()" [isLoaded]="isLoaded" type="review"></list-apps>
+                    <list-apps [listApps]="filterByStoreReviewAll()" [isLoaded]="isLoaded" type="review"></list-apps>
                 </mat-tab>
                  <!-- <mat-tab label="To Delete">
                     <list-apps [listApps]="filterByStoreDelete()" [isLoaded]="isLoaded" type="remove"></list-apps>
                 </mat-tab> -->
+            </mat-tab-group>
+            <mat-tab-group dynamicHeight *ngIf="isDefault && identity.admin" class="tabGroup" >
+                <mat-tab label="To Review">
+                    <list-apps [listApps]="filterByStoreReview()" [isLoaded]="isLoaded" type="review"></list-apps>
+                </mat-tab>
+                  <mat-tab label="To Delete">
+                    <list-apps [listApps]="filterByStoreDelete()" [isLoaded]="isLoaded" type="remove"></list-apps>
+                </mat-tab>
             </mat-tab-group>
         </section>
     </section>
