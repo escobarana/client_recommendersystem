@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -11,7 +11,7 @@ import { PatientService } from 'src/app/services/patient.service';
 })
 
 export class PatientFormComponent implements OnInit {
-  
+
   isLoaded: boolean;
   patientFormControl: FormGroup;
 
@@ -221,7 +221,9 @@ export class PatientFormComponent implements OnInit {
     console.log("Handling the submit button");
     this.formData();
     console.log("The email address is ", this.patientFormControl.value.email);
-
+    // save answers in localStorage
+    localStorage.setItem("activities", JSON.stringify(this.answers.activities));
+    localStorage.setItem("os", this.patientFormControl.get('os').value);
     // window.setInterval(this.refresh, 2000); 
     await this.sleep(2000);
     this.router.navigateByUrl('/success');

@@ -19,8 +19,8 @@ export class PatientViewComponent implements OnInit {
         'close',
         sanitizer.bypassSecurityTrustResourceUrl('assets/img/icons/close.svg'));
 
-        console.log(JSON.parse(JSON.stringify(data.answers[0])));
-        console.log(data.treatment);
+        //console.log(JSON.parse(JSON.stringify(data.answers[0])));
+        //console.log(data.treatment);
      }
 
   ngOnInit(): void {

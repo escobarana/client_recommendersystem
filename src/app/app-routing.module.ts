@@ -9,7 +9,7 @@ import { EmailGuard } from './guards/email.guard';
 import { AdminGuard } from './guards/admin.guard';
 import { PatientFormComponent } from './components/patient-form/patient-form.component';
 import { AdminPatientFormComponent } from './components/admin-patient-form/admin-patient-form.component';
-import { AfterSubmitComponent } from './components/after-submit/after-submit.component';
+import { AfterSubmitComponent } from './components/patient-form/after-submit/after-submit.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
