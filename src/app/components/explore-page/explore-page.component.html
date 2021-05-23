@@ -41,7 +41,17 @@
                 </button>
             </aside>
             <aside class="container" *ngIf="identity.admin">
-                <p>Update apps from stores:</p>
+                <p>Update apps by:</p>
+                <div [formGroup]="keywordFormControl">
+                    <input formControlName="keyword" type="text" autocomplete="on" placeholder="keyword">
+                    <button class="btnasideadd corneradd" (click)="addToKeywords()"> Add</button>
+                </div>
+                <div class="container2">
+                    <h6 class="h6tit">Current keywords:</h6>
+                    <h6 *ngFor="let key of keywords" [ngValue]="key">
+                        {{ key }};
+                    </h6>
+                </div>
                 <button class="btnaside corner" (click)="updateApps()">
                     Update apps
                 </button>

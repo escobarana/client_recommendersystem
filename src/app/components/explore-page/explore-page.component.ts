@@ -5,6 +5,7 @@ import { DatabaseService } from '../../services/database.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AsignPageComponent } from './asign-page/asign-page.component';
 import { UserService } from 'src/app/services/user.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'explore',
@@ -13,6 +14,8 @@ import { UserService } from 'src/app/services/user.service';
   providers:[StoresService,DatabaseService]
 })
 export class ExplorePageComponent implements OnInit {
+
+  keywordFormControl: FormGroup;
 
   isLoaded: boolean = false;
   isSearching: boolean = false;
@@ -23,6 +26,8 @@ export class ExplorePageComponent implements OnInit {
 
   toReview = [];
   toDelete = [];
+
+  keywords = [];
 
   isDefault: boolean = true;
 
@@ -36,21 +41,35 @@ export class ExplorePageComponent implements OnInit {
 
   @ViewChildren(ListAppsComponent) chviewChildren: QueryList<ListAppsComponent>;
 
-  constructor(private play: StoresService, private cd: ChangeDetectorRef, private db:DatabaseService,
+  constructor(private formBuilder: FormBuilder, private play: StoresService, private cd: ChangeDetectorRef, private db:DatabaseService,
     public asignDialog: MatDialog, private userService: UserService) { 
-    this.identity = userService.getIdentity();
-    this.admin();
-    // Update the apps automatically every 30 days
-    //this.intervalID = setInterval(this.updateApps, 2592000000); // every 30 days = 2592000000 ms
+      this.identity = userService.getIdentity();
+      this.admin();
+      this.keywords.push("exercise");
+      this.keywords.push("physical activity");
+      this.keywords.push("sedentary behaviour");
+      this.keywords.push("colorectal neoplasms");
+      this.keywords.push("health exercise");
+      // Update the apps automatically every 30 days
+      //this.intervalID = setInterval(this.updateApps, 2592000000); // every 30 days = 2592000000 ms
   }
 
   ngOnInit() {
+    this.keywordFormControl = this.formBuilder.group(
+      {
+        keyword: [''],
+      });
     if(this.userService.getIdentity().admin){
       this.getFirstApps();
     }
     else{
       this.getAppsFromUser();
     }
+  }
+
+  addToKeywords(){
+    let keyword = this.keywordFormControl.get('keyword').value;
+    this.keywords.push(keyword.toString())
   }
 
   getFirstApps(){
@@ -314,7 +333,7 @@ export class ExplorePageComponent implements OnInit {
     //this.setLoadingState("Getting apps from Google Play...");
     console.log("Getting apps from Google Play...")
     rawGoogleApps.then((raw_google)=>{
-      var keyGoogleApps = this.play.getKeywordsGoogleApps();
+      var keyGoogleApps = this.play.getKeywordsGoogleApps(this.keywords);
       keyGoogleApps.then((key_google)=>{
         var descGoogleApps = this.play.getDescriptionGoogleApps();
         descGoogleApps.then((desc_google)=>{
@@ -322,7 +341,7 @@ export class ExplorePageComponent implements OnInit {
           //this.setLoadingState("Getting apps from Apple Store...");
           console.log("Getting apps from Apple Store...")
           rawAppleApps.then((apple)=>{
-            var keysAppleApps = this.play.getKeywordsAppleApps();
+            var keysAppleApps = this.play.getKeywordsAppleApps(this.keywords);
             keysAppleApps.then((key_apple)=>{
               var descAppleApps = this.play.getDescriptionAppleApps();
               descAppleApps.then((desc_apple)=>{
