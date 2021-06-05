@@ -68,6 +68,11 @@ export class UserService {
     return this.http.get<any>(this.url + `/api/${user_email}`, { headers: headers});
   }
 
+  getReviewedCount(user_email){ // Returns recommend_count and remove_count (count of apps recommended and apps removed)
+    let headers = new HttpHeaders({ 'Authorization': this.getToken()});
+    return this.http.get<any>(this.url + `/api/${user_email}/reviewed`, { headers: headers});
+  }
+
   deleteUser(user_email:any): Observable<any>{
 
     let headers = new HttpHeaders({ 'Authorization': this.getToken()});

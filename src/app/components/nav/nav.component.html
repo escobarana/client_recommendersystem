@@ -39,7 +39,8 @@
   </div>
   <mat-menu #menu="matMenu">
     <button mat-menu-item [routerLink]="['/manageusers']" *ngIf="identity && identity.admin">Manage users</button>
-    <button mat-menu-item [routerLink]="['/managepatients']" *ngIf="identity && identity.admin">Manage form</button>
+    <button mat-menu-item [routerLink]="['/managepatients']" *ngIf="identity && identity.admin">Manage patients</button>
+    <button mat-menu-item [routerLink]="['/analytics']" *ngIf="identity && identity.admin">Analytics</button>
     <button mat-menu-item (click)="logOut()" >Log out</button>
   </mat-menu>
 

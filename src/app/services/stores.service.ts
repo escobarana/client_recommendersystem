@@ -28,11 +28,10 @@ export class StoresService {
 
   getKeywordsGoogleApps(keywords) {
     const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
-    var url = this.urlServer + '/api/apps/google/keywords';
-    return this.http.get<any>(url, keywords).toPromise();
+    return this.http.get<any>(this.urlServer + `/api/apps/google/keywords/${keywords}`).toPromise();
   }
 
-  getRawAppleApps() {
+  /*getRawAppleApps() {
     const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
     var url = this.urlServer + '/api/apps/apple/raw';
     return this.http.get<any>(url).toPromise();
@@ -54,7 +53,7 @@ export class StoresService {
     const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
     var url = this.urlServer + '/api/bothStores';
     return this.http.get<any>(url).toPromise();
-  }
+  }*/
 
   getListAppsGoogle() {
     const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
@@ -62,11 +61,11 @@ export class StoresService {
     return this.http.get<any>(url).toPromise();
   }
 
-  getListAppsApple() {
+  /*getListAppsApple() {
     const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
     var url = this.urlServer + '/api/apps/listApps/apple';
     return this.http.get<any>(url).toPromise();
-  }
+  }*/
 
   getFromUrl(){
     console.log("Sending apps to R...");

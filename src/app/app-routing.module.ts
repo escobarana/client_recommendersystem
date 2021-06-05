@@ -10,6 +10,7 @@ import { AdminGuard } from './guards/admin.guard';
 import { PatientFormComponent } from './components/patient-form/patient-form.component';
 import { AdminPatientFormComponent } from './components/admin-patient-form/admin-patient-form.component';
 import { AfterSubmitComponent } from './components/patient-form/after-submit/after-submit.component';
+import { AdminGraphicsComponent } from './components/admin-graphics/admin-graphics.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -19,7 +20,8 @@ const appRoutes: Routes = [
   { path:  'finalapps', component:FinalPageComponent, canActivate:[EmailGuard] },
   { path:  'manageusers', component:AdminUsersPageComponent, canActivate:[EmailGuard, AdminGuard] },
   { path:  'managepatients', component:AdminPatientFormComponent, canActivate:[EmailGuard, AdminGuard] },
-  { path:  'patient', component:PatientFormComponent }  ,
+  { path:  'analytics', component:AdminGraphicsComponent, canActivate:[EmailGuard, AdminGuard] },
+  { path:  'patient', component:PatientFormComponent },
   { path: 'success', component:AfterSubmitComponent },
   { path: '**', component:HomeComponent } // Cuando la ruta falle o la página no cargue. Siempre de última
 ];

@@ -33,7 +33,6 @@ filterByAppleStore(){
   var l = []
     this.accepted.forEach(app => {
       if(app.url.includes("apps.apple")){
-        //l.push(app);
         if(app.reviews[0].recommend.typeActivity.others.swim===(activitiesJson.swimming)){
           l.push(app);
         }else if(app.reviews[0].recommend.typeActivity.others.running===(activitiesJson.running)){
@@ -53,6 +52,14 @@ filterByAppleStore(){
         }
       }
     });
+
+    if(l.length === 0){ 
+      this.accepted.forEach(app => {
+        if(app.url.includes("play.apple")){
+          l.push(app);
+        }
+      })
+    }
 
     return l
   }
@@ -62,7 +69,6 @@ filterByAppleStore(){
     var l = []
     this.accepted.forEach(app => {
       if(app.url.includes("play.google")){
-        //l.push(app);
         if(app.reviews[0].recommend.typeActivity.others.swim===(activitiesJson.swimming)){
           l.push(app);
         }else if(app.reviews[0].recommend.typeActivity.others.running===(activitiesJson.running)){
@@ -82,6 +88,14 @@ filterByAppleStore(){
         }
       }
     });
+
+    if(l.length === 0){
+      this.accepted.forEach(app => {
+        if(app.url.includes("play.google")){
+          l.push(app);
+        }
+      })
+    }
 
     return l
   }
@@ -95,7 +109,7 @@ filterByAppleStore(){
   }
   
   filterByStoreAccepted(){
-    if(this.os=="IOS"){
+    if(this.os === "IOS"){
       return this.filterByAppleStore();
     }else{
       return this.filterByGoogleStore();

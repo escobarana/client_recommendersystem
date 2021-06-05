@@ -56,6 +56,7 @@ import { AdminNewbiesComponent } from './components/admin-users-page/admin-newbi
 import { PatientViewComponent } from './components/admin-patient-form/patients-list/patient-view/patient-view.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppPatientsComponent } from './components/list-apps/app-box/app-patients/app-patients.component';
+import { AdminGraphicsComponent } from './components/admin-graphics/admin-graphics.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { AppPatientsComponent } from './components/list-apps/app-box/app-patient
     PatientsListComponent,
     AdminNewbiesComponent,
     PatientViewComponent,
-    AppPatientsComponent
+    AppPatientsComponent,
+    AdminGraphicsComponent
   ],
   imports: [
     BrowserModule,

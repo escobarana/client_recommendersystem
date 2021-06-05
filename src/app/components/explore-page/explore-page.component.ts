@@ -46,10 +46,6 @@ export class ExplorePageComponent implements OnInit {
       this.identity = userService.getIdentity();
       this.admin();
       this.keywords.push("exercise");
-      this.keywords.push("physical activity");
-      this.keywords.push("sedentary behaviour");
-      this.keywords.push("colorectal neoplasms");
-      this.keywords.push("health exercise");
       // Update the apps automatically every 30 days
       //this.intervalID = setInterval(this.updateApps, 2592000000); // every 30 days = 2592000000 ms
   }
@@ -264,7 +260,7 @@ export class ExplorePageComponent implements OnInit {
   }
 
   refresh() {
-    window .location.reload();
+    window.location.reload();
   }
 
   asignSelectedApps(){
@@ -337,21 +333,21 @@ export class ExplorePageComponent implements OnInit {
       keyGoogleApps.then((key_google)=>{
         var descGoogleApps = this.play.getDescriptionGoogleApps();
         descGoogleApps.then((desc_google)=>{
-          var rawAppleApps = this.play.getRawAppleApps();
+          //var rawAppleApps = this.play.getRawAppleApps();
           //this.setLoadingState("Getting apps from Apple Store...");
           console.log("Getting apps from Apple Store...")
-          rawAppleApps.then((apple)=>{
-            var keysAppleApps = this.play.getKeywordsAppleApps(this.keywords);
-            keysAppleApps.then((key_apple)=>{
-              var descAppleApps = this.play.getDescriptionAppleApps();
-              descAppleApps.then((desc_apple)=>{
-                this.bothApps = this.play.getBothLists();
-                console.log(this.bothApps); // null
+          //rawAppleApps.then((apple)=>{
+            //var keysAppleApps = this.play.getKeywordsAppleApps(this.keywords);
+            //keysAppleApps.then((key_apple)=>{
+              //var descAppleApps = this.play.getDescriptionAppleApps();
+              //descAppleApps.then((desc_apple)=>{
+                //this.bothApps = this.play.getBothLists();
+                //console.log(this.bothApps); // null
                 //this.setLoadingState("Sending apps for analysis...");
                 console.log("Sending apps for analysis...")
-                this.bothApps.then((both)=>{
+                descGoogleApps.then((both)=>{
                   this.listAppsGoogle = this.play.getListAppsGoogle();
-                  this.listAppsApple = this.play.getListAppsApple();
+                  //this.listAppsApple = this.play.getListAppsApple();
                   //console.log(results)
                   //console.log(results);
                   //var results = this.play.getFromUrl();
@@ -366,8 +362,8 @@ export class ExplorePageComponent implements OnInit {
                       let list_apple = JSON.parse(JSON.stringify(list_R_apple));
                       console.log(list_apple) 
 
-                      let list_details_accept_apple = this.getDetails(desc_apple,list_apple.accept);
-                      let list_details_remove_apple = this.getDetails(desc_apple,list_apple.delete);
+                      //let list_details_accept_apple = this.getDetails(desc_apple,list_apple.accept);
+                      //let list_details_remove_apple = this.getDetails(desc_apple,list_apple.delete);
                     
                       let p = new Promise(() => {
                         list_details_accept_google.forEach(element => {
@@ -381,7 +377,7 @@ export class ExplorePageComponent implements OnInit {
                           }, err => { console.log(err);});
                         });
 
-                        list_details_accept_apple.forEach(element => {
+                        /*list_details_accept_apple.forEach(element => {
                           this.db.sendSystemToReview(element).subscribe(res => {
                             console.log(res);
                           }, err => { console.log("Writing app apple on the database - System Review");});
@@ -390,7 +386,7 @@ export class ExplorePageComponent implements OnInit {
                           this.db.sendSystemtoDelete(element).subscribe(res => {
                             console.log("Writing app apple on the database - System Delete");
                           }, err => { console.log(err);});
-                        });
+                        });*/
 
                       });
                       p.then(() => {
@@ -412,7 +408,7 @@ export class ExplorePageComponent implements OnInit {
           }, (error)=>{
             this.alert();
           })
-        }, (error)=>{
+        /*}, (error)=>{
           this.alert();
         })
       }, (error)=>{
@@ -421,7 +417,7 @@ export class ExplorePageComponent implements OnInit {
     }, (error)=>{
       this.alert();
     })
-    /*
+    
     var opcion = confirm(`Apps are ready. Want to load them now?`);
     if (opcion) {
       window.setInterval(this.refresh, 1000); 
@@ -435,7 +431,7 @@ export class ExplorePageComponent implements OnInit {
     resultList = JSON.parse(JSON.stringify(resultList));
     resultList.forEach(result => {
       rawList.forEach(raw => {
-        if(result != null && (raw.description != null || raw.description != undefined)){
+        if(result !== null && (raw.description !== null || raw.description !== undefined)){
           if(result === raw.appId){
             const app = {
               appId: raw.appId,

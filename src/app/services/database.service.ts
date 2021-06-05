@@ -48,13 +48,33 @@ export class DatabaseService {
   getFinalAccept(){
     console.log("Final accepted apps...");
     let headers = new HttpHeaders({'Authorization': this.token});
-    return this.http.get(this.urlServer + '/api/apps/apps_accepted').toPromise();
+    return this.http.get(this.urlServer + '/api/apps/apps_accepted', { headers: headers }).toPromise();
+  }
+
+  getCountFinalAcceptIOS(){
+    let headers = new HttpHeaders({'Authorization': this.token});
+    return this.http.get(this.urlServer + '/api/apps/count_accepted/ios', { headers: headers });
+  }
+
+  getCountFinalAcceptAndroid(){
+    let headers = new HttpHeaders({'Authorization': this.token});
+    return this.http.get(this.urlServer + '/api/apps/count_accepted/android', { headers: headers });
   }
 
   getFinalRemove(){
     console.log("Final removed apps...");
     let headers = new HttpHeaders({'Authorization': this.token});
     return this.http.get(this.urlServer + '/api/apps/apps_removed', { headers: headers }).toPromise();
+  }
+
+  getCountFinalRemoveIOS(){
+    let headers = new HttpHeaders({'Authorization': this.token});
+    return this.http.get(this.urlServer + '/api/apps/count_removed/ios', { headers: headers });
+  }
+
+  getCountFinalRemoveAndroid(){
+    let headers = new HttpHeaders({'Authorization': this.token});
+    return this.http.get(this.urlServer + '/api/apps/count_removed/android', { headers: headers });
   }
 
   // Deletting data from server 

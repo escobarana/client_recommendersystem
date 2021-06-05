@@ -1,0 +1,25 @@
+<article>
+  <h1 class="titleManage">Welcome to Analytics</h1>
+  <section *ngIf="isLoaded" class="grafica">
+    <h2 class="h2graf">Overview of reviewed mobile applications by reviewer</h2>
+    <div id="chart_rev">
+        
+
+    </div>
+      
+    <h2 class="h2graf">Overview of final mobile applications</h2>
+    <div id="chart_apps">
+        
+
+    </div>
+  </section>
+
+  <section *ngIf="!isLoaded" class="searching"> <!--&& isSearching-->
+    <h2>Retrieving System Analytics</h2>
+    <h2>It can take several minutes</h2>
+    <h2>Please wait...</h2>
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+  </section>
+</article>
