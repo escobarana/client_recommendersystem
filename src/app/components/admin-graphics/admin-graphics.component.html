@@ -1,17 +1,27 @@
 <article>
   <h1 class="titleManage">Welcome to Analytics</h1>
   <section *ngIf="isLoaded" class="grafica">
-    <h2 class="h2graf">Overview of reviewed mobile applications by reviewer</h2>
-    <div id="chart_rev">
-        
 
+    <div class="container">
+      <h3 class="h2graf">Total apps collected by the system to accept: {{totalAppsRecommendSystem}}</h3>
+      <h3 class="h2graf">Total apps collected by the system to remove:  {{totalAppsRemoveSystem}} </h3>
+      <br><br>
     </div>
+
+    <h2 class="h2graf">Overview of reviewed mobile applications by reviewer</h2>
+    <div id="chart_rev"></div>
       
     <h2 class="h2graf">Overview of final mobile applications</h2>
-    <div id="chart_apps">
-        
+    <div id="chart_apps"></div>
 
+    <br><br>
+
+    <div class="container">
+      <h3 class="h2graf">Total accepted apps to recommend to patients: {{totalAppsAccepted}}</h3>
+      <h3 class="h2graf">Total declined apps to recommend to patients:  {{totalAppsDeclined}} </h3>
+      <br><br>
     </div>
+
   </section>
 
   <section *ngIf="!isLoaded" class="searching"> <!--&& isSearching-->

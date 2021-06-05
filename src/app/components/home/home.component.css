@@ -11,6 +11,14 @@
     min-width: min-content;
 }
 
+login{
+  padding: 5%;
+}
+
+register{
+  padding: 5%;
+}
+
 .text-before-slider{
   margin-top: 1.5625rem;
 }

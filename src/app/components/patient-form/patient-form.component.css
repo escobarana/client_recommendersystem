@@ -24,6 +24,10 @@ html{
     margin-bottom: 1.25rem;
 }
 
+section{
+    padding: 3%;
+}
+
 .searching{
     padding: 120px;
     text-align: center;

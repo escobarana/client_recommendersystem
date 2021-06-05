@@ -5,6 +5,10 @@
     color: #642c2c;
 }
 
+section{
+    padding: 5%;
+}
+
 .allrows{
     border: 2px solid #4c629e;
     margin:3.125rem;

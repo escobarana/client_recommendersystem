@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from 'src/app/services/database.service';
 import { UserService } from 'src/app/services/user.service';
 import c3 from 'c3';
-import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-admin-graphics',
@@ -15,6 +14,10 @@ totalAcceptedIOS: number;
 totalDeclinedIOS: number;
 totalAcceptedAndroid: number;
 totalDeclinedAndroid: number;
+totalAppsAccepted: number;
+totalAppsDeclined: number;
+totalAppsRecommendSystem: number;
+totalAppsRemoveSystem: number;
 
 reviewers = [];
 reviewersEmails = []
@@ -22,11 +25,9 @@ chart;
 json = [];
 
 isLoaded: boolean = false;
-
 delay = ms => new Promise(res => setTimeout(res, ms));
 
   constructor(private userService: UserService, private database: DatabaseService) { 
-    
     this.userService.getAllUsers().subscribe(user => {
       if(user.role==="reviewer"){
         this.reviewers.push(user)
@@ -52,8 +53,6 @@ delay = ms => new Promise(res => setTimeout(res, ms));
       this.totalDeclinedAndroid = x[0]['count'];      
     });
     
-
-
     this.userService.getAllUsers().subscribe(users => {
         users.forEach(user => {
           // console.log(user)
@@ -80,11 +79,30 @@ delay = ms => new Promise(res => setTimeout(res, ms));
     // Plot charts once the data is retreieved from ddbb and the variables filled
     this.addChartApps()
     this.addChartReviewers()
-    
+    this.totalAccepted()
+    this.totalDeclined() 
+    this.totalSystem()   
   }
 
   async bitDelay(){
     await this.delay(500)
+  }
+
+  totalAccepted(): void{
+    this.totalAppsAccepted = Number(this.totalAcceptedAndroid) + Number(this.totalAcceptedIOS)
+  }
+
+  totalDeclined(): void{
+    this.totalAppsDeclined = Number(this.totalDeclinedAndroid) + Number(this.totalDeclinedIOS)
+  }
+
+  totalSystem(): void{
+     this.database.getToReviewCount().subscribe(x => {
+      this.totalAppsRecommendSystem =  x[0]['count'];
+    })
+    this.database.getToDeleteCount().subscribe(x => {
+      this.totalAppsRemoveSystem =  x[0]['count'];
+    })
   }
 
   addChartReviewers(){

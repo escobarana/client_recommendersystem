@@ -27,10 +27,20 @@ export class DatabaseService {
     return this.http.get(this.urlServer + '/api/apps/system/accept', { headers: headers }).toPromise();
   }
 
+  getToReviewCount(){
+    let headers = new HttpHeaders({'Authorization': this.token});
+    return this.http.get(this.urlServer + '/api/apps/count_accepted/system', { headers: headers });
+  }
+
   getToDelete() {
     console.log("To delete apps...");
     let headers = new HttpHeaders({'Authorization': this.token});
     return this.http.get(this.urlServer + '/api/apps/system/remove', { headers: headers }).toPromise();
+  }
+
+  getToDeleteCount() {
+    let headers = new HttpHeaders({'Authorization': this.token});
+    return this.http.get(this.urlServer + '/api/apps/count_remove/system', { headers: headers });
   }
 
   getReviewAccept(){
