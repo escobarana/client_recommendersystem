@@ -326,72 +326,37 @@ export class ExplorePageComponent implements OnInit {
   updateApps(){
     this.isLoaded = false;
     var rawGoogleApps = this.play.getRawGoogleApps();
-    //this.setLoadingState("Getting apps from Google Play...");
     console.log("Getting apps from Google Play...")
     rawGoogleApps.then((raw_google)=>{
       var keyGoogleApps = this.play.getKeywordsGoogleApps(this.keywords);
       keyGoogleApps.then((key_google)=>{
         var descGoogleApps = this.play.getDescriptionGoogleApps();
         descGoogleApps.then((desc_google)=>{
-          //var rawAppleApps = this.play.getRawAppleApps();
-          //this.setLoadingState("Getting apps from Apple Store...");
+          var rawAppleApps = this.play.getRawAppleApps();
           console.log("Getting apps from Apple Store...")
-          //rawAppleApps.then((apple)=>{
-            //var keysAppleApps = this.play.getKeywordsAppleApps(this.keywords);
-            //keysAppleApps.then((key_apple)=>{
-              //var descAppleApps = this.play.getDescriptionAppleApps();
-              //descAppleApps.then((desc_apple)=>{
-                //this.bothApps = this.play.getBothLists();
-                //console.log(this.bothApps); // null
-                //this.setLoadingState("Sending apps for analysis...");
+          rawAppleApps.then((apple)=>{
+            var keysAppleApps = this.play.getKeywordsAppleApps(this.keywords);
+            keysAppleApps.then((key_apple)=>{
+              var descAppleApps = this.play.getDescriptionAppleApps();
+              descAppleApps.then((desc_apple)=>{
+                var bothstores = this.play.getBothLists();
                 console.log("Sending apps for analysis...")
-                descGoogleApps.then((both)=>{
-                  this.listAppsGoogle = this.play.getListAppsGoogle();
-                  //this.listAppsApple = this.play.getListAppsApple();
-                  //console.log(results)
-                  //console.log(results);
-                  //var results = this.play.getFromUrl();
-                  this.listAppsGoogle.then((list_R_google)=>{
-                    let list_google = JSON.parse(JSON.stringify(list_R_google));
-                    console.log(list_google)
-
-                    let list_details_accept_google = this.getDetails(desc_google,list_google.accept);
-                    let list_details_remove_google = this.getDetails(desc_google,list_google.delete);
-                    
-                    this.listAppsGoogle.then((list_R_apple)=>{
-                      let list_apple = JSON.parse(JSON.stringify(list_R_apple));
-                      console.log(list_apple) 
-
-                      //let list_details_accept_apple = this.getDetails(desc_apple,list_apple.accept);
-                      //let list_details_remove_apple = this.getDetails(desc_apple,list_apple.delete);
-                    
-                      let p = new Promise(() => {
-                        list_details_accept_google.forEach(element => {
-                          this.db.sendSystemToReview(element).subscribe(res => {
-                            console.log(res);
-                          }, err => { console.log("Writing app google on the database - System Review");});
-                        });
-                        list_details_remove_google.forEach(element => {
-                          this.db.sendSystemtoDelete(element).subscribe(res => {
-                            console.log("Writing app google on the database - System Delete");
-                          }, err => { console.log(err);});
-                        });
-
-                        /*list_details_accept_apple.forEach(element => {
-                          this.db.sendSystemToReview(element).subscribe(res => {
-                            console.log(res);
-                          }, err => { console.log("Writing app apple on the database - System Review");});
-                        });
-                        list_details_remove_apple.forEach(element => {
-                          this.db.sendSystemtoDelete(element).subscribe(res => {
-                            console.log("Writing app apple on the database - System Delete");
-                          }, err => { console.log(err);});
-                        });*/
-
+                bothstores.then((both)=>{
+                  var results = this.play.getListApps();
+                  results.then((list_R)=>{
+                    let list = JSON.parse(JSON.stringify(list_R));
+                    let list_details_accept = this.getDetails(both,list.accept);
+                    let list_details_remove = this.getDetails(both,list.delete);
+                    let p = new Promise(() => {
+                      list_details_accept.forEach(element => {
+                        this.db.sendSystemToReview(element);
                       });
-                      p.then(() => {
-                        this.getFirstApps();
+                      list_details_remove.forEach(element => {
+                        this.db.sendSystemtoDelete(element);
                       });
+                    })
+                    p.then(() => {
+                      this.getFirstApps();
                     });
                   }, (error)=>{
                     this.alert();
@@ -408,7 +373,7 @@ export class ExplorePageComponent implements OnInit {
           }, (error)=>{
             this.alert();
           })
-        /*}, (error)=>{
+        }, (error)=>{
           this.alert();
         })
       }, (error)=>{
@@ -417,12 +382,11 @@ export class ExplorePageComponent implements OnInit {
     }, (error)=>{
       this.alert();
     })
-    
+
     var opcion = confirm(`Apps are ready. Want to load them now?`);
     if (opcion) {
       window.setInterval(this.refresh, 1000); 
-      // this.intervalID;
-    }*/
+    }
   }
 
   getDetails(rawList, resultList){
@@ -431,7 +395,7 @@ export class ExplorePageComponent implements OnInit {
     resultList = JSON.parse(JSON.stringify(resultList));
     resultList.forEach(result => {
       rawList.forEach(raw => {
-        if(result !== null && (raw.description !== null || raw.description !== undefined)){
+        if(result != null && (raw.description != null || raw.description != undefined)){
           if(result === raw.appId){
             const app = {
               appId: raw.appId,
@@ -453,7 +417,7 @@ export class ExplorePageComponent implements OnInit {
 
 
 
-
+  
 
 
 

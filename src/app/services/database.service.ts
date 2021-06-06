@@ -3,8 +3,6 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { environment_server} from 'src/environments/environment';
 import "rxjs";
 import { UserService } from './user.service';
-//import * as firebase from 'firebase/app';
-//import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +18,7 @@ export class DatabaseService {
 
 
   // Getting data from server 
-
+  
   getToReview(){
     console.log("To review apps...");
     let headers = new HttpHeaders({'Authorization': this.token});

@@ -31,7 +31,7 @@ export class StoresService {
     return this.http.get<any>(this.urlServer + `/api/apps/google/keywords/${keywords}`).toPromise();
   }
 
-  /*getRawAppleApps() {
+  getRawAppleApps() {
     const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
     var url = this.urlServer + '/api/apps/apple/raw';
     return this.http.get<any>(url).toPromise();
@@ -51,9 +51,9 @@ export class StoresService {
 
   getBothLists(){ // lista null
     const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
-    var url = this.urlServer + '/api/bothStores';
+    var url = this.urlServer + '/api/apps/bothStores';
     return this.http.get<any>(url).toPromise();
-  }*/
+  }
 
   getListAppsGoogle() {
     const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
@@ -61,17 +61,16 @@ export class StoresService {
     return this.http.get<any>(url).toPromise();
   }
 
-  /*getListAppsApple() {
+  getListAppsApple() {
     const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
     var url = this.urlServer + '/api/apps/listApps/apple';
     return this.http.get<any>(url).toPromise();
-  }*/
+  }
 
-  getFromUrl(){
-    console.log("Sending apps to R...");
+  getListApps() {
     const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
-    var url = this.urlR + `/dataMining?url=https%3A%2F%2Frecommended-server.herokuapp.com%2Fapi%2FbothStores`;
-    return this.http.get<any>(url, { headers: headers }).toPromise();
+    var url = this.urlServer + '/api/apps/listApps';
+    return this.http.get('/api/apps/listApps').toPromise();
   }
 
   postBothApps(list){
