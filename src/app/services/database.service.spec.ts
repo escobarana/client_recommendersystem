@@ -1,7 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { DatabaseService } from './database.service';
-import { AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 import { HttpClient} from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { of } from "rxjs";
@@ -59,7 +58,6 @@ const afSpy = jasmine.createSpyObj('AngularFirestore', {
 describe('DatabaseService', () => {
   let httpMock: HttpTestingController;
   var service: DatabaseService;
-  let angularFirestore: AngularFirestore;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -69,14 +67,12 @@ describe('DatabaseService', () => {
       ],
       providers: [
         {
-          provide: AngularFirestore,
           useValue: afSpy 
         },
         HttpClient
       ]
     });
     service = TestBed.get(DatabaseService);
-    angularFirestore = TestBed.get(AngularFirestore);
     httpMock = TestBed.inject(HttpTestingController);  
   });
 
@@ -149,14 +145,14 @@ describe('DatabaseService', () => {
   });
 
   it(`should set in database apps recommended by reviewers`, function(done) {
-    service.appsRecommendedByReviewer(appData, reviews);
+    service.appsRecommendedByReviewer(appData.appId, appData.description, appData.title, appData.url, appData.icon, reviews);
     expect(collectionSpy.set).toHaveBeenCalledWith(appData, Object({ merge: true }) );
     expect(afSpy.doc).toHaveBeenCalledWith(`apps_review_accept/${appData.appId}`);
     done();
   });
 
   it(`should set in database apps removed by reviewers`, function(done) {
-    service.appsRemovedByReviewer(appData, reviews);
+    service.appsRemovedByReviewer(appData.appId, appData.description, appData.title, appData.url, appData.icon, reviews);
     expect(collectionSpy.set).toHaveBeenCalledWith(appData, Object({ merge: true }) );
     expect(afSpy.doc).toHaveBeenCalledWith(`apps_review_remove/${appData.appId}`);
     done();

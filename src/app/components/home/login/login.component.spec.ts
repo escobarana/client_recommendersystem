@@ -1,9 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginComponent } from './login.component';
-import { AuthFirebaseService } from '../../../services/auth-firebase.service';
-import { AngularFireModule } from '@angular/fire';
-import { environment_server } from '../../../../environments/environment';
 import { of } from "rxjs";
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
@@ -33,7 +30,6 @@ describe('LoginComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ LoginComponent ],
       providers:[
-        AuthFirebaseService,
         { provide: MatDialog, useClass: MatDialogMock }
       ],
       imports: [

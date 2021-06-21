@@ -382,11 +382,6 @@ export class ExplorePageComponent implements OnInit {
     }, (error)=>{
       this.alert();
     })
-
-    var opcion = confirm(`Apps are ready. Want to load them now?`);
-    if (opcion) {
-      window.setInterval(this.refresh, 1000); 
-    }
   }
 
   getDetails(rawList, resultList){

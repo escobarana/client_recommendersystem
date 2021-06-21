@@ -218,14 +218,18 @@ export class PatientFormComponent implements OnInit {
   }
 
   async send() {
+
     console.log("Handling the submit button");
     this.formData();
     console.log("The email address is ", this.patientFormControl.value.email);
+    
     // save answers in localStorage
+    await this.sleep(1000);
     localStorage.setItem("activities", JSON.stringify(this.answers.activities));
     localStorage.setItem("os", this.patientFormControl.get('os').value);
+    
     // window.setInterval(this.refresh, 2000); 
-    await this.sleep(2000);
+    await this.sleep(1000);
     this.router.navigateByUrl('/success');
     
     // toastr message

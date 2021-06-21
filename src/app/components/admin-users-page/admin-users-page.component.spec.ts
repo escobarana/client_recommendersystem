@@ -1,6 +1,5 @@
 import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { AdminUsersPageComponent } from './admin-users-page.component';
-import { AuthFirebaseService } from '../../services/auth-firebase.service';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { of, Observable } from "rxjs";
 import { RouterTestingModule } from '@angular/router/testing';
@@ -56,15 +55,7 @@ describe('AdminUsersPageComponent', () => {
         BrowserAnimationsModule,
         HttpClientTestingModule
       ],
-      declarations: [ AdminUsersPageComponent ],
-      providers: [
-        {
-          provide: AuthFirebaseService,
-          useValue: AngularFireMocks
-        },
-        { provide: AuthFirebaseService, useClass: AuthFirebaseService },
-        HttpTestingController
-      ]
+      declarations: [ AdminUsersPageComponent ]
     })
     .compileComponents();
   }));

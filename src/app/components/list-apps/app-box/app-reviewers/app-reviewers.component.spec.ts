@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AppReviewersComponent } from './app-reviewers.component';
-import { AuthFirebaseService } from 'src/app/services/auth-firebase.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -33,7 +32,6 @@ describe('AppReviewersComponent', () => {
       declarations: [ AppReviewersComponent ],
       providers:[
         {
-          provide: AuthFirebaseService,
           useValue: AngularFireMocks
         },
         { provide: MatDialog, useClass: MatDialogMock },

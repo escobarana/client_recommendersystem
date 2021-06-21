@@ -24,13 +24,13 @@ export class AfterSubmitComponent implements OnInit {
     this.os = localStorage.getItem("os");
    }
 
-ngOnInit(): void {
+  ngOnInit(): void {
 
-}
+  }
 
-filterByAppleStore(){
-  var activitiesJson = JSON.parse(this.activities);
-  var l = []
+  filterByAppleStore(){
+    var activitiesJson = JSON.parse(this.activities);
+    var l = []
     this.accepted.forEach(app => {
       if(app.url.includes("apps.apple")){
         if(app.reviews[0].recommend.typeActivity.others.swim===(activitiesJson.swimming)){
@@ -53,14 +53,18 @@ filterByAppleStore(){
       }
     });
 
-    if(l.length === 0){ 
-      this.accepted.forEach(app => {
-        if(app.url.includes("play.apple")){
-          l.push(app);
-        }
-      })
-    }
+    return l
+  }
 
+  getAllApple(){
+    var l = [] 
+
+    this.accepted.forEach(app => {
+      if(app.url.includes("apps.apple")){
+        l.push(app);
+      }
+    })
+    
     return l
   }
 
@@ -89,13 +93,17 @@ filterByAppleStore(){
       }
     });
 
-    if(l.length === 0){
-      this.accepted.forEach(app => {
-        if(app.url.includes("play.google")){
-          l.push(app);
-        }
-      })
-    }
+    return l
+  }
+
+  getAllGoogle(){
+    var l = []
+
+    this.accepted.forEach(app => {
+      if(app.url.includes("play.google")){
+        l.push(app);
+      }
+    })
 
     return l
   }
@@ -105,14 +113,24 @@ filterByAppleStore(){
     .then((toAccept_apps)=>{
         this.accepted = JSON.parse(JSON.stringify(toAccept_apps));
         this.isLoaded = true;
-    }).catch(err => console.error(err));
+    }).catch(err => console.log(err));
   }
-  
+    
   filterByStoreAccepted(){
     if(this.os === "IOS"){
-      return this.filterByAppleStore();
+      if(this.filterByAppleStore().length>0){
+        return this.filterByAppleStore();
+      }else if(this.getAllApple().length>0){
+        return this.getAllApple()
+      }
+    }else if(this.os === "Android"){
+      if(this.filterByGoogleStore().length>0){
+        return this.filterByGoogleStore();
+      }else if(this.getAllGoogle().length>0){
+        return this.getAllGoogle()
+      }
     }else{
-      return this.filterByGoogleStore();
+      return this.accepted
     }
   }
 }

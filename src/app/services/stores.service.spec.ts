@@ -108,7 +108,7 @@ describe('StoresService', () => {
     }
     ];
     spyOn(service, 'getKeywordsGoogleApps').and.returnValue(Promise.resolve(googleApps));
-    service.getKeywordsGoogleApps()
+    service.getKeywordsGoogleApps("exercise")
       .then((result) => {
         expect(service.getKeywordsGoogleApps).toHaveBeenCalled();
         expect(result).toEqual(googleApps);
@@ -198,7 +198,7 @@ describe('StoresService', () => {
     }
     ];
     spyOn(service, 'getKeywordsAppleApps').and.returnValue(Promise.resolve(appleApps));
-    service.getKeywordsAppleApps()
+    service.getKeywordsAppleApps("exercise")
       .then((result) => {
         expect(service.getKeywordsAppleApps).toHaveBeenCalled();
         expect(result).toEqual(appleApps);

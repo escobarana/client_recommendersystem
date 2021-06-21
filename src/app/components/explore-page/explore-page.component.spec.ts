@@ -3,7 +3,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ExplorePageComponent } from './explore-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DatabaseService } from '../../services/database.service';
-import { AuthFirebaseService } from '../../services/auth-firebase.service';
 import { StoresService } from '../../services/stores.service';
 import { ChangeDetectorRef  } from '@angular/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -63,7 +62,6 @@ describe('ExplorePageComponent', () => {
         HttpClientModule,
         DatabaseService,
         {
-          provide: AuthFirebaseService,
           useValue: AngularFireMocks
         },
         StoresService,

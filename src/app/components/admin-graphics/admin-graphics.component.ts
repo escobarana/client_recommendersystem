@@ -6,7 +6,7 @@ import c3 from 'c3';
 @Component({
   selector: 'app-admin-graphics',
   templateUrl: './admin-graphics.component.html',
-  styleUrls: ['./admin-graphics.component.css', './libs/c3.css']
+  styleUrls: ['./admin-graphics.component.css']
 })
 export class AdminGraphicsComponent implements OnInit {
 

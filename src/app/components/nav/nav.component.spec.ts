@@ -7,13 +7,13 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AuthFirebaseService } from '../../services/auth-firebase.service';
 import { MatIconRegistry } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { BrowserModule } from '@angular/platform-browser';
 import { NavComponent } from './nav.component';
 import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
+import {} from "jasmine";
 
 let AngularFireMocks = {
   auth: jasmine.createSpy('auth'),
@@ -29,7 +29,6 @@ var actions = {
 describe('NavComponent', () => {
   let component: NavComponent;
   let fixture: ComponentFixture<NavComponent>;
-  let authService: AuthFirebaseService;
   let router: Router;
 
   beforeEach(async(() => {
@@ -41,7 +40,6 @@ describe('NavComponent', () => {
           provide: AuthFirebaseService,
           useValue: AngularFireMocks
         },*/
-        { provide: AuthFirebaseService, useClass: AuthFirebaseService }
       ],
       declarations: [NavComponent],
       imports: [
@@ -84,7 +82,6 @@ describe('NavComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NavComponent);
     component = fixture.componentInstance;
-    authService = TestBed.get(AuthFirebaseService);
     fixture.detectChanges();
   });
 

@@ -4,7 +4,6 @@ import { ReviewPageComponent } from './review-page.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { DatabaseService } from 'src/app/services/database.service';
-import { AuthFirebaseService } from 'src/app/services/auth-firebase.service';
 import { of } from 'rxjs';
 
 let AngularFireMocks = {
@@ -35,7 +34,6 @@ describe('ReviewPageComponent', () => {
       ],
       providers:[
         {
-          provide: AuthFirebaseService,
           useValue: AngularFireMocks
         },
         DatabaseService,

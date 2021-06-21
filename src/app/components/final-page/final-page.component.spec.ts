@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FinalPageComponent } from './final-page.component';
 import { DatabaseService } from 'src/app/services/database.service';
-import { AuthFirebaseService } from 'src/app/services/auth-firebase.service';
 import { DownloadFileService } from 'src/app/services/download-file.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HttpClientModule } from '@angular/common/http';
@@ -48,7 +47,6 @@ describe('FinalPageComponent', () => {
       declarations: [ FinalPageComponent ],
       providers:[
         DatabaseService,
-        AuthFirebaseService,
         DownloadFileService
       ],
       imports:[

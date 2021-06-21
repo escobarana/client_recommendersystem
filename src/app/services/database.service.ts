@@ -55,8 +55,7 @@ export class DatabaseService {
 
   getFinalAccept(){
     console.log("Final accepted apps...");
-    let headers = new HttpHeaders({'Authorization': this.token});
-    return this.http.get(this.urlServer + '/api/apps/apps_accepted', { headers: headers }).toPromise();
+    return this.http.get(this.urlServer + '/api/apps/apps_accepted').toPromise();
   }
 
   getCountFinalAcceptIOS(){
