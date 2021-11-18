@@ -328,14 +328,14 @@ export class ExplorePageComponent implements OnInit {
     var rawGoogleApps = this.play.getRawGoogleApps();
     console.log("Getting apps from Google Play...")
     rawGoogleApps.then((raw_google)=>{
-      var keyGoogleApps = this.play.getKeywordsGoogleApps(this.keywords);
+      var keyGoogleApps = this.play.getKeywordsGoogleApps();
       keyGoogleApps.then((key_google)=>{
         var descGoogleApps = this.play.getDescriptionGoogleApps();
         descGoogleApps.then((desc_google)=>{
           var rawAppleApps = this.play.getRawAppleApps();
           console.log("Getting apps from Apple Store...")
           rawAppleApps.then((apple)=>{
-            var keysAppleApps = this.play.getKeywordsAppleApps(this.keywords);
+            var keysAppleApps = this.play.getKeywordsAppleApps();
             keysAppleApps.then((key_apple)=>{
               var descAppleApps = this.play.getDescriptionAppleApps();
               descAppleApps.then((desc_apple)=>{

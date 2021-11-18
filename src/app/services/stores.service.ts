@@ -26,9 +26,9 @@ export class StoresService {
     return this.http.get<any>(url).toPromise();
   }
 
-  getKeywordsGoogleApps(keywords) {
+  getKeywordsGoogleApps() {
     const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
-    return this.http.get<any>(this.urlServer + `/api/apps/google/keywords/${keywords}`).toPromise();
+    return this.http.get<any>(this.urlServer + `/api/apps/google/keywords`).toPromise();
   }
 
   getRawAppleApps() {
@@ -43,10 +43,10 @@ export class StoresService {
     return this.http.get<any>(url).toPromise();
   }
 
-  getKeywordsAppleApps(keywords) {
+  getKeywordsAppleApps() {
     const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
     var url = this.urlServer + '/api/apps/apple/keywords';
-    return this.http.get<any>(url,keywords).toPromise();
+    return this.http.get<any>(url).toPromise();
   }
 
   getBothLists(){ // lista null
