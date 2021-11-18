@@ -37,7 +37,7 @@
               </a>
           </aside>-->
       </aside>
-      <section class="emptyListApps" *ngIf="isEmpty()">
+      <section class="emptyListApps" *ngIf="isEmpty()" [isLoaded]="isLoaded">
         <h1 class= "titleApps"> Reviewed apps </h1>
         <h2 class= "noApps"> No reviewed apps for now.</h2>
       </section>

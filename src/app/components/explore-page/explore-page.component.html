@@ -72,8 +72,13 @@
                 </a>-->
             </aside>
         </aside>
+
+        <section class="emptyListApps" *ngIf="!identity.admin && isEmpty()" [isLoaded]="isLoaded">
+            <h1 class= "titleApps"> Assigned apps </h1>
+            <h2 class= "noApps"> No assigned apps for now.</h2>
+          </section>
         
-        <section *ngIf="!identity.admin && isEmpty()" class="searching"> <!--&& isSearching-->
+        <section *ngIf="!identity.admin && !isLoaded" class="searching"> <!--&& isSearching-->
             <h2>Preparing your apps</h2>
             <h2>It can take several minutes</h2>
             <h2>Please wait...</h2>
@@ -123,22 +128,6 @@
             </mat-tab-group>
         </section>
     </section>
-    <!-- Analysis choosing K value:
-    <section *ngIf="!isLoaded && !isSearching && identity.admin && isEmpty()" class="start">
-        <h1>Start your analysis</h1>
-        <h2>Select your k:</h2>
-        <mat-form-field class="inputK">
-            <mat-select #K value="3" [(value)]="selectedK">
-              <mat-option value="2">2</mat-option>
-              <mat-option value="3">3</mat-option>
-              <mat-option value="4">4</mat-option>
-            </mat-select>
-        </mat-form-field>
-            <button class="btn corner btnstart" (click)="startAnalysis()">
-                Start
-            </button>
-    </section>
-     -->
     
      <section *ngIf="!isLoaded" class="searching"> <!--&& isSearching-->
         <h2>Preparing your apps</h2>
